@@ -13,6 +13,7 @@ public class VROverlayIntersectionMaskPrimitive_Data_t extends Union {
 
     public VROverlayIntersectionMaskPrimitive_Data_t() {
         super();
+        setType(IntersectionMaskRectangle_t.class);
     }
 
     @Override
