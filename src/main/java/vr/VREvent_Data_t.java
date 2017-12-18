@@ -67,6 +67,12 @@ public class VREvent_Data_t extends Union {
      */
     public VREvent_SeatedZeroPoseReset_t seatedZeroPoseReset;
 
+    public VREvent_Screenshot_t screenshot;
+    public VREvent_ScreenshotProgress_t screenshotProgress;
+    public VREvent_ApplicationLaunch_t applicationLaunch;
+    public VREvent_EditingCameraSurface_t cameraSurface;
+    public VREvent_MessageOverlay_t messageOverlay;
+
     public VREvent_Data_t() {
         super();
     }
@@ -195,6 +201,47 @@ public class VREvent_Data_t extends Union {
         super();
         this.seatedZeroPoseReset = seatedZeroPoseReset;
         setType(VREvent_SeatedZeroPoseReset_t.class);
+    }
+
+    /**
+     * @param screenshot C type : VREvent_SeatedZeroPoseReset_t
+     */
+    public VREvent_Data_t(VREvent_Screenshot_t screenshot) {
+        super();
+        this.screenshot = screenshot;
+        setType(VREvent_Screenshot_t.class);
+    }
+    /**
+     * @param screenshotProgress C type : VREvent_SeatedZeroPoseReset_t
+     */
+    public VREvent_Data_t(VREvent_ScreenshotProgress_t screenshotProgress) {
+        super();
+        this.screenshotProgress = screenshotProgress;
+        setType(VREvent_ScreenshotProgress_t.class);
+    }
+    /**
+     * @param applicationLaunch C type : VREvent_SeatedZeroPoseReset_t
+     */
+    public VREvent_Data_t(VREvent_ApplicationLaunch_t applicationLaunch) {
+        super();
+        this.applicationLaunch = applicationLaunch;
+        setType(VREvent_ApplicationLaunch_t.class);
+    }
+    /**
+     * @param cameraSurface C type : VREvent_SeatedZeroPoseReset_t
+     */
+    public VREvent_Data_t(VREvent_EditingCameraSurface_t cameraSurface) {
+        super();
+        this.cameraSurface = cameraSurface;
+        setType(VREvent_EditingCameraSurface_t.class);
+    }
+    /**
+     * @param messageOverlay C type : VREvent_SeatedZeroPoseReset_t
+     */
+    public VREvent_Data_t(VREvent_MessageOverlay_t messageOverlay) {
+        super();
+        this.messageOverlay = messageOverlay;
+        setType(VREvent_MessageOverlay_t.class);
     }
 
     public VREvent_Data_t(Pointer peer) {

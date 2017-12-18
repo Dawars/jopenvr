@@ -3,7 +3,6 @@ package vr;
 import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-import com.sun.jna.ptr.FloatByReference;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
 import java.util.Arrays;
@@ -39,7 +38,7 @@ public class IVRTrackedCamera_FnTable extends Structure {
     /*
       EVRTrackedCameraError (OPENVR_FNTABLE_CALLTYPE *GetCameraIntrinisics)(TrackedDeviceIndex_t nDeviceIndex, EVRTrackedCameraFrameType eFrameType, HmdVector2_t * pFocalLength, HmdVector2_t * pCenter);
      */
-    public IVRTrackedCamera_FnTable.GetCameraIntrinisics_callback GetCameraIntrinisics;
+    public GetCameraIntrinsics_callback GetCameraIntrinisics;
 
     /*
       EVRTrackedCameraError (OPENVR_FNTABLE_CALLTYPE *GetCameraProjection)(TrackedDeviceIndex_t nDeviceIndex, EVRTrackedCameraFrameType eFrameType, float flZNear, float flZFar, HmdMatrix44_t * pProjection);
@@ -93,7 +92,7 @@ public class IVRTrackedCamera_FnTable extends Structure {
         int apply(int nDeviceIndex, int eFrameType, IntByReference pnWidth, IntByReference pnHeight, IntByReference pnFrameBufferSize);
     };
 
-    public interface GetCameraIntrinisics_callback extends Callback {
+    public interface GetCameraIntrinsics_callback extends Callback {
 
         int apply(int nDeviceIndex, int eFrameType, HmdVector2_t pFocalLength, HmdVector2_t pCenter);
     }
@@ -123,6 +122,14 @@ public class IVRTrackedCamera_FnTable extends Structure {
         int appply(int nDeviceIndex, int eFrameType, VRTextureBounds_t pTextureBounds, IntByReference pnWidth, IntByReference pnHeight);
     }
 
+    /**
+     * Access a shared D3D11 texture for the specified tracked camera stream.
+     * The camera frame type VRTrackedCameraFrameType_Undistorted is not supported directly as a shared texture. It is an interior subregion of the shared texture VRTrackedCameraFrameType_MaximumUndistorted.
+     * Instead, use GetVideoStreamTextureSize() with VRTrackedCameraFrameType_Undistorted to determine the proper interior subregion bounds along with GetVideoStreamTextureD3D11() with
+     * VRTrackedCameraFrameType_MaximumUndistorted to provide the texture. The VRTrackedCameraFrameType_MaximumUndistorted will yield an image where the invalid regions are decoded
+     * by the alpha channel having a zero component. The valid regions all have a non-zero alpha component. The subregion as described by VRTrackedCameraFrameType_Undistorted
+     * guarantees a rectangle where all pixels are valid.
+     */
     public interface GetVideoStreamTextureD3D11_callback extends Callback {
 
         int apply(int hTrackedCamera, int eFrameType, Pointer pD3D11DeviceOrResource, PointerByReference ppD3D11ShaderResourceView, CameraVideoStreamFrameHeader_t pFrameHeader, int nFrameHeaderSize);
@@ -144,7 +151,7 @@ public class IVRTrackedCamera_FnTable extends Structure {
 
     protected List<?> getFieldOrder() {
         return Arrays.asList("GetCameraErrorNameFromEnum", "HasCamera", "GetCameraFrameSize",
-                "GetCameraIntrinisics", "GetCameraProjection", "AcquireVideoStreamingService", "ReleaseVideoStreamingService",
+                "GetCameraIntrinsics", "GetCameraProjection", "AcquireVideoStreamingService", "ReleaseVideoStreamingService",
                 "GetVideoStreamFrameBuffer", "GetVideoStreamTextureSize", "GetVideoStreamTextureD3D11", "GetVideoStreamTextureGL",
                 "ReleaseVideoStreamTextureGL");
     }

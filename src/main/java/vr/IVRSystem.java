@@ -211,7 +211,7 @@ public class IVRSystem extends Structure {
 
     public interface GetProjectionMatrix_callback extends Callback {
 
-        vr.HmdMatrix44_t.ByValue apply(int eEye, float fNearZ, float fFarZ, int eProjType);
+        vr.HmdMatrix44_t.ByValue apply(int eEye, float fNearZ, float fFarZ);
     };
 
     public interface GetProjectionRaw_callback extends Callback {

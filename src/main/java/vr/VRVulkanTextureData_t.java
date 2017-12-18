@@ -6,7 +6,7 @@ import com.sun.jna.Structure;
 import java.util.Arrays;
 import java.util.List;
 
-public class VRVulkanData_t extends Structure {
+public class VRVulkanTextureData_t extends Structure {
     long m_nImage;
     /**
      * struct vr::VkDevice_T *<br>
@@ -30,11 +30,11 @@ public class VRVulkanData_t extends Structure {
                 "m_nSampleCount");
     }
 
-    public VRVulkanData_t() {
+    public VRVulkanTextureData_t() {
         super();
     }
 
-    public VRVulkanData_t(Pointer peer) {
+    public VRVulkanTextureData_t(Pointer peer) {
         super(peer);
         read();
     }

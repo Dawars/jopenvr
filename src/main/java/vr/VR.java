@@ -42,7 +42,7 @@ public class VR implements Library {
     public static int k_unControllerStateAxisCount = 5;
     public static long k_ulOverlayHandleInvalid = 0L;
     static int k_unScreenshotHandleInvalid = 0;
-    public static String IVRSystem_Version = "FnTable:IVRSystem_014";
+    public static String IVRSystem_Version = "FnTable:IVRSystem_015";
     public static String IVRExtendedDisplay_Version = "FnTable:IVRExtendedDisplay_001";
     public static String IVRTrackedCamera_Version = "FnTable:IVRTrackedCamera_003";
     /**
@@ -55,12 +55,12 @@ public class VR implements Library {
     public static String IVRApplications_Version = "FnTable:IVRApplications_006";
     public static String IVRChaperone_Version = "FnTable:IVRChaperone_003";
     public static String IVRChaperoneSetup_Version = "FnTable:IVRChaperoneSetup_005";
-    public static String IVRCompositor_Version = "FnTable:IVRCompositor_018";
+    public static String IVRCompositor_Version = "FnTable:IVRCompositor_019";
     public static int k_unVROverlayMaxKeyLength = 128;
     public static int k_unVROverlayMaxNameLength = 128;
     public static int k_unMaxOverlayCount = 64;
     public static int k_unMaxOverlayIntersectionMaskPrimitivesCount = 32;
-    public static String IVROverlay_Version = "FnTable:IVROverlay_013";
+    public static String IVROverlay_Version = "FnTable:IVROverlay_014";
     public static String k_pch_Controller_Component_GDC2015 = "gdc2015";
     public static String k_pch_Controller_Component_Base = "base";
     public static String k_pch_Controller_Component_Tip = "tip";
@@ -107,6 +107,9 @@ public class VR implements Library {
     public static String k_pch_SteamVR_ShowMirrorView_Bool = "mirrorViewGeometry";
     public static String k_pch_SteamVR_MirrorViewGeometry_String = "showMirrorView";
     public static String k_pch_SteamVR_StartMonitorFromAppLaunch = "startMonitorFromAppLaunch";
+    public static String k_pch_SteamVR_StartCompositorFromAppLaunch_Bool = "startCompositorFromAppLaunch";
+ 	public static String k_pch_SteamVR_StartDashboardFromAppLaunch_Bool = "startDashboardFromAppLaunch";
+    public static String k_pch_SteamVR_StartOverlayAppsFromDashboard_Bool = "startOverlayAppsFromDashboard";
     public static String k_pch_SteamVR_EnableHomeApp = "enableHomeApp";
     public static String k_pch_SteamVR_SetInitialDefaultHomeApp = "setInitialDefaultHomeApp";
     public static String k_pch_SteamVR_CycleBackgroundImageTimeSec_Int32 = "CycleBackgroundImageTimeSec";
@@ -201,11 +204,12 @@ public class VR implements Library {
         public static final int Max = 2;
     };
 
-    public static class EGraphicsAPIConvention {
+    public static class ETextureType {
 
-        public static final int API_DirectX = 0; // Normalized Z goes from 0 at the viewer to 1 at the far clip plane
-        public static final int API_OpenGL = 1; // Normalized Z goes from 1 at the viewer to -1 at the far clip plane
-    };
+        public static final int TextureType_DirectX = 0; // Handle is an ID3D11Texture
+        public static final int API_OpenGL = 1;  // Normalized Z goes from 1 at the viewer to -1 at the far clip plane		 +	TextureType_OpenGL = 1,  // Handle is an OpenGL texture name or an OpenGL render buffer name, depending on submit flags
+        public static final int TextureType_Vulkan = 2; // Handle is a pointer to a VRVulkanTextureData_t structure
+    }
 
     public static class EColorSpace {
 
@@ -237,8 +241,8 @@ public class VR implements Library {
         public static final int TrackedDeviceClass_Invalid = 0; // the ID was not valid.
         public static final int TrackedDeviceClass_HMD = 1; // Head-Mounted Displays
         public static final int TrackedDeviceClass_Controller = 2; // Tracked controllers
-        public static final int TrackedDeviceClass_TrackingReference = 4;// Camera and base stations that serve as tracking reference points
-        public static final int TrackedDeviceClass_Other = 1000;
+        public static final int TrackedDeviceClass_GenericTracker = 3; // Generic trackers, similar to controllers
+        public static final int TrackedDeviceClass_TrackingReference = 4; // Camera and base stations that serve as tracking reference points
     };
 
     /**
@@ -259,7 +263,7 @@ public class VR implements Library {
 
         public static final int TrackingUniverseSeated = 0;// Poses are provided relative to the seated zero pose
         public static final int TrackingUniverseStanding = 1;// Poses are provided relative to the safe bounds configured by the user
-        public static final int TrackingUniverseRawAndUncalibrated = 2;// Poses are provided in the coordinate system defined by the driver. You probably don't want this one.
+        public static final int TrackingUniverseRawAndUncalibrated = 2;// Poses are provided in the coordinate system defined by the driver.  It has Y up and is unified for devices of the same driver. You usually don't want this one.
     };
 
     /**
@@ -267,6 +271,7 @@ public class VR implements Library {
      * a tracked device. Many fields are only valid for one ETrackedDeviceClass.
      */
     public static class ETrackedDeviceProperty {
+        public static final int  Prop_Invalid = 0;
 
         // general properties that apply to all device classes
         public static final int Prop_TrackingSystemName_String = 1000;
@@ -394,6 +399,7 @@ public class VR implements Library {
         public static final int TrackedProp_StringExceedsMaximumLength = 8;
         // The property value isn't known yet, but is expected soon. Call again later.
         public static final int TrackedProp_NotYetAvailable = 9;
+        public static final int TrackedProp_PermissionDenied = 10;
     };
 
     /**
@@ -421,7 +427,9 @@ public class VR implements Library {
          * MSAA in OpenGL) then set this flag.
          */
         public static final int Submit_GlRenderBuffer = 2;
-        public static final int Submit_VulkanTexture  = 4;
+
+        // Do not use
+        public static final int Submit_Reserved = 4;
     };
 
     /**
@@ -579,6 +587,8 @@ public class VR implements Library {
         public static final int VREvent_PerformanceTest_EnableCapture = 1600;
         public static final int VREvent_PerformanceTest_DisableCapture = 1601;
         public static final int VREvent_PerformanceTest_FidelityLevel = 1602;
+
+        public static final int VREvent_MessageOverlay_Closed = 1650;
 
         // Vendors are free to expose private events in this reserved region
         public static final int VREvent_VendorSpecific_Reserved_Start = 10000;
@@ -806,6 +816,8 @@ public class VR implements Library {
         public static final int VRInitError_Init_InvalidApplicationType = 130;
         public static final int VRInitError_Init_NotAvailableToWatchdogApps = 131;
         public static final int VRInitError_Init_WatchdogDisabledInSettings = 132;
+        public static final int VRInitError_Init_VRDashboardNotFound		= 133;
+        public static final int VRInitError_Init_VRDashboardStartupFailed	= 134;
 
         public static final int VRInitError_Driver_Failed = 200;
         public static final int VRInitError_Driver_Unknown = 201;
@@ -1011,6 +1023,7 @@ public class VR implements Library {
         public static final int ChaperoneCalibrationState_Error = 200;  // The UniverseID is invalid
         // Tracking center hasn't be calibrated for at least one of the base stations
         public static final int ChaperoneCalibrationState_Error_BaseStationUninitalized = 201;
+        public static final int ChaperoneCalibrationState_Error_BaseStationUninitialized = 201;
         // Tracking center is calibrated, but base stations disagree on the tracking space
         public static final int ChaperoneCalibrationState_Error_BaseStationConflict = 202;
         // Play Area hasn't been calibrated for the current tracking center
@@ -1132,6 +1145,22 @@ public class VR implements Library {
          * scene overlays
          */
         public static final int SortWithNonSceneOverlays = 14;
+
+        /**
+         * If set, the overlay will be shown in the dashboard, otherwise it will be hidden.
+         */
+        public static final int VisibleInDashboard = 15;
+    };
+
+    public static class VRMessageOverlayResponse
+    {
+        public static final int ButtonPress_0 = 0;
+        public static final int ButtonPress_1 = 1;
+        public static final int ButtonPress_2 = 2;
+        public static final int ButtonPress_3 = 3;
+        public static final int CouldntFindSystemOverlay = 4;
+        public static final int CouldntFindOrCreateClientOverlay= 5;
+        public static final int ApplicationQuit = 6;
     };
 
     // Input modes for the Big Picture gamepad text entry

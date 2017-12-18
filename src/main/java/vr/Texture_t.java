@@ -16,12 +16,12 @@ public class Texture_t extends Structure {
      * void *<br>
      * C type : void*
      *
-     * Native d3d texture pointer or GL texture id.
+     * See ETextureType definition above
      */
     public int handle;
     /**
-     * @see EGraphicsAPIConvention<br>
-     * C type : EGraphicsAPIConvention
+     * @see ETextureType<br>
+     * C type : ETextureType
      */
     public int eType;
     /**
@@ -42,8 +42,8 @@ public class Texture_t extends Structure {
     /**
      * @param handle void *<br>
      * C type : void*<br>
-     * @param eType @see EGraphicsAPIConvention<br>
-     * C type : EGraphicsAPIConvention<br>
+     * @param eType @see ETextureType<br>
+     * C type : ETextureType<br>
      * @param eColorSpace @see EColorSpace<br>
      * C type : EColorSpace
      */

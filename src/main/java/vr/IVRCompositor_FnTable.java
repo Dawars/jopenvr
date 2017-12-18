@@ -174,6 +174,10 @@ public class IVRCompositor_FnTable extends Structure {
      */
     public IVRCompositor_FnTable.UnlockGLSharedTextureForAccess_callback UnlockGLSharedTextureForAccess;
 
+    public IVRCompositor_FnTable.GetVulkanInstanceExtensionsRequired_callback GetVulkanInstanceExtensionsRequired;
+    public IVRCompositor_FnTable.GetVulkanDeviceExtensionsRequired_callback GetVulkanDeviceExtensionsRequired;
+
+
     public interface SetTrackingSpace_callback extends Callback {
 
         void apply(int eOrigin);
@@ -365,6 +369,26 @@ public class IVRCompositor_FnTable extends Structure {
         void apply(Pointer glSharedTextureHandle);
     }
 
+    /** [Vulkan Only]
+     * return 0. Otherwise it returns the length of the number of bytes necessary to hold this string including the trailing
+     * null.  The string will be a space separated list of-required instance extensions to enable in VkCreateInstance
+     * not tested, not supported
+     * Original header: virtual uint32_t GetVulkanInstanceExtensionsRequired( VR_OUT_STRING() char *pchValue, uint32_t unBufferSize ) = 0;*/
+    public interface GetVulkanInstanceExtensionsRequired_callback extends Callback {
+
+        int apply(String pchValue, int unBufferSize);
+    }
+
+    /** [Vulkan only]
+     * return 0. Otherwise it returns the length of the number of bytes necessary to hold this string including the trailing
+     * null.  The string will be a space separated list of required device extensions to enable in VkCreateDevice
+     * FIXME not tested, not supported
+     * Original header: virtual uint32_t GetVulkanDeviceExtensionsRequired( VkPhysicalDevice_T *pPhysicalDevice, VR_OUT_STRING() char *pchValue, uint32_t unBufferSize ) = 0;*/
+    public interface GetVulkanDeviceExtensionsRequired_callback extends Callback {
+
+        int apply(Pointer pPhysicalDevice, String pchValue, int unBufferSize);
+    }
+
     public IVRCompositor_FnTable() {
         super();
         read();
@@ -381,7 +405,8 @@ public class IVRCompositor_FnTable extends Structure {
                 "HideMirrorWindow", "IsMirrorWindowVisible", "CompositorDumpImages",
                 "ShouldAppRenderWithLowResources", "ForceInterleavedReprojectionOn",
                 "ForceReconnectProcess", "SuspendRendering", "GetMirrorTextureD3D11", "GetMirrorTextureGL",
-                "ReleaseSharedGLTexture", "LockGLSharedTextureForAccess", "UnlockGLSharedTextureForAccess");
+                "ReleaseSharedGLTexture", "LockGLSharedTextureForAccess", "UnlockGLSharedTextureForAccess",
+                "GetVulkanInstanceExtensionsRequired", "GetVulkanDeviceExtensionsRequired");
     }
 
     public IVRCompositor_FnTable(Pointer peer) {
