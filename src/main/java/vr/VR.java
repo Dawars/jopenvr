@@ -50,6 +50,9 @@ public class VR implements Library {
      * The maximum length of an application key.
      */
     public static int k_unMaxApplicationKeyLength = 128;
+
+    public static String k_pch_MimeType_HomeApp = "vr/home";
+    public static String k_pch_MimeType_GameTheater = "vr/game_theater";
     public static String IVRApplications_Version = "FnTable:IVRApplications_006";
     public static String IVRChaperone_Version = "FnTable:IVRChaperone_003";
     public static String IVRChaperoneSetup_Version = "FnTable:IVRChaperoneSetup_005";
@@ -67,7 +70,7 @@ public class VR implements Library {
     public static int k_unNotificationTextMaxSize = 256;
     public static String IVRNotifications_Version = "FnTable:IVRNotifications_002";
     public static int k_unMaxSettingsKeyLength = 128;
-    public static String IVRSettings_Version = "FnTable:IVRSettings_001";
+    public static String IVRSettings_Version = "FnTable:IVRSettings_002";
     public static String k_pch_SteamVR_Section = "steamvr";
     public static String k_pch_SteamVR_RequireHmd_String = "requireHmd";
     public static String k_pch_SteamVR_ForcedDriverKey_String = "forcedDriver";
@@ -88,9 +91,6 @@ public class VR implements Library {
     public static String k_pch_SteamVR_PlayAreaColor_String = "playAreaColor";
     public static String k_pch_SteamVR_ShowStage_Bool = "showStage";
     public static String k_pch_SteamVR_ActivateMultipleDrivers_Bool = "activateMultipleDrivers";
-    public static String k_pch_SteamVR_PowerOffOnExit_Bool = "powerOffOnExit";
-    public static String k_pch_SteamVR_StandbyAppRunningTimeout_Float = "standbyAppRunningTimeout";
-    public static String k_pch_SteamVR_StandbyNoAppTimeout_Float = "standbyNoAppTimeout";
     public static String k_pch_SteamVR_DirectMode_Bool = "directMode";
     public static String k_pch_SteamVR_DirectModeEdidVid_Int32 = "directModeEdidVid";
     public static String k_pch_SteamVR_DirectModeEdidPid_Int32 = "directModeEdidPid";
@@ -103,18 +103,18 @@ public class VR implements Library {
     public static String k_pch_SteamVR_ForceReprojection_Bool = "forceReprojection";
     public static String k_pch_SteamVR_ForceFadeOnBadTracking_Bool = "forceFadeOnBadTracking";
     public static String k_pch_SteamVR_DefaultMirrorView_Int32 = "defaultMirrorView";
-    public static String k_pch_SteamVR_ShowMirrorView_Bool = "showMirrorView";
+    public static String k_pch_SteamVR_ShowMirrorView_Bool = "mirrorViewGeometry";
+    public static String k_pch_SteamVR_MirrorViewGeometry_String = "showMirrorView";
     public static String k_pch_SteamVR_StartMonitorFromAppLaunch = "startMonitorFromAppLaunch";
-    public static String k_pch_SteamVR_AutoLaunchSteamVROnButtonPress = "autoLaunchSteamVROnButtonPress";
-    public static String k_pch_SteamVR_UseGenericGraphcisDevice_Bool = "useGenericGraphicsDevice";
+    public static String k_pch_SteamVR_EnableHomeApp = "enableHomeApp";
+    public static String k_pch_SteamVR_SetInitialDefaultHomeApp = "setInitialDefaultHomeApp";
+    public static String k_pch_SteamVR_CycleBackgroundImageTimeSec_Int32 = "CycleBackgroundImageTimeSec";
+    public static String k_pch_SteamVR_RetailDemo_Bool = "retailDemo";
     public static String k_pch_Lighthouse_Section = "driver_lighthouse";
     public static String k_pch_Lighthouse_DisableIMU_Bool = "disableimu";
     public static String k_pch_Lighthouse_UseDisambiguation_String = "usedisambiguation";
     public static String k_pch_Lighthouse_DisambiguationDebug_Int32 = "disambiguationdebug";
     public static String k_pch_Lighthouse_PrimaryBasestation_Int32 = "primarybasestation";
-    public static String k_pch_Lighthouse_LighthouseName_String = "lighthousename";
-    public static String k_pch_Lighthouse_MaxIncidenceAngleDegrees_Float = "maxincidenceangledegrees";
-    public static String k_pch_Lighthouse_UseLighthouseDirect_Bool = "uselighthousedirect";
     public static String k_pch_Lighthouse_DBHistory_Bool = "dbhistory";
     public static String k_pch_Null_Section = "driver_null";
     public static String k_pch_Null_EnableNullDriver_Bool = "enable";
@@ -168,6 +168,7 @@ public class VR implements Library {
     public static String k_pch_Camera_BoundsColorGammaG_Int32 = "cameraBoundsColorGammaG";
     public static String k_pch_Camera_BoundsColorGammaB_Int32 = "cameraBoundsColorGammaB";
     public static String k_pch_Camera_BoundsColorGammaA_Int32 = "cameraBoundsColorGammaA";
+    public static String k_pch_Camera_BoundsStrength_Int32 = "cameraBoundsStrength";
     public static String k_pch_audio_Section = "audio";
     public static String k_pch_audio_OnPlaybackDevice_String = "onPlaybackDevice";
     public static String k_pch_audio_OnRecordDevice_String = "onRecordDevice";
@@ -175,6 +176,15 @@ public class VR implements Library {
     public static String k_pch_audio_OffPlaybackDevice_String = "offPlaybackDevice";
     public static String k_pch_audio_OffRecordDevice_String = "offRecordDevice";
     public static String k_pch_audio_VIVEHDMIGain = "viveHDMIGain";
+    public static String k_pch_Power_Section = "power";
+    public static String k_pch_Power_PowerOffOnExit_Bool = "powerOffOnExit";
+    public static String k_pch_Power_TurnOffScreensTimeout_Float = "turnOffScreensTimeout";
+    public static String k_pch_Power_TurnOffControllersTimeout_Float = "turnOffControllersTimeout";
+    public static String k_pch_Power_ReturnToWatchdogTimeout_Float = "returnToWatchdogTimeout";
+    public static String k_pch_Power_AutoLaunchSteamVROnButtonPress = "autoLaunchSteamVROnButtonPress";
+    public static String k_pch_Dashboard_Section = "dashboard";
+    public static String k_pch_Dashboard_EnableDashboard_Bool = "enableDashboard";
+    public static String k_pch_Dashboard_ArcadeMode_Bool = "arcadeMode";
     public static String k_pch_modelskin_Section = "modelskins";
     public static String IVRScreenshots_Version = "IVRScreenshots_001";
     public static String IVRResources_Version = "IVRResources_001";
@@ -348,6 +358,16 @@ public class VR implements Library {
         public static final int Prop_TrackingRangeMaximumMeters_Float = 4005;
         public static final int Prop_ModeLabel_String = 4006;
 
+        public static final int Prop_IconPathName_String = 5000;
+        public static final int Prop_NamedIconPathDeviceOff_String = 5001;
+        public static final int Prop_NamedIconPathDeviceSearching_String = 5002;
+        public static final int Prop_NamedIconPathDeviceSearchingAlert_String = 5003;
+        public static final int Prop_NamedIconPathDeviceReady_String = 5004;
+        public static final int Prop_NamedIconPathDeviceReadyAlert_String = 5005;
+        public static final int Prop_NamedIconPathDeviceNotReady_String = 5006;
+        public static final int Prop_NamedIconPathDeviceStandby_String = 5007;
+        public static final int Prop_NamedIconPathDeviceAlertLow_String = 5008;
+
         // Vendors are free to expose private debug data in this reserved region
         public static final int Prop_VendorSpecific_Reserved_Start = 10000;
         public static final int Prop_VendorSpecific_Reserved_End = 10999;
@@ -396,6 +416,7 @@ public class VR implements Library {
          * MSAA in OpenGL) then set this flag.
          */
         public static final int Submit_GlRenderBuffer = 2;
+        public static final int Submit_VulkanTexture  = 4;
     };
 
     /**
@@ -432,6 +453,7 @@ public class VR implements Library {
         public static final int VREvent_LeaveStandbyMode = 107;
         public static final int VREvent_TrackedDeviceRoleChanged = 108;
         public static final int VREvent_WatchdogWakeUpRequested = 109;
+        public static final int VREvent_LensDistortionChanged = 110;
 
         public static final int VREvent_ButtonPress = 200;      // data is controller
         public static final int VREvent_ButtonUnpress = 201;    // data is controller
@@ -487,6 +509,7 @@ public class VR implements Library {
         public static final int VREvent_DashboardGuideButtonUp = 515;
         public static final int VREvent_ScreenshotTriggered = 516;
         public static final int VREvent_ImageFailed = 517;
+        public static final int VREvent_DashboardOverlayCreated = 518;
         public static final int VREvent_RequestScreenshot = 520;
         public static final int VREvent_ScreenshotTaken = 521;
         public static final int VREvent_ScreenshotFailed = 522;
@@ -517,6 +540,7 @@ public class VR implements Library {
         public static final int VREvent_ReprojectionSettingHasChanged = 852;
         public static final int VREvent_ModelSkinSettingsHaveChanged = 853;
         public static final int VREvent_EnvironmentSettingsHaveChanged = 854;
+        public static final int VREvent_PowerSettingsHaveChanged = 855;
 
         public static final int VREvent_StatusUpdate = 900;
 
@@ -544,6 +568,8 @@ public class VR implements Library {
         public static final int VREvent_TrackedCamera_StopVideoStream = 1501;
         public static final int VREvent_TrackedCamera_PauseVideoStream = 1502;
         public static final int VREvent_TrackedCamera_ResumeVideoStream = 1503;
+
+        public static final int VREvent_TrackedCamera_EditingSurface = 1550;
 
         public static final int VREvent_PerformanceTest_EnableCapture = 1600;
         public static final int VREvent_PerformanceTest_DisableCapture = 1601;
@@ -580,6 +606,7 @@ public class VR implements Library {
         public static final int k_EButton_DPad_Down = 6;
         public static final int k_EButton_A = 7;
 
+        public static final int k_EButton_ProximitySensor = 31;
         public static final int k_EButton_Axis0 = 32;
         public static final int k_EButton_Axis1 = 33;
         public static final int k_EButton_Axis2 = 34;
@@ -665,7 +692,8 @@ public class VR implements Library {
         public static final int VROverlayError_RequestFailed = 23;
         public static final int VROverlayError_InvalidTexture = 24;
         public static final int VROverlayError_UnableToLoadFile = 25;
-        public static final int VROVerlayError_KeyboardAlreadyInUse = 26;
+        public static final int VROVerlayError_KeyboardAlreadyInUse = 26; // wrong spelling
+        public static final int VROverlayError_KeyboardAlreadyInUse = 26;
         public static final int VROverlayError_NoNeighbor = 27;
     };
 
@@ -1205,6 +1233,9 @@ public class VR implements Library {
         public static final int VRSettingsError_IPCFailed = 1;
         public static final int VRSettingsError_WriteFailed = 2;
         public static final int VRSettingsError_ReadFailed = 3;
+        public static final int VRSettingsError_JsonParseFailed = 4;
+
+        public static final int VRSettingsError_UnsetSettingHasNoDefault = 5;
     };
 
     public static class EVRScreenshotError {
