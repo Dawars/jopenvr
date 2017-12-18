@@ -32,6 +32,21 @@ public class VR implements Library {
     public static int k_unMaxTrackedDeviceCount = 16;
     public static long k_unTrackedDeviceIndexOther = 4294967294L; //0xFFFFFFFE
     public static long k_unTrackedDeviceIndexInvalid = 4294967295L; // 0xFFFFFFFF
+
+    public static long k_ulInvalidPropertyContainer = 0;
+    public static int k_unInvalidPropertyTag = 0;
+    public static int k_unFloatPropertyTag = 1;
+    public static int k_unInt32PropertyTag = 2;
+    public static int k_unUint64PropertyTag = 3;
+    public static int k_unBoolPropertyTag = 4;
+    public static int k_unStringPropertyTag = 5;
+    public static int k_unHmdMatrix34PropertyTag = 20;
+    public static int k_unHmdMatrix44PropertyTag = 21;
+    public static int k_unHmdVector3PropertyTag = 22;
+    public static int k_unHmdVector4PropertyTag = 23;
+    public static int k_unHiddenAreaPropertyTag = 30;
+    public static int k_unOpenVRInternalReserved_Start = 1000;
+    public static int k_unOpenVRInternalReserved_End = 10000;
     /**
      * No string property will ever be longer than this length.
      */
@@ -55,7 +70,7 @@ public class VR implements Library {
     public static String IVRApplications_Version = "FnTable:IVRApplications_006";
     public static String IVRChaperone_Version = "FnTable:IVRChaperone_003";
     public static String IVRChaperoneSetup_Version = "FnTable:IVRChaperoneSetup_005";
-    public static String IVRCompositor_Version = "FnTable:IVRCompositor_019";
+    public static String IVRCompositor_Version = "FnTable:IVRCompositor_020";
     public static int k_unVROverlayMaxKeyLength = 128;
     public static int k_unVROverlayMaxNameLength = 128;
     public static int k_unMaxOverlayCount = 64;
@@ -122,7 +137,6 @@ public class VR implements Library {
     public static String k_pch_Lighthouse_PrimaryBasestation_Int32 = "primarybasestation";
     public static String k_pch_Lighthouse_DBHistory_Bool = "dbhistory";
     public static String k_pch_Null_Section = "driver_null";
-    public static String k_pch_Null_EnableNullDriver_Bool = "enable";
     public static String k_pch_Null_SerialNumber_String = "serialNumber";
     public static String k_pch_Null_ModelNumber_String = "modelNumber";
     public static String k_pch_Null_WindowX_Int32 = "windowX";
@@ -192,6 +206,7 @@ public class VR implements Library {
     public static String k_pch_Dashboard_EnableDashboard_Bool = "enableDashboard";
     public static String k_pch_Dashboard_ArcadeMode_Bool = "arcadeMode";
     public static String k_pch_modelskin_Section = "modelskins";
+    public static String k_pch_Driver_Enable_Bool = "enable";
     public static String IVRScreenshots_Version = "IVRScreenshots_001";
     public static String IVRResources_Version = "IVRResources_001";
 
@@ -209,6 +224,8 @@ public class VR implements Library {
         public static final int TextureType_DirectX = 0; // Handle is an ID3D11Texture
         public static final int API_OpenGL = 1;  // Normalized Z goes from 1 at the viewer to -1 at the far clip plane		 +	TextureType_OpenGL = 1,  // Handle is an OpenGL texture name or an OpenGL render buffer name, depending on submit flags
         public static final int TextureType_Vulkan = 2; // Handle is a pointer to a VRVulkanTextureData_t structure
+        public static final int ETextureType_TextureType_IOSurface = 3;
+        public static final int ETextureType_TextureType_DirectX12 = 4;
     }
 
     public static class EColorSpace {
@@ -310,6 +327,7 @@ public class VR implements Library {
         public static final int Prop_ViveSystemButtonFixRequired_Bool = 1033;
 
         // Properties that are unique to TrackedDeviceClass_HMD
+        public static final int Prop_ParentDriver_Uint64 = 1034;
         public static final int Prop_ReportsTimeSinceVSync_Bool = 2000;
         public static final int Prop_SecondsFromVsyncToPhotons_Float = 2001;
         public static final int Prop_DisplayFrequency_Float = 2002;
@@ -348,6 +366,11 @@ public class VR implements Library {
         public static final int Prop_ScreenshotVerticalFieldOfViewDegrees_Float = 2035;
         public static final int Prop_DisplaySuppressed_Bool = 2036;
         public static final int Prop_DisplayAllowNightMode_Bool = 2037;
+        public static final int Prop_DisplayMCImageWidth_Int32 = 2038;
+        public static final int Prop_DisplayMCImageHeight_Int32 = 2039;
+        public static final int Prop_DisplayMCImageNumChannels_Int32 = 2040;
+        public static final int Prop_DisplayMCImageData_Binary = 2041;
+        public static final int Prop_UsesDriverDirectMode_Bool = 2042;
 
         // Properties that are unique to TrackedDeviceClass_Controller
         public static final int Prop_AttachedDeviceId_String = 3000;
@@ -378,6 +401,11 @@ public class VR implements Library {
         public static final int Prop_NamedIconPathDeviceStandby_String = 5007;
         public static final int Prop_NamedIconPathDeviceAlertLow_String = 5008;
 
+        public static final int Prop_DisplayHiddenArea_Binary_Start = 5100;
+        public static final int Prop_DisplayHiddenArea_Binary_End = 5150;
+        public static final int Prop_UserConfigPath_String = 6000;
+        public static final int Prop_InstallPath_String = 6001;
+
         // Vendors are free to expose private debug data in this reserved region
         public static final int Prop_VendorSpecific_Reserved_Start = 10000;
         public static final int Prop_VendorSpecific_Reserved_End = 10999;
@@ -400,6 +428,7 @@ public class VR implements Library {
         // The property value isn't known yet, but is expected soon. Call again later.
         public static final int TrackedProp_NotYetAvailable = 9;
         public static final int TrackedProp_PermissionDenied = 10;
+        public static final int TrackedProp_InvalidOperation = 11;
     };
 
     /**
@@ -528,6 +557,7 @@ public class VR implements Library {
         public static final int VREvent_ScreenshotFailed = 522;
         public static final int VREvent_SubmitScreenshotToDashboard = 523;
         public static final int VREvent_ScreenshotProgressToDashboard = 524;
+        public static final int VREvent_PrimaryDashboardDeviceChanged = 525;
 
         public static final int VREvent_Notification_Shown = 600;
         public static final int VREvent_Notification_Hidden = 601;
@@ -571,6 +601,7 @@ public class VR implements Library {
         public static final int VREvent_ApplicationTransitionNewAppStarted = 1302;
         public static final int VREvent_ApplicationListUpdated = 1303;
         public static final int VREvent_ApplicationMimeTypeLoad = 1304;
+        public static final int VREvent_ApplicationTransitionNewAppLaunchComplete = 1305;
 
         public static final int VREvent_Compositor_MirrorWindowShown = 1400;
         public static final int VREvent_Compositor_MirrorWindowHidden = 1401;
@@ -655,6 +686,7 @@ public class VR implements Library {
         public static final int k_eHiddenAreaMesh_Standard = 0;
         public static final int k_eHiddenAreaMesh_Inverse = 1;
         public static final int k_eHiddenAreaMesh_LineLoop = 2;
+        public static final int k_eHiddenAreaMesh_Max = 3;
     };
 
     /**
@@ -988,6 +1020,7 @@ public class VR implements Library {
         public static final int VRApplicationProperty_IsDashboardOverlay_Bool = 60;
         public static final int VRApplicationProperty_IsTemplate_Bool = 61;
         public static final int VRApplicationProperty_IsInstanced_Bool = 62;
+        public static final int VRApplicationProperty_IsInternal_Bool = 63;
 
         public static final int VRApplicationProperty_LastLaunchTime_Uint64 = 70;
     };

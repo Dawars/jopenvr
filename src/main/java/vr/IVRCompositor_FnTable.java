@@ -349,6 +349,12 @@ public class IVRCompositor_FnTable extends Structure {
         int apply(int eEye, Pointer pD3D11DeviceOrResource, PointerByReference ppD3D11ShaderResourceView);
     }
 
+    public interface ReleaseMirrorTextureD3D11_callback extends Callback {
+        //EVRCompositorError (OPENVR_FNTABLE_CALLTYPE *GetMirrorTextureGL)(EVREye eEye, glUInt_t * pglTextureId, glSharedTextureHandle_t * pglSharedTextureHandle);
+        // FIXME not tested
+        void apply(int eEye, int pglTextureId, Pointer pglSharedTextureHandle);
+    }
+
     public interface GetMirrorTextureGL_callback extends Callback {
 
         int apply(int eEye, IntByReference pglTextureId, Pointer pglSharedTextureHandle);

@@ -141,6 +141,8 @@ public class IVRApplications_FnTable extends Structure {
      */
     public IVRApplications_FnTable.LaunchInternalProcess_callback LaunchInternalProcess;
 
+    public IVRApplications_FnTable.GetCurrentSceneProcessId_callback GetCurrentSceneProcessId;
+
     public interface AddApplicationManifest_callback extends Callback {
 
         int apply(Pointer pchApplicationManifestFullPath, byte bTemporary);
@@ -291,6 +293,11 @@ public class IVRApplications_FnTable extends Structure {
         int apply(Pointer pchBinaryPath, Pointer pchArguments, Pointer pchWorkingDirectory);
     };
 
+    public interface GetCurrentSceneProcessId_callback extends Callback {
+
+        int apply();
+    };
+
     public IVRApplications_FnTable() {
         super();
     }
@@ -308,7 +315,7 @@ public class IVRApplications_FnTable extends Structure {
                 "GetApplicationSupportedMimeTypes", "GetApplicationsThatSupportMimeType", "GetApplicationLaunchArguments",
                 "GetStartingApplication", "GetTransitionState",
                 "PerformApplicationPrelaunchCheck", "GetApplicationsTransitionStateNameFromEnum",
-                "IsQuitUserPromptRequested", "LaunchInternalProcess");
+                "IsQuitUserPromptRequested", "LaunchInternalProcess", "GetCurrentSceneProcessId");
     }
 
     public IVRApplications_FnTable(Pointer peer) {
