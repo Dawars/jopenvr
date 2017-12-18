@@ -321,6 +321,10 @@ public class IVROverlay_FnTable extends Structure {
      * C type : SetKeyboardPositionForOverlay_callback*
      */
     public IVROverlay_FnTable.SetKeyboardPositionForOverlay_callback SetKeyboardPositionForOverlay;
+    /**
+     * C type : SetOverlayIntersectionMask_callback*
+     */
+    public IVROverlay_FnTable.SetOverlayIntersectionMask_callback SetOverlayIntersectionMask;
 
     public interface FindOverlay_callback extends Callback {
 
@@ -683,6 +687,10 @@ public class IVROverlay_FnTable extends Structure {
 
         void apply(long ulOverlayHandle, vr.HmdRect2_t.ByValue avoidRect);
     };
+    public interface SetOverlayIntersectionMask_callback extends Callback {
+
+        VR.EVROverlayError apply(long ulOverlayHandle, VROverlayIntersectionMaskPrimitive_t pMaskPrimitives, int unNumMaskPrimitives, int unPrimitiveSize);
+    };
 
     public IVROverlay_FnTable() {
         super();
@@ -713,7 +721,7 @@ public class IVROverlay_FnTable extends Structure {
                 "IsDashboardVisible", "IsActiveDashboardOverlay", "SetDashboardOverlaySceneProcess",
                 "GetDashboardOverlaySceneProcess", "ShowDashboard", "GetPrimaryDashboardDevice",
                 "ShowKeyboard", "ShowKeyboardForOverlay", "GetKeyboardText", "HideKeyboard",
-                "SetKeyboardTransformAbsolute", "SetKeyboardPositionForOverlay");
+                "SetKeyboardTransformAbsolute", "SetKeyboardPositionForOverlay", "SetOverlayIntersectionMask");
     }
 
     public IVROverlay_FnTable(Pointer peer) {

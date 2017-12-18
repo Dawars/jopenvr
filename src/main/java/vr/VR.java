@@ -27,7 +27,6 @@ public class VR implements Library {
         Native.register(VR.class, JNA_NATIVE_LIB);
     }
 
-    public static int k_unTrackingStringSize = 32;
     public static int k_unMaxDriverDebugResponseSize = 32768;
     public static int k_unTrackedDeviceIndex_Hmd = 0;
     public static int k_unMaxTrackedDeviceCount = 16;
@@ -43,7 +42,7 @@ public class VR implements Library {
     public static int k_unControllerStateAxisCount = 5;
     public static long k_ulOverlayHandleInvalid = 0L;
     static int k_unScreenshotHandleInvalid = 0;
-    public static String IVRSystem_Version = "FnTable:IVRSystem_012";
+    public static String IVRSystem_Version = "FnTable:IVRSystem_014";
     public static String IVRExtendedDisplay_Version = "FnTable:IVRExtendedDisplay_001";
     public static String IVRTrackedCamera_Version = "FnTable:IVRTrackedCamera_003";
     /**
@@ -56,10 +55,11 @@ public class VR implements Library {
     public static String IVRApplications_Version = "FnTable:IVRApplications_006";
     public static String IVRChaperone_Version = "FnTable:IVRChaperone_003";
     public static String IVRChaperoneSetup_Version = "FnTable:IVRChaperoneSetup_005";
-    public static String IVRCompositor_Version = "FnTable:IVRCompositor_016";
+    public static String IVRCompositor_Version = "FnTable:IVRCompositor_018";
     public static int k_unVROverlayMaxKeyLength = 128;
     public static int k_unVROverlayMaxNameLength = 128;
     public static int k_unMaxOverlayCount = 64;
+    public static int k_unMaxOverlayIntersectionMaskPrimitivesCount = 32;
     public static String IVROverlay_Version = "FnTable:IVROverlay_013";
     public static String k_pch_Controller_Component_GDC2015 = "gdc2015";
     public static String k_pch_Controller_Component_Base = "base";
@@ -84,9 +84,9 @@ public class VR implements Library {
     public static String k_pch_SteamVR_LogLevel_Int32 = "loglevel";
     public static String k_pch_SteamVR_IPD_Float = "ipd";
     public static String k_pch_SteamVR_Background_String = "background";
+    public static String k_pch_SteamVR_BackgroundUseDomeProjection_Bool = "backgroundUseDomeProjection";
     public static String k_pch_SteamVR_BackgroundCameraHeight_Float = "backgroundCameraHeight";
     public static String k_pch_SteamVR_BackgroundDomeRadius_Float = "backgroundDomeRadius";
-    public static String k_pch_SteamVR_Environment_String = "environment";
     public static String k_pch_SteamVR_GridColor_String = "gridColor";
     public static String k_pch_SteamVR_PlayAreaColor_String = "playAreaColor";
     public static String k_pch_SteamVR_ShowStage_Bool = "showStage";
@@ -99,7 +99,8 @@ public class VR implements Library {
     public static String k_pch_SteamVR_BaseStationPowerManagement_Bool = "basestationPowerManagement";
     public static String k_pch_SteamVR_NeverKillProcesses_Bool = "neverKillProcesses";
     public static String k_pch_SteamVR_RenderTargetMultiplier_Float = "renderTargetMultiplier";
-    public static String k_pch_SteamVR_AllowReprojection_Bool = "allowReprojection";
+    public static String k_pch_SteamVR_AllowAsyncReprojection_Bool = "allowAsyncReprojection";
+    public static String k_pch_SteamVR_AllowReprojection_Bool = "allowInterleavedReprojection";
     public static String k_pch_SteamVR_ForceReprojection_Bool = "forceReprojection";
     public static String k_pch_SteamVR_ForceFadeOnBadTracking_Bool = "forceFadeOnBadTracking";
     public static String k_pch_SteamVR_DefaultMirrorView_Int32 = "defaultMirrorView";
@@ -110,6 +111,7 @@ public class VR implements Library {
     public static String k_pch_SteamVR_SetInitialDefaultHomeApp = "setInitialDefaultHomeApp";
     public static String k_pch_SteamVR_CycleBackgroundImageTimeSec_Int32 = "CycleBackgroundImageTimeSec";
     public static String k_pch_SteamVR_RetailDemo_Bool = "retailDemo";
+    public static String k_pch_SteamVR_IpdOffset_Float = "ipdOffset";
     public static String k_pch_Lighthouse_Section = "driver_lighthouse";
     public static String k_pch_Lighthouse_DisableIMU_Bool = "disableimu";
     public static String k_pch_Lighthouse_UseDisambiguation_String = "usedisambiguation";
@@ -130,6 +132,7 @@ public class VR implements Library {
     public static String k_pch_Null_DisplayFrequency_Float = "displayFrequency";
     public static String k_pch_UserInterface_Section = "userinterface";
     public static String k_pch_UserInterface_StatusAlwaysOnTop_Bool = "StatusAlwaysOnTop";
+    public static String k_pch_UserInterface_MinimizeToTray_Bool = "MinimizeToTray";
     public static String k_pch_UserInterface_Screenshots_Bool = "screenshots";
     public static String k_pch_UserInterface_ScreenshotType_Int = "screenshotType";
     public static String k_pch_Notifications_Section = "notifications";
@@ -299,6 +302,7 @@ public class VR implements Library {
         public static final int Prop_HasCamera_Bool = 1030;
         public static final int Prop_DriverVersion_String = 1031;
         public static final int Prop_Firmware_ForceUpdateRequired_Bool = 1032;
+        public static final int Prop_ViveSystemButtonFixRequired_Bool = 1033;
 
         // Properties that are unique to TrackedDeviceClass_HMD
         public static final int Prop_ReportsTimeSinceVSync_Bool = 2000;
@@ -338,6 +342,7 @@ public class VR implements Library {
         public static final int Prop_ScreenshotHorizontalFieldOfViewDegrees_Float = 2034;
         public static final int Prop_ScreenshotVerticalFieldOfViewDegrees_Float = 2035;
         public static final int Prop_DisplaySuppressed_Bool = 2036;
+        public static final int Prop_DisplayAllowNightMode_Bool = 2037;
 
         // Properties that are unique to TrackedDeviceClass_Controller
         public static final int Prop_AttachedDeviceId_String = 3000;
@@ -633,6 +638,16 @@ public class VR implements Library {
     };
 
     /**
+     * FIXME docs missing
+     */
+    public static class EHiddenAreaMeshType {
+
+        public static final int k_eHiddenAreaMesh_Standard = 0;
+        public static final int k_eHiddenAreaMesh_Inverse = 1;
+        public static final int k_eHiddenAreaMesh_LineLoop = 2;
+    };
+
+    /**
      * Identifies what kind of axis is on the controller at index n. Read this
      * type with pVRSystem->Get( nControllerDeviceIndex, Prop_Axis0Type_Int32 +
      * n );
@@ -695,6 +710,8 @@ public class VR implements Library {
         public static final int VROVerlayError_KeyboardAlreadyInUse = 26; // wrong spelling
         public static final int VROverlayError_KeyboardAlreadyInUse = 26;
         public static final int VROverlayError_NoNeighbor = 27;
+        public static final int _VROverlayError_TooManyMaskPrimitives = 29;
+        public static final int VROverlayError_BadMaskPrimitive = 30;
     };
 
     /**
@@ -1030,6 +1047,7 @@ public class VR implements Library {
         public static final int VRCompositorError_TextureUsesUnsupportedFormat = 105;
         public static final int VRCompositorError_SharedTexturesNotSupported = 106;
         public static final int VRCompositorError_IndexOutOfRange = 107;
+        public static final int VRCompositorError_AlreadySubmitted = 108;
     };
 
     /**
@@ -1143,6 +1161,17 @@ public class VR implements Library {
 
         public static final int OverlayDirection_Count = 4;
     };
+
+    /**
+     * FIXME missing docs
+     */
+    public static class EVROverlayIntersectionMaskPrimitiveType {
+
+        public static final int OverlayIntersectionPrimitiveType_Rectangle = 0;
+        public static final int OverlayIntersectionPrimitiveType_Circle = 1;
+    };
+
+
 
     /**
      * Errors that can occur with the VR compositor

@@ -58,6 +58,10 @@ public class IVRCompositor_FnTable extends Structure {
      */
     public IVRCompositor_FnTable.GetFrameTiming_callback GetFrameTiming;
     /**
+     * C type : GetFrameTimings_callback*
+     */
+    public IVRCompositor_FnTable.GetFrameTimings_callback GetFrameTimings;
+    /**
      * C type : GetFrameTimeRemaining_callback*
      */
     public IVRCompositor_FnTable.GetFrameTimeRemaining_callback GetFrameTimeRemaining;
@@ -69,10 +73,18 @@ public class IVRCompositor_FnTable extends Structure {
      * C type : FadeToColor_callback*
      */
     public IVRCompositor_FnTable.FadeToColor_callback FadeToColor;
+     /**
+     * C type : GetCurrentFadeColor_callback*
+     */
+    public IVRCompositor_FnTable.GetCurrentFadeColor_callback GetCurrentFadeColor;
     /**
      * C type : FadeGrid_callback*
      */
     public IVRCompositor_FnTable.FadeGrid_callback FadeGrid;
+   /**
+     * C type : GetCurrentGridAlpha_callback*
+     */
+    public IVRCompositor_FnTable.GetCurrentGridAlpha_callback GetCurrentGridAlpha;
     /**
      * C type : SetSkyboxOverride_callback*
      */
@@ -208,6 +220,11 @@ public class IVRCompositor_FnTable extends Structure {
         byte apply(Compositor_FrameTiming pTiming, int unFramesAgo);
     };
 
+    public interface GetFrameTimings_callback extends Callback {
+
+        int apply(Compositor_FrameTiming pTiming, int nFrames);
+    };
+
     public interface GetFrameTimeRemaining_callback extends Callback {
 
         float apply();
@@ -223,9 +240,19 @@ public class IVRCompositor_FnTable extends Structure {
         void apply(float fSeconds, float fRed, float fGreen, float fBlue, float fAlpha, byte bBackground);
     };
 
+    public interface GetCurrentFadeColor_callback extends Callback {
+
+        HmdColor_t apply(boolean bBackground);
+    };
+
     public interface FadeGrid_callback extends Callback {
 
         void apply(float fSeconds, byte bFadeIn);
+    };
+
+    public interface GetCurrentGridAlpha_callback extends Callback {
+
+        float apply();
     };
 
     public interface SetSkyboxOverride_callback extends Callback {
@@ -346,8 +373,8 @@ public class IVRCompositor_FnTable extends Structure {
     protected List<?> getFieldOrder() {
         return Arrays.asList("SetTrackingSpace", "GetTrackingSpace", "WaitGetPoses",
                 "GetLastPoses", "GetLastPoseForTrackedDeviceIndex", "Submit",
-                "ClearLastSubmittedFrame", "PostPresentHandoff", "GetFrameTiming",
-                "GetFrameTimeRemaining", "GetCumulativeStats", "FadeToColor", "FadeGrid", "SetSkyboxOverride",
+                "ClearLastSubmittedFrame", "PostPresentHandoff", "GetFrameTiming", "GetFrameTimings",
+                "GetFrameTimeRemaining", "GetCumulativeStats", "FadeToColor", "GetCurrentFadeColor", "FadeGrid", "GetCurrentGridAlpha", "SetSkyboxOverride",
                 "ClearSkyboxOverride", "CompositorBringToFront", "CompositorGoToBack",
                 "CompositorQuit", "IsFullscreen", "GetCurrentSceneFocusProcess",
                 "GetLastFrameRenderer", "CanRenderScene", "ShowMirrorWindow",

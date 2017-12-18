@@ -221,7 +221,7 @@ public class IVRSystem extends Structure {
 
     public interface ComputeDistortion_callback extends Callback {
 
-        vr.DistortionCoordinates_t.ByValue apply(int eEye, float fU, float fV);
+        boolean apply(int eEye, float fU, float fV, DistortionCoordinates_t pDistortionCoordinates);
     };
 
     public interface GetEyeToHeadTransform_callback extends Callback {
@@ -361,17 +361,17 @@ public class IVRSystem extends Structure {
 
     public interface GetHiddenAreaMesh_callback extends Callback {
 
-        vr.HiddenAreaMesh_t.ByValue apply(int eEye);
+        vr.HiddenAreaMesh_t.ByValue apply(int eEye, VR.EHiddenAreaMeshType type);
     };
 
     public interface GetControllerState_callback extends Callback {
 
-        byte apply(int unControllerDeviceIndex, VRControllerState_t pControllerState);
+        byte apply(int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize);
     };
 
     public interface GetControllerStateWithPose_callback extends Callback {
 
-        byte apply(int eOrigin, int unControllerDeviceIndex, VRControllerState_t pControllerState, TrackedDevicePose_t pTrackedDevicePose);
+        byte apply(int eOrigin, int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize, TrackedDevicePose_t pTrackedDevicePose);
     };
 
     public interface TriggerHapticPulse_callback extends Callback {
