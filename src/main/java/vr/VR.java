@@ -1243,7 +1243,7 @@ public class VR implements Library {
      *
      * @return
      */
-    public static native byte VR_IsHmdPresent();
+    public static native boolean VR_IsHmdPresent();
 
     /**
      * Original signature :
@@ -1265,7 +1265,16 @@ public class VR implements Library {
      *
      * @return
      */
-    public static native byte VR_IsRuntimeInstalled();
+    public static native boolean VR_IsRuntimeInstalled();
+
+    /**
+     * Original signature : <code>const char* VR_RuntimePath()</code>
+     *
+     * Returns where the OpenVR runtime is installed.
+     *
+     * @return
+     */
+    public static native String VR_RuntimePath();
 
     /**
      * Original signature :
