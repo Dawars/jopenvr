@@ -60,6 +60,8 @@ public class VR implements Library {
     public static String IVRSystem_Version = "FnTable:IVRSystem_015";
     public static String IVRExtendedDisplay_Version = "FnTable:IVRExtendedDisplay_001";
     public static String IVRTrackedCamera_Version = "FnTable:IVRTrackedCamera_003";
+    public static String IVRVirtualDisplay_Version = "FnTable:IVRVirtualDisplay_001";
+
     /**
      * The maximum length of an application key.
      */
@@ -75,7 +77,7 @@ public class VR implements Library {
     public static int k_unVROverlayMaxNameLength = 128;
     public static int k_unMaxOverlayCount = 64;
     public static int k_unMaxOverlayIntersectionMaskPrimitivesCount = 32;
-    public static String IVROverlay_Version = "FnTable:IVROverlay_014";
+    public static String IVROverlay_Version = "FnTable:IVROverlay_016";
     public static String k_pch_Controller_Component_GDC2015 = "gdc2015";
     public static String k_pch_Controller_Component_Base = "base";
     public static String k_pch_Controller_Component_Tip = "tip";
@@ -92,7 +94,6 @@ public class VR implements Library {
     public static String k_pch_SteamVR_ForcedHmdKey_String = "forcedHmd";
     public static String k_pch_SteamVR_DisplayDebug_Bool = "displayDebug";
     public static String k_pch_SteamVR_DebugProcessPipe_String = "debugProcessPipe";
-    public static String k_pch_SteamVR_EnableDistortion_Bool = "enableDistortion";
     public static String k_pch_SteamVR_DisplayDebugX_Int32 = "displayDebugX";
     public static String k_pch_SteamVR_DisplayDebugY_Int32 = "displayDebugY";
     public static String k_pch_SteamVR_SendSystemButtonToAllApps_Bool = "sendSystemButtonToAllApps";
@@ -222,10 +223,10 @@ public class VR implements Library {
     public static class ETextureType {
 
         public static final int TextureType_DirectX = 0; // Handle is an ID3D11Texture
-        public static final int API_OpenGL = 1;  // Normalized Z goes from 1 at the viewer to -1 at the far clip plane		 +	TextureType_OpenGL = 1,  // Handle is an OpenGL texture name or an OpenGL render buffer name, depending on submit flags
+        public static final int TextureType_OpenGL = 1;  // Handle is an OpenGL texture name or an OpenGL render buffer name, depending on submit flags
         public static final int TextureType_Vulkan = 2; // Handle is a pointer to a VRVulkanTextureData_t structure
-        public static final int ETextureType_TextureType_IOSurface = 3;
-        public static final int ETextureType_TextureType_DirectX12 = 4;
+        public static final int TextureType_IOSurface = 3;
+        public static final int TextureType_DirectX12 = 4;
     }
 
     public static class EColorSpace {
@@ -260,6 +261,7 @@ public class VR implements Library {
         public static final int TrackedDeviceClass_Controller = 2; // Tracked controllers
         public static final int TrackedDeviceClass_GenericTracker = 3; // Generic trackers, similar to controllers
         public static final int TrackedDeviceClass_TrackingReference = 4; // Camera and base stations that serve as tracking reference points
+        public static final int TrackedDeviceClass_DisplayRedirect = 5; // Accessories that aren't necessarily tracked themselves, but may redirect video output from other tracked devices
     };
 
     /**
@@ -328,6 +330,7 @@ public class VR implements Library {
 
         // Properties that are unique to TrackedDeviceClass_HMD
         public static final int Prop_ParentDriver_Uint64 = 1034;
+        public static final int Prop_ResourceRoot_String = 1035;
         public static final int Prop_ReportsTimeSinceVSync_Bool = 2000;
         public static final int Prop_SecondsFromVsyncToPhotons_Float = 2001;
         public static final int Prop_DisplayFrequency_Float = 2002;
@@ -370,7 +373,7 @@ public class VR implements Library {
         public static final int Prop_DisplayMCImageHeight_Int32 = 2039;
         public static final int Prop_DisplayMCImageNumChannels_Int32 = 2040;
         public static final int Prop_DisplayMCImageData_Binary = 2041;
-        public static final int Prop_UsesDriverDirectMode_Bool = 2042;
+        public static final int Prop_SecondsFromPhotonsToVblank_Float = 2042;
 
         // Properties that are unique to TrackedDeviceClass_Controller
         public static final int Prop_AttachedDeviceId_String = 3000;
@@ -405,6 +408,12 @@ public class VR implements Library {
         public static final int Prop_DisplayHiddenArea_Binary_End = 5150;
         public static final int Prop_UserConfigPath_String = 6000;
         public static final int Prop_InstallPath_String = 6001;
+
+        public static final int  Prop_HasDisplayComponent_Bool = 6002;
+        public static final int  Prop_HasControllerComponent_Bool = 6003;
+        public static final int  Prop_HasCameraComponent_Bool = 6004;
+        public static final int  Prop_HasDriverDirectModeComponent_Bool = 6005;
+        public static final int  Prop_HasVirtualDisplayComponent_Bool = 6006;
 
         // Vendors are free to expose private debug data in this reserved region
         public static final int Prop_VendorSpecific_Reserved_Start = 10000;
@@ -602,6 +611,8 @@ public class VR implements Library {
         public static final int VREvent_ApplicationListUpdated = 1303;
         public static final int VREvent_ApplicationMimeTypeLoad = 1304;
         public static final int VREvent_ApplicationTransitionNewAppLaunchComplete = 1305;
+        public static final int VREvent_ProcessConnected = 1306;
+        public static final int VREvent_ProcessDisconnected = 1307;
 
         public static final int VREvent_Compositor_MirrorWindowShown = 1400;
         public static final int VREvent_Compositor_MirrorWindowHidden = 1401;
@@ -628,14 +639,18 @@ public class VR implements Library {
 
     /**
      * Level of Hmd activity.
+     * UserInteraction_Timeout means the device is in the process of timing out.
+     * InUse = ( k_EDeviceActivityLevel_UserInteraction || k_EDeviceActivityLevel_UserInteraction_Timeout )
+     * VREvent_TrackedDeviceUserInteractionStarted fires when the devices transitions from Standby -> UserInteraction or Idle -> UserInteraction.
+     * VREvent_TrackedDeviceUserInteractionEnded fires when the devices transitions from UserInteraction_Timeout -> Idle
      */
     public static class EDeviceActivityLevel {
 
         public static final int k_EDeviceActivityLevel_Unknown = -1;
-        public static final int k_EDeviceActivityLevel_Idle = 0;
-        public static final int k_EDeviceActivityLevel_UserInteraction = 1;
-        public static final int k_EDeviceActivityLevel_UserInteraction_Timeout = 2;
-        public static final int k_EDeviceActivityLevel_Standby = 3;
+        public static final int k_EDeviceActivityLevel_Idle = 0;    // No activity for the last 10 seconds
+        public static final int k_EDeviceActivityLevel_UserInteraction = 1;// Activity (movement or prox sensor) is happening now
+        public static final int k_EDeviceActivityLevel_UserInteraction_Timeout = 2;// No activity for the last 0.5 seconds
+        public static final int k_EDeviceActivityLevel_Standby = 3; // Idle for at least 5 seconds (configurable in Settings -> Power Management)
     };
 
     /**
@@ -781,8 +796,12 @@ public class VR implements Library {
         public static final int VRApplication_Utility = 4;
         // Reserved for vrmonitor
         public static final int VRApplication_VRMonitor = 5;
+        // Reserved for Steam
         public static final int VRApplication_SteamWatchdog = 6;
-        public static final int VRApplication_Max = 7;
+        // Start up SteamVR
+        public static final int VRApplication_Bootstrapper = 7;
+
+        public static final int VRApplication_Max = 8;
     };
 
     /**
