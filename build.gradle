@@ -9,6 +9,8 @@ repositories {
     mavenCentral()
 }
 
+test.enabled = false
+
 dependencies {
     // https://mvnrepository.com/artifact/net.java.dev.jna/jna
     compile group: 'net.java.dev.jna', name: 'jna', version: '4.2.2'
