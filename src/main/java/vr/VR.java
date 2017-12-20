@@ -1422,7 +1422,7 @@ public class VR implements Library {
      * @param error
      * @return
      */
-    public static native Pointer VR_GetVRInitErrorAsEnglishDescription(int error);
+    public static native String VR_GetVRInitErrorAsEnglishDescription(int error);
 
     /**
      * Original signature :
