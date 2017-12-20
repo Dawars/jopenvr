@@ -1,6 +1,4 @@
 language: java
 jdk:
   - oraclejdk8
-script:
-  # By default Travis-ci executes './gradlew build connectedCheck' if no 'script:' section found.
-  - chmod +x ./gradlew build -x test
+script: gradle build -x test
