@@ -10,7 +10,14 @@ public class InitTest {
 
     private static IVRSystem hmd;
     private static IntBuffer errorBuffer = GLBuffers.newDirectIntBuffer(1);
-    private static IVRCompositor_FnTable compositor;
+
+    @BeforeClass
+    public static void init() {
+        hmd = VR.VR_Init(errorBuffer, VR.EVRApplicationType.VRApplication_Scene);
+
+        System.out.println(VR.VR_GetVRInitErrorAsEnglishDescription(errorBuffer.get(0)));
+        assert (errorBuffer.get(0) == VR.EVRInitError.VRInitError_None);
+    }
 
     @Test
     public void isAvailable() {
@@ -20,7 +27,7 @@ public class InitTest {
 
     @Test
     public void initCompositor() {
-        compositor = new IVRCompositor_FnTable(VR.VR_GetGenericInterface(VR.IVRCompositor_Version, errorBuffer));
+        IVRCompositor_FnTable compositor = new IVRCompositor_FnTable(VR.VR_GetGenericInterface(VR.IVRCompositor_Version, errorBuffer));
 
         assert(errorBuffer.get(0) == VR.EVRInitError.VRInitError_None);
     }
@@ -43,17 +50,6 @@ public class InitTest {
     @Before
     public void reset() {
         errorBuffer.put(0, 0);
-    }
-
-    @BeforeClass
-    public static void init() {
-        hmd = VR.VR_Init(errorBuffer, VR.EVRApplicationType.VRApplication_Scene);
-
-        if (errorBuffer.get(0) != VR.EVRInitError.VRInitError_None) {
-            hmd = null;
-            String s = "Unable to init VR runtime: " + VR.VR_GetVRInitErrorAsEnglishDescription(errorBuffer.get(0));
-            throw new Error("VR_Init Failed, " + s);
-        }
     }
 
     @AfterClass
