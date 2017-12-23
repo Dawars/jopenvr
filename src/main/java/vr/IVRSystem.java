@@ -1,10 +1,12 @@
 package vr;
 
 import com.sun.jna.Callback;
+import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.FloatByReference;
 import com.sun.jna.ptr.IntByReference;
+
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
@@ -125,7 +127,9 @@ public class IVRSystem extends Structure {
     public IVRSystem.GetMatrix34TrackedDeviceProperty_callback GetMatrix34TrackedDeviceProperty;
     /**
      * C type : GetStringTrackedDeviceProperty_callback*
+     * Use the @GetTrackedDeviceString helper function instead
      */
+    @Deprecated
     public IVRSystem.GetStringTrackedDeviceProperty_callback GetStringTrackedDeviceProperty;
     /**
      * C type : GetPropErrorNameFromEnum_callback*
@@ -339,6 +343,20 @@ public class IVRSystem extends Structure {
         int apply(int unDeviceIndex, int prop, Pointer pchValue, int unBufferSize, IntBuffer pError);
     };
 
+    /**
+     * Helper to get a string from a tracked device property and turn it into a String
+     */
+    public String GetTrackedDeviceString(int unDevice, int prop, IntBuffer peError) {
+        int unRequiredBufferLen = GetStringTrackedDeviceProperty.apply(unDevice, prop, null, 0, peError);
+        if (unRequiredBufferLen == 0) {
+            return "";
+        }
+
+        Memory pchBuffer = new Memory(unRequiredBufferLen);
+        GetStringTrackedDeviceProperty.apply(unDevice, prop, pchBuffer, unRequiredBufferLen, peError);
+        return pchBuffer.getString(0);
+    }
+
     public interface GetPropErrorNameFromEnum_callback extends Callback {
 
         Pointer apply(int error);
@@ -442,20 +460,20 @@ public class IVRSystem extends Structure {
     }
 
     protected List<?> getFieldOrder() {
-        return Arrays.asList("GetRecommendedRenderTargetSize", "GetProjectionMatrix", "GetProjectionRaw", 
-                "ComputeDistortion", "GetEyeToHeadTransform", "GetTimeSinceLastVsync", "GetD3D9AdapterIndex", 
-                "GetDXGIOutputInfo", "IsDisplayOnDesktop", "SetDisplayVisibility", "GetDeviceToAbsoluteTrackingPose", 
-                "ResetSeatedZeroPose", "GetSeatedZeroPoseToStandingAbsoluteTrackingPose", 
-                "GetRawZeroPoseToStandingAbsoluteTrackingPose", "GetSortedTrackedDeviceIndicesOfClass", 
-                "GetTrackedDeviceActivityLevel", "ApplyTransform", "GetTrackedDeviceIndexForControllerRole", 
-                "GetControllerRoleForTrackedDeviceIndex", "GetTrackedDeviceClass", "IsTrackedDeviceConnected", 
-                "GetBoolTrackedDeviceProperty", "GetFloatTrackedDeviceProperty", "GetInt32TrackedDeviceProperty", 
-                "GetUint64TrackedDeviceProperty", "GetMatrix34TrackedDeviceProperty", "GetStringTrackedDeviceProperty", 
-                "GetPropErrorNameFromEnum", "PollNextEvent", "PollNextEventWithPose", "GetEventTypeNameFromEnum", 
-                "GetHiddenAreaMesh", "GetControllerState", "GetControllerStateWithPose", "TriggerHapticPulse", 
-                "GetButtonIdNameFromEnum", "GetControllerAxisTypeNameFromEnum", "CaptureInputFocus", 
-                "ReleaseInputFocus", "IsInputFocusCapturedByAnotherProcess", "DriverDebugRequest", 
-                "PerformFirmwareUpdate", "AcknowledgeQuit_Exiting", "AcknowledgeQuit_UserPrompt", 
+        return Arrays.asList("GetRecommendedRenderTargetSize", "GetProjectionMatrix", "GetProjectionRaw",
+                "ComputeDistortion", "GetEyeToHeadTransform", "GetTimeSinceLastVsync", "GetD3D9AdapterIndex",
+                "GetDXGIOutputInfo", "IsDisplayOnDesktop", "SetDisplayVisibility", "GetDeviceToAbsoluteTrackingPose",
+                "ResetSeatedZeroPose", "GetSeatedZeroPoseToStandingAbsoluteTrackingPose",
+                "GetRawZeroPoseToStandingAbsoluteTrackingPose", "GetSortedTrackedDeviceIndicesOfClass",
+                "GetTrackedDeviceActivityLevel", "ApplyTransform", "GetTrackedDeviceIndexForControllerRole",
+                "GetControllerRoleForTrackedDeviceIndex", "GetTrackedDeviceClass", "IsTrackedDeviceConnected",
+                "GetBoolTrackedDeviceProperty", "GetFloatTrackedDeviceProperty", "GetInt32TrackedDeviceProperty",
+                "GetUint64TrackedDeviceProperty", "GetMatrix34TrackedDeviceProperty", "GetStringTrackedDeviceProperty",
+                "GetPropErrorNameFromEnum", "PollNextEvent", "PollNextEventWithPose", "GetEventTypeNameFromEnum",
+                "GetHiddenAreaMesh", "GetControllerState", "GetControllerStateWithPose", "TriggerHapticPulse",
+                "GetButtonIdNameFromEnum", "GetControllerAxisTypeNameFromEnum", "CaptureInputFocus",
+                "ReleaseInputFocus", "IsInputFocusCapturedByAnotherProcess", "DriverDebugRequest",
+                "PerformFirmwareUpdate", "AcknowledgeQuit_Exiting", "AcknowledgeQuit_UserPrompt",
                 "PerformanceTestEnableCapture", "PerformanceTestReportFidelityLevelChange");
     }
 
