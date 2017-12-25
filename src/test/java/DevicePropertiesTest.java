@@ -158,6 +158,7 @@ public class DevicePropertiesTest {
         getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DriverDirectModeSendsVsyncEvents_Bool, boolean.class);
         getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayDebugMode_Bool, boolean.class);
         getProperty(k_unTrackedDeviceIndex_Hmd, Prop_GraphicsAdapterLuid_Uint64, long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DriverProvidedChaperonePath_String, String.class);
     }
 
     @Test

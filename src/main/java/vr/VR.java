@@ -208,6 +208,7 @@ public class VR implements Library {
     public static String k_pch_Power_TurnOffControllersTimeout_Float = "turnOffControllersTimeout";
     public static String k_pch_Power_ReturnToWatchdogTimeout_Float = "returnToWatchdogTimeout";
     public static String k_pch_Power_AutoLaunchSteamVROnButtonPress = "autoLaunchSteamVROnButtonPress";
+    public static String k_pch_Power_PauseCompositorOnStandby_Bool  = "pauseCompositorOnStandby";
     public static String k_pch_Dashboard_Section = "dashboard";
     public static String k_pch_Dashboard_EnableDashboard_Bool = "enableDashboard";
     public static String k_pch_Dashboard_ArcadeMode_Bool = "arcadeMode";
@@ -383,6 +384,7 @@ public class VR implements Library {
         public static final int Prop_DriverDirectModeSendsVsyncEvents_Bool = 2043;
         public static final int Prop_DisplayDebugMode_Bool = 2044;
         public static final int Prop_GraphicsAdapterLuid_Uint64 = 2045;
+        public static final int Prop_DriverProvidedChaperonePath_String = 2048;
 
         // Properties that are unique to TrackedDeviceClass_Controller
         public static final int Prop_AttachedDeviceId_String = 3000;
@@ -514,6 +516,9 @@ public class VR implements Library {
         public static final int VREvent_TrackedDeviceRoleChanged = 108;
         public static final int VREvent_WatchdogWakeUpRequested = 109;
         public static final int VREvent_LensDistortionChanged = 110;
+        public static final int VREvent_PropertyChanged = 111;
+        public static final int VREvent_WirelessDisconnect = 112;
+        public static final int VREvent_WirelessReconnect = 113;
 
         public static final int VREvent_ButtonPress = 200;      // data is controller
         public static final int VREvent_ButtonUnpress = 201;    // data is controller
@@ -1022,6 +1027,7 @@ public class VR implements Library {
         public static final int VRApplicationError_TransitionAborted = 113;
         // error when you try to call LaunchApplication() on a template type app (use LaunchTemplateApplication)
         public static final int VRApplicationError_IsTemplate = 114;
+        public static final int VRApplicationError_SteamVRIsExiting = 115;
 
         // The provided buffer was too small to fit the requested data
         public static final int EVRApplicationError_VRApplicationError_BufferTooSmall = 200;
@@ -1053,6 +1059,7 @@ public class VR implements Library {
         public static final int VRApplicationProperty_IsTemplate_Bool = 61;
         public static final int VRApplicationProperty_IsInstanced_Bool = 62;
         public static final int VRApplicationProperty_IsInternal_Bool = 63;
+        public static final int VRApplicationProperty_WantsCompositorPauseInStandby_Bool = 64;
 
         public static final int VRApplicationProperty_LastLaunchTime_Uint64 = 70;
     };
