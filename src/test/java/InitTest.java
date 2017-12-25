@@ -1,5 +1,8 @@
 import com.jogamp.opengl.util.GLBuffers;
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import vr.IVRCompositor_FnTable;
 import vr.IVRSystem;
 import vr.VR;
@@ -22,6 +25,7 @@ public class InitTest {
     @Test
     public void isAvailable() {
         System.out.println("VR_IsRuntimeInstalled(): " + VR.VR_IsRuntimeInstalled());
+        System.out.println("VR_RuntimePath(): " + VR.VR_RuntimePath());
         System.out.println("VR_IsHmdPresent(): " + VR.VR_IsHmdPresent());
     }
 
