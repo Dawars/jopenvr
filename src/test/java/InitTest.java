@@ -33,11 +33,11 @@ public class InitTest {
     public void initCompositor() {
         IVRCompositor_FnTable compositor = new IVRCompositor_FnTable(VR.VR_GetGenericInterface(VR.IVRCompositor_Version, errorBuffer));
 
-        assert(errorBuffer.get(0) == VR.EVRInitError.VRInitError_None);
+        assert (errorBuffer.get(0) == VR.EVRInitError.VRInitError_None);
     }
 
     @Test
-    public void getTargetSize(){
+    public void getTargetSize() {
         IntBuffer width = GLBuffers.newDirectIntBuffer(1), height = GLBuffers.newDirectIntBuffer(1);
 
         hmd.GetRecommendedRenderTargetSize.apply(width, height);
@@ -47,8 +47,13 @@ public class InitTest {
 
         System.out.println("Width: " + w + " Height: " + h);
 
-        assert(w > 0);
-        assert(h > 0);
+        assert (w > 0);
+        assert (h > 0);
+    }
+
+    @Test
+    public void sendFrame() {
+
     }
 
     @Before
