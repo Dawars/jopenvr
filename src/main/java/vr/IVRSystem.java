@@ -6,6 +6,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.FloatByReference;
 import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.LongByReference;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -52,7 +53,8 @@ public class IVRSystem extends Structure {
     /**
      * C type : GetDXGIOutputInfo_callback*
      */
-    public vr.IVRExtendedDisplay_FnTable.GetDXGIOutputInfo_callback GetDXGIOutputInfo;
+    public IVRSystem.GetDXGIOutputInfo_callback GetDXGIOutputInfo;
+    public IVRSystem.GetOutputDevice_callback GetOutputDevice;
     /**
      * C type : IsDisplayOnDesktop_callback*
      */
@@ -247,6 +249,25 @@ public class IVRSystem extends Structure {
 
         void apply(IntByReference pnAdapterIndex);
     };
+
+    /**
+     * Returns platform- and texture-type specific adapter identification so that applications and the
+     * compositor are creating textures and swap chains on the same GPU. If an error occurs the device
+     * will be set to 0.
+     * [D3D10/11/12 Only (D3D9 Not Supported)]
+     *  Returns the adapter LUID that identifies the GPU attached to the HMD. The user should
+     *  enumerate all adapters using IDXGIFactory::EnumAdapters and IDXGIAdapter::GetDesc to find
+     *  the adapter with the matching LUID, or use IDXGIFactory4::EnumAdapterByLuid.
+     *  The discovered IDXGIAdapter should be used to create the device and swap chain.
+     * [Vulkan Only]
+     *  Returns the vk::PhysicalDevice that should be used by the application.
+     * [macOS Only]
+     *  Returns an id<MTLDevice> that should be used by the application.
+     */
+    public interface GetOutputDevice_callback extends Callback {
+
+        void apply(LongByReference pnDevice, int textureType);
+    }
 
     public interface IsDisplayOnDesktop_callback extends Callback {
 
@@ -462,7 +483,7 @@ public class IVRSystem extends Structure {
     protected List<?> getFieldOrder() {
         return Arrays.asList("GetRecommendedRenderTargetSize", "GetProjectionMatrix", "GetProjectionRaw",
                 "ComputeDistortion", "GetEyeToHeadTransform", "GetTimeSinceLastVsync", "GetD3D9AdapterIndex",
-                "GetDXGIOutputInfo", "IsDisplayOnDesktop", "SetDisplayVisibility", "GetDeviceToAbsoluteTrackingPose",
+                "GetDXGIOutputInfo", "GetOutputDevice", "IsDisplayOnDesktop", "SetDisplayVisibility", "GetDeviceToAbsoluteTrackingPose",
                 "ResetSeatedZeroPose", "GetSeatedZeroPoseToStandingAbsoluteTrackingPose",
                 "GetRawZeroPoseToStandingAbsoluteTrackingPose", "GetSortedTrackedDeviceIndicesOfClass",
                 "GetTrackedDeviceActivityLevel", "ApplyTransform", "GetTrackedDeviceIndexForControllerRole",

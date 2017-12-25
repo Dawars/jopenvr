@@ -4,6 +4,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;
 import com.sun.jna.Pointer;
+
 import java.nio.IntBuffer;
 
 /**
@@ -26,6 +27,7 @@ public class VR implements Library {
     static {
         Native.register(VR.class, JNA_NATIVE_LIB);
     }
+    public static int k_nDriverNone = 0xFFFFFFFF;
 
     public static int k_unMaxDriverDebugResponseSize = 32768;
     public static int k_unTrackedDeviceIndex_Hmd = 0;
@@ -57,7 +59,7 @@ public class VR implements Library {
     public static int k_unControllerStateAxisCount = 5;
     public static long k_ulOverlayHandleInvalid = 0L;
     static int k_unScreenshotHandleInvalid = 0;
-    public static String IVRSystem_Version = "FnTable:IVRSystem_015";
+    public static String IVRSystem_Version = "FnTable:IVRSystem_016";
     public static String IVRExtendedDisplay_Version = "FnTable:IVRExtendedDisplay_001";
     public static String IVRTrackedCamera_Version = "FnTable:IVRTrackedCamera_003";
     public static String IVRVirtualDisplay_Version = "FnTable:IVRVirtualDisplay_001";
@@ -114,6 +116,7 @@ public class VR implements Library {
     public static String k_pch_SteamVR_SpeakersForwardYawOffsetDegrees_Float = "speakersForwardYawOffsetDegrees";
     public static String k_pch_SteamVR_BaseStationPowerManagement_Bool = "basestationPowerManagement";
     public static String k_pch_SteamVR_NeverKillProcesses_Bool = "neverKillProcesses";
+    public static String k_pch_SteamVR_SupersampleScale_Float = "supersampleScale";
     public static String k_pch_SteamVR_RenderTargetMultiplier_Float = "renderTargetMultiplier";
     public static String k_pch_SteamVR_AllowAsyncReprojection_Bool = "allowAsyncReprojection";
     public static String k_pch_SteamVR_AllowReprojection_Bool = "allowInterleavedReprojection";
@@ -131,6 +134,7 @@ public class VR implements Library {
     public static String k_pch_SteamVR_CycleBackgroundImageTimeSec_Int32 = "CycleBackgroundImageTimeSec";
     public static String k_pch_SteamVR_RetailDemo_Bool = "retailDemo";
     public static String k_pch_SteamVR_IpdOffset_Float = "ipdOffset";
+    public static String k_pch_SteamVR_AllowSupersampleFiltering_Bool  = "allowSupersampleFiltering";
     public static String k_pch_Lighthouse_Section = "driver_lighthouse";
     public static String k_pch_Lighthouse_DisableIMU_Bool = "disableimu";
     public static String k_pch_Lighthouse_UseDisambiguation_String = "usedisambiguation";
@@ -170,6 +174,7 @@ public class VR implements Library {
     public static String k_pch_Perf_AllowTimingStore_Bool = "allowTimingStore";
     public static String k_pch_Perf_SaveTimingsOnExit_Bool = "saveTimingsOnExit";
     public static String k_pch_Perf_TestData_Float = "perfTestData";
+    public static String k_pch_Perf_LinuxGPUProfiling_Bool = "linuxGPUProfiling";
     public static String k_pch_CollisionBounds_Section = "collisionBounds";
     public static String k_pch_CollisionBounds_Style_Int32 = "CollisionBoundsStyle";
     public static String k_pch_CollisionBounds_GroundPerimeterOn_Bool = "CollisionBoundsGroundPerimeterOn";
@@ -210,6 +215,7 @@ public class VR implements Library {
     public static String k_pch_Driver_Enable_Bool = "enable";
     public static String IVRScreenshots_Version = "IVRScreenshots_001";
     public static String IVRResources_Version = "IVRResources_001";
+    public static String IVRDriverManager_Version = "FnTable:IVRDriverManager_001";
 
     // OpenVR Enums
     public static class EVREye {
@@ -374,6 +380,9 @@ public class VR implements Library {
         public static final int Prop_DisplayMCImageNumChannels_Int32 = 2040;
         public static final int Prop_DisplayMCImageData_Binary = 2041;
         public static final int Prop_SecondsFromPhotonsToVblank_Float = 2042;
+        public static final int Prop_DriverDirectModeSendsVsyncEvents_Bool = 2043;
+        public static final int Prop_DisplayDebugMode_Bool = 2044;
+        public static final int Prop_GraphicsAdapterLuid_Uint64 = 2045;
 
         // Properties that are unique to TrackedDeviceClass_Controller
         public static final int Prop_AttachedDeviceId_String = 3000;
@@ -394,15 +403,15 @@ public class VR implements Library {
         public static final int Prop_TrackingRangeMaximumMeters_Float = 4005;
         public static final int Prop_ModeLabel_String = 4006;
 
-        public static final int Prop_IconPathName_String = 5000;
-        public static final int Prop_NamedIconPathDeviceOff_String = 5001;
-        public static final int Prop_NamedIconPathDeviceSearching_String = 5002;
-        public static final int Prop_NamedIconPathDeviceSearchingAlert_String = 5003;
-        public static final int Prop_NamedIconPathDeviceReady_String = 5004;
-        public static final int Prop_NamedIconPathDeviceReadyAlert_String = 5005;
-        public static final int Prop_NamedIconPathDeviceNotReady_String = 5006;
-        public static final int Prop_NamedIconPathDeviceStandby_String = 5007;
-        public static final int Prop_NamedIconPathDeviceAlertLow_String = 5008;
+        public static final int Prop_IconPathName_String = 5000; // DEPRECATED. Value not referenced. Now expected to be part of icon path properties.
+        public static final int Prop_NamedIconPathDeviceOff_String = 5001; // {driver}/icons/icon_filename - PNG for static icon, or GIF for animation, 50x32 for headsets and 32x32 for others
+        public static final int Prop_NamedIconPathDeviceSearching_String = 5002; // {driver}/icons/icon_filename - PNG for static icon, or GIF for animation, 50x32 for headsets and 32x32 for others
+        public static final int Prop_NamedIconPathDeviceSearchingAlert_String = 5003; // {driver}/icons/icon_filename - PNG for static icon, or GIF for animation, 50x32 for headsets and 32x32 for others
+        public static final int Prop_NamedIconPathDeviceReady_String = 5004; // {driver}/icons/icon_filename - PNG for static icon, or GIF for animation, 50x32 for headsets and 32x32 for others
+        public static final int Prop_NamedIconPathDeviceReadyAlert_String = 5005; // {driver}/icons/icon_filename - PNG for static icon, or GIF for animation, 50x32 for headsets and 32x32 for others
+        public static final int Prop_NamedIconPathDeviceNotReady_String = 5006; // {driver}/icons/icon_filename - PNG for static icon, or GIF for animation, 50x32 for headsets and 32x32 for others
+        public static final int Prop_NamedIconPathDeviceStandby_String = 5007; // {driver}/icons/icon_filename - PNG for static icon, or GIF for animation, 50x32 for headsets and 32x32 for others
+        public static final int Prop_NamedIconPathDeviceAlertLow_String = 5008; // {driver}/icons/icon_filename - PNG for static icon, or GIF for animation, 50x32 for headsets and 32x32 for others
 
         public static final int Prop_DisplayHiddenArea_Binary_Start = 5100;
         public static final int Prop_DisplayHiddenArea_Binary_End = 5150;
@@ -593,6 +602,7 @@ public class VR implements Library {
         public static final int VREvent_ModelSkinSettingsHaveChanged = 853;
         public static final int VREvent_EnvironmentSettingsHaveChanged = 854;
         public static final int VREvent_PowerSettingsHaveChanged = 855;
+        public static final int VREvent_EnableHomeAppSettingsHaveChanged = 856;
 
         public static final int VREvent_StatusUpdate = 900;
 
@@ -869,6 +879,8 @@ public class VR implements Library {
         public static final int VRInitError_Init_WatchdogDisabledInSettings = 132;
         public static final int VRInitError_Init_VRDashboardNotFound		= 133;
         public static final int VRInitError_Init_VRDashboardStartupFailed	= 134;
+        public static final int VRInitError_Init_VRHomeNotFound	        	= 135;
+        public static final int VRInitError_Init_VRHomeStartupFailed	= 136;
 
         public static final int VRInitError_Driver_Failed = 200;
         public static final int VRInitError_Driver_Unknown = 201;
@@ -898,6 +910,7 @@ public class VR implements Library {
         public static final int VRInitError_Compositor_FirmwareRequiresUpdate = 402;
         public static final int VRInitError_Compositor_OverlayInitFailed = 403;
         public static final int VRInitError_Compositor_ScreenshotsInitFailed = 404;
+        public static final int VRInitError_Compositor_UnableToCreateDevice	 = 405;
 
         public static final int VRInitError_VendorSpecific_UnableToConnectToOculusRuntime = 1000;
 
@@ -1113,6 +1126,7 @@ public class VR implements Library {
         public static final int VRCompositorError_SharedTexturesNotSupported = 106;
         public static final int VRCompositorError_IndexOutOfRange = 107;
         public static final int VRCompositorError_AlreadySubmitted = 108;
+        public static final int VRCompositorError_InvalidBounds = 109;
     };
 
     /**

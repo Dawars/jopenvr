@@ -3,7 +3,7 @@
 # openvr 
 Java OpenVR binding
 
-In sync with original OpenVR 1.02. It includes several enhances, like:
+In sync with original OpenVR 1.08. It includes several enhances, like:
 
 - `read()` moved inside `(Pointer peer)` constructors
 - `SIZE` on geometric classes, such as `HmdMatrix34_t`

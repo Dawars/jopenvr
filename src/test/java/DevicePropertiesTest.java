@@ -92,6 +92,7 @@ public class DevicePropertiesTest {
 
     @Test
     public void getHmdProperties() {
+        // FIXME separate string and other proprs
         int[] props = {
                 Prop_ParentDriver_Uint64,
                 Prop_ResourceRoot_String,
@@ -137,7 +138,10 @@ public class DevicePropertiesTest {
                 Prop_DisplayMCImageHeight_Int32,
                 Prop_DisplayMCImageNumChannels_Int32,
                 Prop_DisplayMCImageData_Binary,
-                Prop_SecondsFromPhotonsToVblank_Float
+                Prop_SecondsFromPhotonsToVblank_Float,
+                Prop_DriverDirectModeSendsVsyncEvents_Bool,
+                Prop_DisplayDebugMode_Bool,
+                Prop_GraphicsAdapterLuid_Uint64
         };
 
         for (int prop : props) {

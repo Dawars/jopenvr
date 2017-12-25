@@ -3,6 +3,7 @@ package vr;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -80,6 +81,11 @@ public class COpenVRContext extends Structure {
      * C type : intptr_t
      */
     public IntByReference m_pVRScreenshots;
+    /**
+     * class vr::IVRDriverManager *<br>
+     * C type : intptr_t
+     */
+    public IntByReference m_pVRDriverManager;
 
     public COpenVRContext() {
         super();
@@ -89,7 +95,7 @@ public class COpenVRContext extends Structure {
         return Arrays.asList("m_pVRSystem", "m_pVRChaperone", "m_pVRChaperoneSetup",
                 "m_pVRCompositor", "m_pVROverlay", "m_pVRResources", "m_pVRRenderModels",
                 "m_pVRExtendedDisplay", "m_pVRSettings", "m_pVRApplications", "m_pVRTrackedCamera",
-                "m_pVRScreenshots");
+                "m_pVRScreenshots", "m_pVRDriverManager");
     }
 
     /**
@@ -117,12 +123,14 @@ public class COpenVRContext extends Structure {
      * C type : intptr_t
      * @param m_pVRScreenshots class vr::IVRScreenshots *<br>
      * C type : intptr_t
+     * @param m_pVRDriverManager class vr::IVRDriverManager *<br>
+     * C type : intptr_t
      */
     public COpenVRContext(IntByReference m_pVRSystem, IntByReference m_pVRChaperone,
             IntByReference m_pVRChaperoneSetup, IntByReference m_pVRCompositor,
             IntByReference m_pVROverlay, IntByReference m_pVRResources, IntByReference m_pVRRenderModels,
             IntByReference m_pVRExtendedDisplay, IntByReference m_pVRSettings,
-            IntByReference m_pVRApplications, IntByReference m_pVRTrackedCamera, IntByReference m_pVRScreenshots) {
+            IntByReference m_pVRApplications, IntByReference m_pVRTrackedCamera, IntByReference m_pVRScreenshots, IntByReference m_pVRDriverManager) {
         super();
         this.m_pVRSystem = m_pVRSystem;
         this.m_pVRChaperone = m_pVRChaperone;
@@ -136,6 +144,7 @@ public class COpenVRContext extends Structure {
         this.m_pVRApplications = m_pVRApplications;
         this.m_pVRTrackedCamera = m_pVRTrackedCamera;
         this.m_pVRScreenshots = m_pVRScreenshots;
+        this.m_pVRDriverManager = m_pVRDriverManager;
     }
 
     public COpenVRContext(Pointer peer) {
