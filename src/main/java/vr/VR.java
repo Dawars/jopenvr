@@ -1388,7 +1388,7 @@ public class VR implements Library {
      * @param eType
      * @return
      */
-    public static native Pointer VR_InitInternal(IntBuffer peError, int eType);
+    public static native int VR_InitInternal(IntBuffer peError, int eType);
 
     /**
      * Original signature : <code>void VR_ShutdownInternal()</code>
@@ -1529,7 +1529,6 @@ public class VR implements Library {
         }
         return vrSystem;
     }
-
     /**
      * Unloads vrclient.dll. Any interface pointers from the interface are invalid after this point.
      */

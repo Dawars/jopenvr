@@ -403,9 +403,13 @@ public class IVRSystem extends Structure {
         vr.HiddenAreaMesh_t.ByValue apply(int eEye, VR.EHiddenAreaMeshType type);
     };
 
-    public interface GetControllerState_callback extends Callback {
+    public abstract class GetControllerState_callback implements Callback {
 
-        byte apply(int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize);
+        public byte apply(int unControllerDeviceIndex, VRControllerState_t pControllerState){
+
+            return apply(unControllerDeviceIndex, pControllerState, pControllerState.size());
+        }
+        abstract byte apply(int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize);
     };
 
     public interface GetControllerStateWithPose_callback extends Callback {
