@@ -7,6 +7,7 @@ import com.sun.jna.ptr.FloatByReference;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -328,6 +329,7 @@ public class IVROverlay_FnTable extends Structure {
 
     public IVROverlay_FnTable.GetOverlayFlags_callback GetOverlayFlags;
     public IVROverlay_FnTable.ShowMessageOverlay_callback ShowMessageOverlay;
+    public IVROverlay_FnTable.CloseMessageOverlay_callback CloseMessageOverlay;
 
     public interface FindOverlay_callback extends Callback {
 
@@ -706,10 +708,14 @@ public class IVROverlay_FnTable extends Structure {
 
     public interface ShowMessageOverlay_callback extends Callback {
 
-        VR.VRMessageOverlayResponse apply(String pchText, String pchCaption, String pchButton0Text);
-        VR.VRMessageOverlayResponse apply(String pchText, String pchCaption, String pchButton0Text,
+        int apply(String pchText, String pchCaption, String pchButton0Text,
                                           String pchButton1Text, String pchButton2Text, String pchButton3Text);
     };
+
+    public interface CloseMessageOverlay_callback extends Callback {
+        /** If the calling process owns the overlay and it's open, this will close it. **/
+        void apply();
+    }
 
     public IVROverlay_FnTable() {
         super();
@@ -741,7 +747,7 @@ public class IVROverlay_FnTable extends Structure {
                 "GetDashboardOverlaySceneProcess", "ShowDashboard", "GetPrimaryDashboardDevice",
                 "ShowKeyboard", "ShowKeyboardForOverlay", "GetKeyboardText", "HideKeyboard",
                 "SetKeyboardTransformAbsolute", "SetKeyboardPositionForOverlay", "SetOverlayIntersectionMask",
-                "GetOverlayFlags", "ShowMessageOverlay");
+                "GetOverlayFlags", "ShowMessageOverlay", "CloseMessageOverlay");
     }
 
     public IVROverlay_FnTable(Pointer peer) {

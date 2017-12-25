@@ -5,6 +5,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -176,6 +177,8 @@ public class IVRCompositor_FnTable extends Structure {
 
     public IVRCompositor_FnTable.GetVulkanInstanceExtensionsRequired_callback GetVulkanInstanceExtensionsRequired;
     public IVRCompositor_FnTable.GetVulkanDeviceExtensionsRequired_callback GetVulkanDeviceExtensionsRequired;
+    public IVRCompositor_FnTable.SetExplicitTimingMode_callback SetExplicitTimingMode;
+    public IVRCompositor_FnTable.SubmitExplicitTimingData_callback SubmitExplicitTimingData;
 
 
     public interface SetTrackingSpace_callback extends Callback {
@@ -392,7 +395,43 @@ public class IVRCompositor_FnTable extends Structure {
      * Original header: virtual uint32_t GetVulkanDeviceExtensionsRequired( VkPhysicalDevice_T *pPhysicalDevice, VR_OUT_STRING() char *pchValue, uint32_t unBufferSize ) = 0;*/
     public interface GetVulkanDeviceExtensionsRequired_callback extends Callback {
 
-        int apply(Pointer pPhysicalDevice, String pchValue, int unBufferSize);
+        int apply(Pointer pPhysicalDevice, Pointer pchValue, int unBufferSize);
+    }
+    /** [ Vulkan/D3D12 Only ]
+     * There are two purposes for SetExplicitTimingMode:
+     *	1. To get a more accurate GPU timestamp for when the frame begins in Vulkan/D3D12 applications.
+     *	2. (Optional) To avoid having WaitGetPoses access the Vulkan queue so that the queue can be accessed from
+     *	another thread while WaitGetPoses is executing.
+     *
+     * More accurate GPU timestamp for the start of the frame is achieved by the application calling
+     * SubmitExplicitTimingData immediately before its first submission to the Vulkan/D3D12 queue.
+     * This is more accurate because normally this GPU timestamp is recorded during WaitGetPoses.  In D3D11,
+     * WaitGetPoses queues a GPU timestamp write, but it does not actually get submitted to the GPU until the
+     * application flushes.  By using SubmitExplicitTimingData, the timestamp is recorded at the same place for
+     * Vulkan/D3D12 as it is for D3D11, resulting in a more accurate GPU time measurement for the frame.
+     *
+     * Avoiding WaitGetPoses accessing the Vulkan queue can be achieved using SetExplicitTimingMode as well.  If this is desired,
+     * the application *MUST* call PostPresentHandoff itself prior to WaitGetPoses.  If SetExplicitTimingMode is true and the
+     * application calls PostPresentHandoff, then WaitGetPoses is guaranteed not to access the queue.  Note that PostPresentHandoff
+     * and SubmitExplicitTimingData will access the queue, so only WaitGetPoses becomes safe for accessing the queue from another
+     * thread. */
+    public interface SetExplicitTimingMode_callback extends Callback {
+
+        void apply(boolean bExplicitTimingMode);
+    }
+
+
+    /** [ Vulkan/D3D12 Only ]
+     * Submit explicit timing data.  When SetExplicitTimingMode is true, this must be called immediately before
+     * the application's first vkQueueSubmit (Vulkan) or ID3D12CommandQueue::ExecuteCommandLists (D3D12) of each frame.
+     * This function will insert a GPU timestamp write just before the application starts its rendering.  This function
+     * will perform a vkQueueSubmit on Vulkan so must not be done simultaneously with VkQueue operations on another thread.
+     * Returns VRCompositorError_RequestFailed if SetExplicitTimingMode is not enabled. */
+    public interface SubmitExplicitTimingData_callback extends Callback {
+        /**
+         * return EVRCompositorError
+         */
+        int apply();
     }
 
     public IVRCompositor_FnTable() {
@@ -412,7 +451,8 @@ public class IVRCompositor_FnTable extends Structure {
                 "ShouldAppRenderWithLowResources", "ForceInterleavedReprojectionOn",
                 "ForceReconnectProcess", "SuspendRendering", "GetMirrorTextureD3D11", "GetMirrorTextureGL",
                 "ReleaseSharedGLTexture", "LockGLSharedTextureForAccess", "UnlockGLSharedTextureForAccess",
-                "GetVulkanInstanceExtensionsRequired", "GetVulkanDeviceExtensionsRequired");
+                "GetVulkanInstanceExtensionsRequired", "GetVulkanDeviceExtensionsRequired",
+                "SetExplicitTimingMode", "SubmitExplicitTimingData");
     }
 
     public IVRCompositor_FnTable(Pointer peer) {

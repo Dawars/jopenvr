@@ -254,19 +254,24 @@ public class IVRSystem extends Structure {
      * Returns platform- and texture-type specific adapter identification so that applications and the
      * compositor are creating textures and swap chains on the same GPU. If an error occurs the device
      * will be set to 0.
+     * pInstance is an optional parameter that is required only when textureType is TextureType_Vulkan.
      * [D3D10/11/12 Only (D3D9 Not Supported)]
      *  Returns the adapter LUID that identifies the GPU attached to the HMD. The user should
      *  enumerate all adapters using IDXGIFactory::EnumAdapters and IDXGIAdapter::GetDesc to find
      *  the adapter with the matching LUID, or use IDXGIFactory4::EnumAdapterByLuid.
      *  The discovered IDXGIAdapter should be used to create the device and swap chain.
      * [Vulkan Only]
-     *  Returns the vk::PhysicalDevice that should be used by the application.
+     * Returns the VkPhysicalDevice that should be used by the application.
+     *  pInstance must be the instance the application will use to query for the VkPhysicalDevice.  The application
+     *  must create the VkInstance with extensions returned by IVRCompositor::GetVulkanInstanceExtensionsRequired enabled.
      * [macOS Only]
      *  Returns an id<MTLDevice> that should be used by the application.
+     *
+     *  Forward declaration for VkInstance_T pInstance
      */
     public interface GetOutputDevice_callback extends Callback {
 
-        void apply(LongByReference pnDevice, int textureType);
+        void apply(LongByReference pnDevice, int textureType, Pointer pInstance);
     }
 
     public interface IsDisplayOnDesktop_callback extends Callback {

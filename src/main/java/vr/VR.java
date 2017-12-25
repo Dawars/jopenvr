@@ -59,7 +59,7 @@ public class VR implements Library {
     public static int k_unControllerStateAxisCount = 5;
     public static long k_ulOverlayHandleInvalid = 0L;
     static int k_unScreenshotHandleInvalid = 0;
-    public static String IVRSystem_Version = "FnTable:IVRSystem_016";
+    public static String IVRSystem_Version = "FnTable:IVRSystem_017";
     public static String IVRExtendedDisplay_Version = "FnTable:IVRExtendedDisplay_001";
     public static String IVRTrackedCamera_Version = "FnTable:IVRTrackedCamera_003";
     public static String IVRVirtualDisplay_Version = "FnTable:IVRVirtualDisplay_001";
@@ -74,7 +74,7 @@ public class VR implements Library {
     public static String IVRApplications_Version = "FnTable:IVRApplications_006";
     public static String IVRChaperone_Version = "FnTable:IVRChaperone_003";
     public static String IVRChaperoneSetup_Version = "FnTable:IVRChaperoneSetup_005";
-    public static String IVRCompositor_Version = "FnTable:IVRCompositor_020";
+    public static String IVRCompositor_Version = "FnTable:IVRCompositor_021";
     public static int k_unVROverlayMaxKeyLength = 128;
     public static int k_unVROverlayMaxNameLength = 128;
     public static int k_unMaxOverlayCount = 64;
@@ -135,6 +135,7 @@ public class VR implements Library {
     public static String k_pch_SteamVR_RetailDemo_Bool = "retailDemo";
     public static String k_pch_SteamVR_IpdOffset_Float = "ipdOffset";
     public static String k_pch_SteamVR_AllowSupersampleFiltering_Bool  = "allowSupersampleFiltering";
+    public static String k_pch_SteamVR_EnableLinuxVulkanAsync_Bool = "enableLinuxVulkanAsync";
     public static String k_pch_Lighthouse_Section = "driver_lighthouse";
     public static String k_pch_Lighthouse_DisableIMU_Bool = "disableimu";
     public static String k_pch_Lighthouse_UseDisambiguation_String = "usedisambiguation";
@@ -477,8 +478,15 @@ public class VR implements Library {
          */
         public static final int Submit_GlRenderBuffer = 2;
 
-        // Do not use
+        /**
+         * Do not use
+         */
         public static final int Submit_Reserved = 4;
+
+        /**
+         * Set to indicate that pTexture is a pointer to a VRTextureWithPose_t.
+         */
+        public static final int Submit_TextureWithPose  = 8;
     };
 
     /**
@@ -646,6 +654,7 @@ public class VR implements Library {
         public static final int VREvent_PerformanceTest_FidelityLevel = 1602;
 
         public static final int VREvent_MessageOverlay_Closed = 1650;
+        public static final int VREvent_MessageOverlayCloseRequested = 1651;
 
         // Vendors are free to expose private events in this reserved region
         public static final int VREvent_VendorSpecific_Reserved_Start = 10000;
@@ -885,7 +894,10 @@ public class VR implements Library {
         public static final int VRInitError_Init_VRDashboardNotFound		= 133;
         public static final int VRInitError_Init_VRDashboardStartupFailed	= 134;
         public static final int VRInitError_Init_VRHomeNotFound	        	= 135;
-        public static final int VRInitError_Init_VRHomeStartupFailed	= 136;
+        public static final int VRInitError_Init_VRHomeStartupFailed        = 136;
+        public static final int VRInitError_Init_RebootingBusy              = 137;
+        public static final int VRInitError_Init_FirmwareUpdateBusy         = 138;
+        public static final int VRInitError_Init_FirmwareRecoveryBusy       = 139;
 
         public static final int VRInitError_Driver_Failed = 200;
         public static final int VRInitError_Driver_Unknown = 201;
@@ -1388,7 +1400,7 @@ public class VR implements Library {
      * @param eType
      * @return
      */
-    public static native Pointer VR_InitInternal(IntBuffer peError, int eType);
+    public static native Pointer VR_InitInternal2(IntBuffer peError, int eType, Pointer pStartupInfo);
 
     /**
      * Original signature : <code>void VR_ShutdownInternal()</code>
@@ -1501,17 +1513,20 @@ public class VR implements Library {
     public static native int VR_GetInitToken();
 
     /**
-     * Finds the active installation of vrclient.dll and initializes it.
+     * This path is to the "root" of the VR API install. That's the directory with
+     * the "drivers" directory and a platform (i.e. "win32") directory in it, not the directory with the DLL itself.
      *
      * @param error
      * @param applicationType
      * @return
+     *
+     * pStartupInfo is reserved for future use.
      */
-    public static IVRSystem VR_Init(IntBuffer error, int applicationType) {
+    public static IVRSystem VR_Init(IntBuffer error, int applicationType/*, Pointer pStartupInfo*/) {
 
         IVRSystem vrSystem = null;
 
-        VR_InitInternal(error, applicationType);
+        VR_InitInternal2(error, applicationType, null);
         COpenVRContext ctx = new COpenVRContext();
         ctx.clear();
 
