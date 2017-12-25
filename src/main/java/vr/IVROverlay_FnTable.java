@@ -7,6 +7,7 @@ import com.sun.jna.ptr.FloatByReference;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.PointerByReference;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -236,6 +237,8 @@ public class IVROverlay_FnTable extends Structure {
      * C type : MoveGamepadFocusToNeighbor_callback*
      */
     public IVROverlay_FnTable.MoveGamepadFocusToNeighbor_callback MoveGamepadFocusToNeighbor;
+    public IVROverlay_FnTable.SetOverlayDualAnalogTransform_callback SetOverlayDualAnalogTransform;
+    public IVROverlay_FnTable.GetOverlayDualAnalogTransform_callback GetOverlayDualAnalogTransform;
     /**
      * C type : SetOverlayTexture_callback*
      */
@@ -333,47 +336,47 @@ public class IVROverlay_FnTable extends Structure {
     public interface FindOverlay_callback extends Callback {
 
         int apply(Pointer pchOverlayKey, LongByReference pOverlayHandle);
-    };
+    }
 
     public interface CreateOverlay_callback extends Callback {
 
         int apply(Pointer pchOverlayKey, Pointer pchOverlayFriendlyName, LongByReference pOverlayHandle);
-    };
+    }
 
     public interface DestroyOverlay_callback extends Callback {
 
         int apply(long ulOverlayHandle);
-    };
+    }
 
     public interface SetHighQualityOverlay_callback extends Callback {
 
         int apply(long ulOverlayHandle);
-    };
+    }
 
     public interface GetHighQualityOverlay_callback extends Callback {
 
         long apply();
-    };
+    }
 
     public interface GetOverlayKey_callback extends Callback {
 
         int apply(long ulOverlayHandle, Pointer pchValue, int unBufferSize, IntByReference pError);
-    };
+    }
 
     public interface GetOverlayName_callback extends Callback {
 
         int apply(long ulOverlayHandle, Pointer pchValue, int unBufferSize, IntByReference pError);
-    };
+    }
 
     public interface GetOverlayImageData_callback extends Callback {
 
         int apply(long ulOverlayHandle, Pointer pvBuffer, int unBufferSize, IntByReference punWidth, IntByReference punHeight);
-    };
+    }
 
     public interface GetOverlayErrorNameFromEnum_callback extends Callback {
 
         Pointer apply(int error);
-    };
+    }
 
     public interface SetOverlayRenderingPid_callback extends Callback {
 
@@ -388,227 +391,316 @@ public class IVROverlay_FnTable extends Structure {
     public interface SetOverlayFlag_callback extends Callback {
 
         int apply(long ulOverlayHandle, int eOverlayFlag, byte bEnabled);
-    };
+    }
 
     public interface GetOverlayFlag_callback extends Callback {
 
         int apply(long ulOverlayHandle, int eOverlayFlag, Pointer pbEnabled);
-    };
+    }
 
     public interface SetOverlayColor_callback extends Callback {
 
         int apply(long ulOverlayHandle, float fRed, float fGreen, float fBlue);
-    };
+    }
 
     public interface GetOverlayColor_callback extends Callback {
 
         int apply(long ulOverlayHandle, FloatByReference pfRed, FloatByReference pfGreen, FloatByReference pfBlue);
-    };
+    }
 
     public interface SetOverlayAlpha_callback extends Callback {
 
         int apply(long ulOverlayHandle, float fAlpha);
-    };
+    }
 
     public interface GetOverlayAlpha_callback extends Callback {
 
         int apply(long ulOverlayHandle, FloatByReference pfAlpha);
-    };
+    }
 
     public interface SetOverlayTexelAspect_callback extends Callback {
 
         int apply(long ulOverlayHandle, float fTexelAspect);
-    };
+    }
 
     public interface GetOverlayTexelAspect_callback extends Callback {
 
         int apply(long ulOverlayHandle, FloatByReference pfTexelAspect);
-    };
+    }
 
     public interface SetOverlaySortOrder_callback extends Callback {
 
         int apply(long ulOverlayHandle, int unSortOrder);
-    };
+    }
 
     public interface GetOverlaySortOrder_callback extends Callback {
 
         int apply(long ulOverlayHandle, IntByReference punSortOrder);
-    };
+    }
 
     public interface SetOverlayWidthInMeters_callback extends Callback {
 
         int apply(long ulOverlayHandle, float fWidthInMeters);
-    };
+    }
 
     public interface GetOverlayWidthInMeters_callback extends Callback {
 
         int apply(long ulOverlayHandle, FloatByReference pfWidthInMeters);
-    };
+    }
 
     public interface SetOverlayAutoCurveDistanceRangeInMeters_callback extends Callback {
 
         int apply(long ulOverlayHandle, float fMinDistanceInMeters, float fMaxDistanceInMeters);
-    };
+    }
 
     public interface GetOverlayAutoCurveDistanceRangeInMeters_callback extends Callback {
 
         int apply(long ulOverlayHandle, FloatByReference pfMinDistanceInMeters, FloatByReference pfMaxDistanceInMeters);
-    };
+    }
 
     public interface SetOverlayTextureColorSpace_callback extends Callback {
 
         int apply(long ulOverlayHandle, int eTextureColorSpace);
-    };
+    }
 
     public interface GetOverlayTextureColorSpace_callback extends Callback {
 
         int apply(long ulOverlayHandle, IntByReference peTextureColorSpace);
-    };
+    }
 
     public interface SetOverlayTextureBounds_callback extends Callback {
 
         int apply(long ulOverlayHandle, VRTextureBounds_t pOverlayTextureBounds);
-    };
+    }
 
     public interface GetOverlayTextureBounds_callback extends Callback {
 
         int apply(long ulOverlayHandle, VRTextureBounds_t pOverlayTextureBounds);
-    };
+    }
 
     public interface GetOverlayTransformType_callback extends Callback {
 
         int apply(long ulOverlayHandle, IntByReference peTransformType);
-    };
+    }
 
     public interface SetOverlayTransformAbsolute_callback extends Callback {
 
         int apply(long ulOverlayHandle, int eTrackingOrigin, HmdMatrix34_t pmatTrackingOriginToOverlayTransform);
-    };
+    }
 
     public interface GetOverlayTransformAbsolute_callback extends Callback {
 
         int apply(long ulOverlayHandle, IntByReference peTrackingOrigin, HmdMatrix34_t pmatTrackingOriginToOverlayTransform);
-    };
+    }
 
     public interface SetOverlayTransformTrackedDeviceRelative_callback extends Callback {
 
         int apply(long ulOverlayHandle, int unTrackedDevice, HmdMatrix34_t pmatTrackedDeviceToOverlayTransform);
-    };
+    }
 
     public interface GetOverlayTransformTrackedDeviceRelative_callback extends Callback {
 
         int apply(long ulOverlayHandle, IntByReference punTrackedDevice, HmdMatrix34_t pmatTrackedDeviceToOverlayTransform);
-    };
+    }
 
     public interface SetOverlayTransformTrackedDeviceComponent_callback extends Callback {
 
         int apply(long ulOverlayHandle, int unDeviceIndex, Pointer pchComponentName);
-    };
+    }
 
     public interface GetOverlayTransformTrackedDeviceComponent_callback extends Callback {
 
         int apply(long ulOverlayHandle, IntByReference punDeviceIndex, Pointer pchComponentName, int unComponentNameSize);
-    };
+    }
 
     public interface ShowOverlay_callback extends Callback {
 
         int apply(long ulOverlayHandle);
-    };
+    }
 
     public interface HideOverlay_callback extends Callback {
 
         int apply(long ulOverlayHandle);
-    };
+    }
 
     public interface IsOverlayVisible_callback extends Callback {
 
         byte apply(long ulOverlayHandle);
-    };
+    }
 
     public interface GetTransformForOverlayCoordinates_callback extends Callback {
 
         int apply(long ulOverlayHandle, int eTrackingOrigin, HmdVector2_t.ByValue coordinatesInOverlay, HmdMatrix34_t pmatTransform);
-    };
+    }
 
+    // ---------------------------------------------
+    // Overlay input methods
+    // ---------------------------------------------
+
+    /**
+     * Returns true and fills the event with the next event on the overlay's event queue, if there is one.
+     * If there are no events this method returns false. uncbVREvent should be the size in bytes of the VREvent_t struct
+     */
     public interface PollNextOverlayEvent_callback extends Callback {
 
         byte apply(long ulOverlayHandle, VREvent_t pEvent, int uncbVREvent);
-    };
+    }
 
+    /**
+     * Returns the current input settings for the specified overlay.
+     */
     public interface GetOverlayInputMethod_callback extends Callback {
 
         int apply(long ulOverlayHandle, IntByReference peInputMethod);
-    };
+    }
 
+    /**
+     * Sets the input settings for the specified overlay.
+     */
     public interface SetOverlayInputMethod_callback extends Callback {
 
         int apply(long ulOverlayHandle, int eInputMethod);
-    };
+    }
 
+    /**
+     * Gets the mouse scaling factor that is used for mouse events. The actual texture may be a different size, but this is
+     * typically the size of the underlying UI in pixels.
+     */
     public interface GetOverlayMouseScale_callback extends Callback {
 
         int apply(long ulOverlayHandle, HmdVector2_t pvecMouseScale);
-    };
+    }
 
+    /**
+     * Sets the mouse scaling factor that is used for mouse events. The actual texture may be a different size, but this is
+     * typically the size of the underlying UI in pixels (not in world space).
+     */
     public interface SetOverlayMouseScale_callback extends Callback {
 
         int apply(long ulOverlayHandle, HmdVector2_t pvecMouseScale);
-    };
+    }
+
+    /**
+     * Computes the overlay-space pixel coordinates of where the ray intersects the overlay with the
+     * specified settings. Returns false if there is no intersection.
+     */
 
     public interface ComputeOverlayIntersection_callback extends Callback {
 
         byte apply(long ulOverlayHandle, VROverlayIntersectionParams_t pParams, VROverlayIntersectionResults_t pResults);
-    };
+    }
 
+    /**
+     * Processes mouse input from the specified controller as though it were a mouse pointed at a compositor overlay with the
+     * specified settings. The controller is treated like a laser pointer on the -z axis. The point where the laser pointer would
+     * intersect with the overlay is the mouse position, the trigger is left mouse, and the track pad is right mouse.
+     * <p>
+     * Return true if the controller is pointed at the overlay and an event was generated.
+     */
     public interface HandleControllerOverlayInteractionAsMouse_callback extends Callback {
 
         byte apply(long ulOverlayHandle, int unControllerDeviceIndex);
-    };
+    }
 
+    /**
+     * Returns true if the specified overlay is the hover target. An overlay is the hover target when it is the last overlay "moused over"
+     * by the virtual mouse pointer
+     */
     public interface IsHoverTargetOverlay_callback extends Callback {
 
         byte apply(long ulOverlayHandle);
-    };
+    }
 
+    /**
+     * Returns the current Gamepad focus overlay
+     */
     public interface GetGamepadFocusOverlay_callback extends Callback {
 
         long apply();
-    };
+    }
 
+    /**
+     * Sets the current Gamepad focus overlay
+     */
     public interface SetGamepadFocusOverlay_callback extends Callback {
 
         int apply(long ulNewFocusOverlay);
-    };
+    }
 
+    /**
+     * Sets an overlay's neighbor. This will also set the neighbor of the "to" overlay
+     * to point back to the "from" overlay. If an overlay's neighbor is set to invalid both
+     * ends will be cleared
+     */
     public interface SetOverlayNeighbor_callback extends Callback {
 
         int apply(int eDirection, long ulFrom, long ulTo);
-    };
+    }
 
     public interface MoveGamepadFocusToNeighbor_callback extends Callback {
-
+        /**
+         * Changes the Gamepad focus from one overlay to one of its neighbors. Returns VROverlayError_NoNeighbor if there is no
+         * neighbor in that direction
+         */
         int apply(int eDirection, long ulFrom);
-    };
+    }
 
+    public interface SetOverlayDualAnalogTransform_callback extends Callback {
+        /**
+         * Sets the analog input to Dual Analog coordinate scale for the specified overlay.
+         * VROverlayHandle_t ulOverlay
+         * eWhich EDualAnalogWhich
+         * const HmdVector2_t &vCenter
+         */
+        int apply(long ulOverlay, int eWhich, HmdVector2_t.ByReference vCenter, float fRadius);
+    }
+
+    public interface GetOverlayDualAnalogTransform_callback extends Callback {
+        /**
+         * Gets the analog input to Dual Analog coordinate scale for the specified overlay.
+         */
+        int apply(long ulOverlay, int eWhich, HmdVector2_t.ByReference pvCenter, FloatByReference pfRadius);
+    }
+    // ---------------------------------------------
+    // Overlay texture methods
+    // ---------------------------------------------
+
+    /**
+     * Texture to draw for the overlay. This function can only be called by the overlay's creator or renderer process (see SetOverlayRenderingPid) .
+     * <p>
+     * OpenGL dirty state:
+     * glBindTexture
+     */
     public interface SetOverlayTexture_callback extends Callback {
 
         int apply(long ulOverlayHandle, Texture_t pTexture);
-    };
+    }
 
+    /**
+     * Use this to tell the overlay system to release the texture set for this overlay.
+     */
     public interface ClearOverlayTexture_callback extends Callback {
 
         int apply(long ulOverlayHandle);
-    };
+    }
 
+    /**
+     * Separate interface for providing the data as a stream of bytes, but there is an upper bound on data
+     * that can be sent. This function can only be called by the overlay's renderer process.
+     */
     public interface SetOverlayRaw_callback extends Callback {
 
         int apply(long ulOverlayHandle, Pointer pvBuffer, int unWidth, int unHeight, int unDepth);
-    };
+    }
 
+    /**
+     * Separate interface for providing the image through a filename: can be png or jpg, and should not be bigger than 1920x1080.
+     * This function can only be called by the overlay's renderer process
+     */
     public interface SetOverlayFromFile_callback extends Callback {
 
         int apply(long ulOverlayHandle, Pointer pchFilePath);
-    };
+    }
 
     public interface GetOverlayTexture_callback extends Callback {
 
@@ -616,90 +708,92 @@ public class IVROverlay_FnTable extends Structure {
                   Pointer pNativeTextureRef, IntByReference pWidth, IntByReference pHeight,
                   IntByReference pNativeFormat, VR.ETextureType pAPIType/*pointer?*/, IntByReference pColorSpace,
                   VRTextureBounds_t pTextureBounds);
-    };
+    }
 
     public interface ReleaseNativeOverlayHandle_callback extends Callback {
 
         int apply(long ulOverlayHandle, Pointer pNativeTextureHandle);
-    };
+    }
 
     public interface GetOverlayTextureSize_callback extends Callback {
 
         int apply(long ulOverlayHandle, IntByReference pWidth, IntByReference pHeight);
-    };
+    }
 
     public interface CreateDashboardOverlay_callback extends Callback {
 
         int apply(Pointer pchOverlayKey, Pointer pchOverlayFriendlyName, LongByReference pMainHandle, LongByReference pThumbnailHandle);
-    };
+    }
 
     public interface IsDashboardVisible_callback extends Callback {
 
         byte apply();
-    };
+    }
 
     public interface IsActiveDashboardOverlay_callback extends Callback {
 
         byte apply(long ulOverlayHandle);
-    };
+    }
 
     public interface SetDashboardOverlaySceneProcess_callback extends Callback {
 
         int apply(long ulOverlayHandle, int unProcessId);
-    };
+    }
 
     public interface GetDashboardOverlaySceneProcess_callback extends Callback {
 
         int apply(long ulOverlayHandle, IntByReference punProcessId);
-    };
+    }
 
     public interface ShowDashboard_callback extends Callback {
 
         void apply(Pointer pchOverlayToShow);
-    };
+    }
 
     public interface GetPrimaryDashboardDevice_callback extends Callback {
 
         int apply();
-    };
+    }
 
     public interface ShowKeyboard_callback extends Callback {
 
         int apply(int eInputMode, int eLineInputMode, Pointer pchDescription, int unCharMax, Pointer pchExistingText, byte bUseMinimalMode, long uUserValue);
-    };
+    }
 
     public interface ShowKeyboardForOverlay_callback extends Callback {
 
         int apply(long ulOverlayHandle, int eInputMode, int eLineInputMode, Pointer pchDescription, int unCharMax, Pointer pchExistingText, byte bUseMinimalMode, long uUserValue);
-    };
+    }
 
     public interface GetKeyboardText_callback extends Callback {
 
         int apply(Pointer pchText, int cchText);
-    };
+    }
 
     public interface HideKeyboard_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface SetKeyboardTransformAbsolute_callback extends Callback {
 
         void apply(int eTrackingOrigin, HmdMatrix34_t pmatTrackingOriginToKeyboardTransform);
-    };
+    }
 
     public interface SetKeyboardPositionForOverlay_callback extends Callback {
 
         void apply(long ulOverlayHandle, vr.HmdRect2_t.ByValue avoidRect);
-    };
+    }
+
     public interface SetOverlayIntersectionMask_callback extends Callback {
 
         VR.EVROverlayError apply(long ulOverlayHandle, VROverlayIntersectionMaskPrimitive_t pMaskPrimitives, int unNumMaskPrimitives, int unPrimitiveSize);
-    };
+    }
+
     public interface GetOverlayFlags_callback extends Callback {
 
         VR.EVROverlayError apply(long ulOverlayHandle, int pFlags);
-    };
+    }
 
     // ---------------------------------------------
     // Message box methods
@@ -708,11 +802,13 @@ public class IVROverlay_FnTable extends Structure {
     public interface ShowMessageOverlay_callback extends Callback {
 
         int apply(String pchText, String pchCaption, String pchButton0Text,
-                                          String pchButton1Text, String pchButton2Text, String pchButton3Text);
-    };
+                  String pchButton1Text, String pchButton2Text, String pchButton3Text);
+    }
 
     public interface CloseMessageOverlay_callback extends Callback {
-        /** If the calling process owns the overlay and it's open, this will close it. **/
+        /**
+         * If the calling process owns the overlay and it's open, this will close it.
+         **/
         void apply();
     }
 
@@ -723,11 +819,11 @@ public class IVROverlay_FnTable extends Structure {
     protected List<?> getFieldOrder() {
         return Arrays.asList("FindOverlay", "CreateOverlay", "DestroyOverlay",
                 "SetHighQualityOverlay", "GetHighQualityOverlay", "GetOverlayKey",
-                "GetOverlayName", "GetOverlayImageData", "GetOverlayErrorNameFromEnum","SetOverlayRenderingPid",
+                "GetOverlayName", "GetOverlayImageData", "GetOverlayErrorNameFromEnum", "SetOverlayRenderingPid",
                 "GetOverlayRenderingPid",
                 "SetOverlayFlag", "GetOverlayFlag", "SetOverlayColor",
-                "GetOverlayColor", "SetOverlayAlpha", "GetOverlayAlpha","SetOverlayTexelAspect","GetOverlayTexelAspect",
-                "SetOverlaySortOrder","GetOverlaySortOrder",
+                "GetOverlayColor", "SetOverlayAlpha", "GetOverlayAlpha", "SetOverlayTexelAspect", "GetOverlayTexelAspect",
+                "SetOverlaySortOrder", "GetOverlaySortOrder",
                 "SetOverlayWidthInMeters", "GetOverlayWidthInMeters",
                 "SetOverlayAutoCurveDistanceRangeInMeters", "GetOverlayAutoCurveDistanceRangeInMeters",
                 "SetOverlayTextureColorSpace", "GetOverlayTextureColorSpace", "SetOverlayTextureBounds",
@@ -739,9 +835,10 @@ public class IVROverlay_FnTable extends Structure {
                 "GetOverlayInputMethod", "SetOverlayInputMethod", "GetOverlayMouseScale",
                 "SetOverlayMouseScale", "ComputeOverlayIntersection", "HandleControllerOverlayInteractionAsMouse",
                 "IsHoverTargetOverlay", "GetGamepadFocusOverlay", "SetGamepadFocusOverlay",
-                "SetOverlayNeighbor", "MoveGamepadFocusToNeighbor", "SetOverlayTexture",
+                "SetOverlayNeighbor", "MoveGamepadFocusToNeighbor", "SetOverlayDualAnalogTransform",
+                "GetOverlayDualAnalogTransform", "SetOverlayTexture",
                 "ClearOverlayTexture", "SetOverlayRaw", "SetOverlayFromFile", "GetOverlayTexture",
-                "ReleaseNativeOverlayHandle","GetOverlayTextureSize","CreateDashboardOverlay",
+                "ReleaseNativeOverlayHandle", "GetOverlayTextureSize", "CreateDashboardOverlay",
                 "IsDashboardVisible", "IsActiveDashboardOverlay", "SetDashboardOverlaySceneProcess",
                 "GetDashboardOverlaySceneProcess", "ShowDashboard", "GetPrimaryDashboardDevice",
                 "ShowKeyboard", "ShowKeyboardForOverlay", "GetKeyboardText", "HideKeyboard",
@@ -756,9 +853,9 @@ public class IVROverlay_FnTable extends Structure {
 
     public static class ByReference extends IVROverlay_FnTable implements Structure.ByReference {
 
-    };
+    }
 
     public static class ByValue extends IVROverlay_FnTable implements Structure.ByValue {
 
-    };
+    }
 }

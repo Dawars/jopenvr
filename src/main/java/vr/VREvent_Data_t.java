@@ -1,6 +1,7 @@
 package vr;
 
 import com.sun.jna.Pointer;
+import com.sun.jna.Structure;
 import com.sun.jna.Union;
 
 /**
@@ -72,6 +73,8 @@ public class VREvent_Data_t extends Union {
     public VREvent_ApplicationLaunch_t applicationLaunch;
     public VREvent_EditingCameraSurface_t cameraSurface;
     public VREvent_MessageOverlay_t messageOverlay;
+    public VREvent_Property_t property;
+    public VREvent_DualAnalog_t dualAnalog;
 
     public VREvent_Data_t() {
         super();
@@ -211,6 +214,7 @@ public class VREvent_Data_t extends Union {
         this.screenshot = screenshot;
         setType(VREvent_Screenshot_t.class);
     }
+
     /**
      * @param screenshotProgress C type : VREvent_SeatedZeroPoseReset_t
      */
@@ -219,6 +223,7 @@ public class VREvent_Data_t extends Union {
         this.screenshotProgress = screenshotProgress;
         setType(VREvent_ScreenshotProgress_t.class);
     }
+
     /**
      * @param applicationLaunch C type : VREvent_SeatedZeroPoseReset_t
      */
@@ -227,6 +232,7 @@ public class VREvent_Data_t extends Union {
         this.applicationLaunch = applicationLaunch;
         setType(VREvent_ApplicationLaunch_t.class);
     }
+
     /**
      * @param cameraSurface C type : VREvent_SeatedZeroPoseReset_t
      */
@@ -235,6 +241,7 @@ public class VREvent_Data_t extends Union {
         this.cameraSurface = cameraSurface;
         setType(VREvent_EditingCameraSurface_t.class);
     }
+
     /**
      * @param messageOverlay C type : VREvent_SeatedZeroPoseReset_t
      */
@@ -244,16 +251,34 @@ public class VREvent_Data_t extends Union {
         setType(VREvent_MessageOverlay_t.class);
     }
 
+    /**
+     * @param property C type : VREvent_SeatedZeroPoseReset_t
+     */
+    public VREvent_Data_t(VREvent_Property_t property) {
+        super();
+        this.property = property;
+        setType(VREvent_Property_t.class);
+    }
+
+    /**
+     * @param dualAnalog C type : VREvent_SeatedZeroPoseReset_t
+     */
+    public VREvent_Data_t(VREvent_DualAnalog_t dualAnalog) {
+        super();
+        this.dualAnalog = dualAnalog;
+        setType(VREvent_DualAnalog_t.class);
+    }
+
     public VREvent_Data_t(Pointer peer) {
         super(peer);
         read();
     }
 
-    public static class ByReference extends VREvent_Data_t implements com.sun.jna.Structure.ByReference {
+    public static class ByReference extends VREvent_Data_t implements Structure.ByReference {
 
-    };
+    }
 
-    public static class ByValue extends VREvent_Data_t implements com.sun.jna.Structure.ByValue {
+    public static class ByValue extends VREvent_Data_t implements Structure.ByValue {
 
-    };
+    }
 }

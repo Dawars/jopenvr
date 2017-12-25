@@ -5,6 +5,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -406,13 +407,13 @@ public class IVRCompositor_FnTable extends Structure {
      * Vulkan/D3D12 as it is for D3D11, resulting in a more accurate GPU time measurement for the frame.
      *
      * Avoiding WaitGetPoses accessing the Vulkan queue can be achieved using SetExplicitTimingMode as well.  If this is desired,
-     * the application *MUST* call PostPresentHandoff itself prior to WaitGetPoses.  If SetExplicitTimingMode is true and the
-     * application calls PostPresentHandoff, then WaitGetPoses is guaranteed not to access the queue.  Note that PostPresentHandoff
+     * the application should set the timing mode to Explicit_ApplicationPerformsPostPresentHandoff and *MUST* call PostPresentHandoff
+     * itself. If these conditions are met, then WaitGetPoses is guaranteed not to access the queue.  Note that PostPresentHandoff
      * and SubmitExplicitTimingData will access the queue, so only WaitGetPoses becomes safe for accessing the queue from another
      * thread. */
     public interface SetExplicitTimingMode_callback extends Callback {
 
-        void apply(boolean bExplicitTimingMode);
+        void apply(int eTimingMode);
     }
 
 
