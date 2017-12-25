@@ -129,7 +129,7 @@ public class IVRSystem extends Structure {
     public IVRSystem.GetMatrix34TrackedDeviceProperty_callback GetMatrix34TrackedDeviceProperty;
     /**
      * C type : GetStringTrackedDeviceProperty_callback*
-     * Use the @GetTrackedDeviceString helper function instead
+     * Use the @GetTrackedDevicePropertyString helper function instead
      */
     @Deprecated
     public IVRSystem.GetStringTrackedDeviceProperty_callback GetStringTrackedDeviceProperty;
@@ -367,7 +367,7 @@ public class IVRSystem extends Structure {
     /**
      * Helper to get a string from a tracked device property and turn it into a String
      */
-    public String GetTrackedDeviceString(int unDevice, int prop, IntBuffer peError) {
+    public String GetTrackedDevicePropertyString(int unDevice, int prop, IntBuffer peError) {
         int unRequiredBufferLen = GetStringTrackedDeviceProperty.apply(unDevice, prop, null, 0, peError);
         if (unRequiredBufferLen == 0) {
             return "";

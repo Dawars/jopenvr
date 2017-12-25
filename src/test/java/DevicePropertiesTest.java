@@ -3,6 +3,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import vr.HmdMatrix34_t;
 import vr.IVRSystem;
 import vr.VR;
 
@@ -27,7 +28,7 @@ public class DevicePropertiesTest {
 
     @Test
     public void getDriver() {
-        String name = hmd.GetTrackedDeviceString(k_unTrackedDeviceIndex_Hmd, Prop_TrackingSystemName_String, errorBuffer);
+        String name = hmd.GetTrackedDevicePropertyString(k_unTrackedDeviceIndex_Hmd, Prop_TrackingSystemName_String, errorBuffer);
 
         checkTrackedPropError(errorBuffer.get());
 
@@ -36,7 +37,7 @@ public class DevicePropertiesTest {
 
     @Test
     public void getDisplay() {
-        String name = hmd.GetTrackedDeviceString(k_unTrackedDeviceIndex_Hmd, Prop_SerialNumber_String, errorBuffer);
+        String name = hmd.GetTrackedDevicePropertyString(k_unTrackedDeviceIndex_Hmd, Prop_SerialNumber_String, errorBuffer);
 
         checkTrackedPropError(errorBuffer.get());
 
@@ -83,72 +84,80 @@ public class DevicePropertiesTest {
                 Prop_ViveSystemButtonFixRequired_Bool
         };
 
-        for (int prop : props) {
-            String name = hmd.GetTrackedDeviceString(k_unTrackedDeviceIndex_Hmd, prop, errorBuffer);
-            checkTrackedPropError(errorBuffer.get());
-            System.out.println(name);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_TrackingSystemName_String, String.class);
+    }
+
+    private void getProperty(int deviceId, int prop, Class type) {
+
+        if (type == null) {
+//            System.out.println(hmd.GetStringTrackedDeviceProperty(deviceId, prop, errorBuffer));
+        } else if (type == String.class) {
+            System.out.println(hmd.GetTrackedDevicePropertyString(deviceId, prop, errorBuffer));
+        } else if (type == int.class || type == Integer.class) {
+            System.out.println(hmd.GetInt32TrackedDeviceProperty.apply(deviceId, prop, errorBuffer));
+        } else if (type == boolean.class || type == Boolean.class) {
+            System.out.println(hmd.GetBoolTrackedDeviceProperty.apply(deviceId, prop, errorBuffer));
+        } else if (type == long.class || type == Long.class) {
+            System.out.println(hmd.GetUint64TrackedDeviceProperty.apply(deviceId, prop, errorBuffer));
+        } else if (type == HmdMatrix34_t.class) {
+            System.out.println(hmd.GetMatrix34TrackedDeviceProperty.apply(deviceId, prop, errorBuffer));
         }
+
+        System.out.println(hmd.GetPropErrorNameFromEnum.apply(errorBuffer.get()));
     }
 
     @Test
     public void getHmdProperties() {
         // FIXME separate string and other proprs
-        int[] props = {
-                Prop_ParentDriver_Uint64,
-                Prop_ResourceRoot_String,
-                Prop_ReportsTimeSinceVSync_Bool,
-                Prop_SecondsFromVsyncToPhotons_Float,
-                Prop_DisplayFrequency_Float,
-                Prop_UserIpdMeters_Float,
-                Prop_CurrentUniverseId_Uint64,
-                Prop_PreviousUniverseId_Uint64,
-                Prop_DisplayFirmwareVersion_Uint64,
-                Prop_IsOnDesktop_Bool,
-                Prop_DisplayMCType_Int32,
-                Prop_DisplayMCOffset_Float,
-                Prop_DisplayMCScale_Float,
-                Prop_EdidVendorID_Int32,
-                Prop_DisplayMCImageLeft_String,
-                Prop_DisplayMCImageRight_String,
-                Prop_DisplayGCBlackClamp_Float,
-                Prop_EdidProductID_Int32,
-                Prop_CameraToHeadTransform_Matrix34,
-                Prop_DisplayGCType_Int32,
-                Prop_DisplayGCOffset_Float,
-                Prop_DisplayGCScale_Float,
-                Prop_DisplayGCPrescale_Float,
-                Prop_DisplayGCImage_String,
-                Prop_LensCenterLeftU_Float,
-                Prop_LensCenterLeftV_Float,
-                Prop_LensCenterRightU_Float,
-                Prop_LensCenterRightV_Float,
-                Prop_UserHeadToEyeDepthMeters_Float,
-                Prop_CameraFirmwareVersion_Uint64,
-                Prop_CameraFirmwareDescription_String,
-                Prop_DisplayFPGAVersion_Uint64,
-                Prop_DisplayBootloaderVersion_Uint64,
-                Prop_DisplayHardwareVersion_Uint64,
-                Prop_AudioFirmwareVersion_Uint64,
-                Prop_CameraCompatibilityMode_Int32,
-                Prop_ScreenshotHorizontalFieldOfViewDegrees_Float,
-                Prop_ScreenshotVerticalFieldOfViewDegrees_Float,
-                Prop_DisplaySuppressed_Bool,
-                Prop_DisplayAllowNightMode_Bool,
-                Prop_DisplayMCImageWidth_Int32,
-                Prop_DisplayMCImageHeight_Int32,
-                Prop_DisplayMCImageNumChannels_Int32,
-                Prop_DisplayMCImageData_Binary,
-                Prop_SecondsFromPhotonsToVblank_Float,
-                Prop_DriverDirectModeSendsVsyncEvents_Bool,
-                Prop_DisplayDebugMode_Bool,
-                Prop_GraphicsAdapterLuid_Uint64
-        };
 
-        for (int prop : props) {
-            String name = hmd.GetTrackedDeviceString(k_unTrackedDeviceIndex_Hmd, prop, errorBuffer);
-            checkTrackedPropError(errorBuffer.get());
-            System.out.println(name);
-        }
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_ParentDriver_Uint64, Long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_ResourceRoot_String, String.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_ReportsTimeSinceVSync_Bool, Boolean.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_SecondsFromVsyncToPhotons_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayFrequency_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_UserIpdMeters_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_CurrentUniverseId_Uint64, long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_PreviousUniverseId_Uint64, long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayFirmwareVersion_Uint64, long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_IsOnDesktop_Bool, boolean.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayMCType_Int32, int.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayMCOffset_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayMCScale_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_EdidVendorID_Int32, int.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayMCImageLeft_String, String.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayMCImageRight_String, String.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayGCBlackClamp_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_EdidProductID_Int32, int.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_CameraToHeadTransform_Matrix34, HmdMatrix34_t.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayGCType_Int32, int.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayGCOffset_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayGCScale_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayGCPrescale_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayGCImage_String, String.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_LensCenterLeftU_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_LensCenterLeftV_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_LensCenterRightU_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_LensCenterRightV_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_UserHeadToEyeDepthMeters_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_CameraFirmwareVersion_Uint64, long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_CameraFirmwareDescription_String, String.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayFPGAVersion_Uint64, long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayBootloaderVersion_Uint64, long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayHardwareVersion_Uint64, long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_AudioFirmwareVersion_Uint64, long.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_CameraCompatibilityMode_Int32, int.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_ScreenshotHorizontalFieldOfViewDegrees_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_ScreenshotVerticalFieldOfViewDegrees_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplaySuppressed_Bool, boolean.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayAllowNightMode_Bool, boolean.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayMCImageWidth_Int32, int.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayMCImageHeight_Int32, int.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayMCImageNumChannels_Int32, int.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayMCImageData_Binary, null);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_SecondsFromPhotonsToVblank_Float, float.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DriverDirectModeSendsVsyncEvents_Bool, boolean.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_DisplayDebugMode_Bool, boolean.class);
+        getProperty(k_unTrackedDeviceIndex_Hmd, Prop_GraphicsAdapterLuid_Uint64, long.class);
     }
 
     @Test
@@ -165,7 +174,7 @@ public class DevicePropertiesTest {
         };
 
         for (int prop : props) {
-            String name = hmd.GetTrackedDeviceString(k_unTrackedDeviceIndex_Hmd, prop, errorBuffer);
+            String name = hmd.GetTrackedDevicePropertyString(k_unTrackedDeviceIndex_Hmd, prop, errorBuffer);
             checkTrackedPropError(errorBuffer.get());
             System.out.println(name);
         }
@@ -205,7 +214,7 @@ public class DevicePropertiesTest {
         };
 
         for (int prop : props) {
-            String name = hmd.GetTrackedDeviceString(k_unTrackedDeviceIndex_Hmd, prop, errorBuffer);
+            String name = hmd.GetTrackedDevicePropertyString(k_unTrackedDeviceIndex_Hmd, prop, errorBuffer);
             checkTrackedPropError(errorBuffer.get());
             System.out.println(name);
         }
@@ -219,7 +228,7 @@ public class DevicePropertiesTest {
         };
 
         for (int prop : props) {
-            String name = hmd.GetTrackedDeviceString(k_unTrackedDeviceIndex_Hmd, prop, errorBuffer);
+            String name = hmd.GetTrackedDevicePropertyString(k_unTrackedDeviceIndex_Hmd, prop, errorBuffer);
             checkTrackedPropError(errorBuffer.get());
             System.out.println(name);
         }
@@ -270,7 +279,7 @@ public class DevicePropertiesTest {
                 fail("Unknown error");
         }
 
-        assert(errorCode == TrackedProp_Success);
+        assert (errorCode == TrackedProp_Success);
     }
 
     @Before
