@@ -17,35 +17,35 @@ public class IVRChaperone_FnTable extends Structure {
     /**
      * C type : GetCalibrationState_callback*
      */
-    public IVRChaperone_FnTable.GetCalibrationState_callback GetCalibrationState;
+    public GetCalibrationState_callback GetCalibrationState;
     /**
      * C type : GetPlayAreaSize_callback*
      */
-    public IVRChaperone_FnTable.GetPlayAreaSize_callback GetPlayAreaSize;
+    public GetPlayAreaSize_callback GetPlayAreaSize;
     /**
      * C type : GetPlayAreaRect_callback*
      */
-    public IVRChaperone_FnTable.GetPlayAreaRect_callback GetPlayAreaRect;
+    public GetPlayAreaRect_callback GetPlayAreaRect;
     /**
      * C type : ReloadInfo_callback*
      */
-    public IVRChaperone_FnTable.ReloadInfo_callback ReloadInfo;
+    public ReloadInfo_callback ReloadInfo;
     /**
      * C type : SetSceneColor_callback*
      */
-    public IVRChaperone_FnTable.SetSceneColor_callback SetSceneColor;
+    public SetSceneColor_callback SetSceneColor;
     /**
      * C type : GetBoundsColor_callback*
      */
-    public IVRChaperone_FnTable.GetBoundsColor_callback GetBoundsColor;
+    public GetBoundsColor_callback GetBoundsColor;
     /**
      * C type : AreBoundsVisible_callback*
      */
-    public IVRChaperone_FnTable.AreBoundsVisible_callback AreBoundsVisible;
+    public AreBoundsVisible_callback AreBoundsVisible;
     /**
      * C type : ForceBoundsVisible_callback*
      */
-    public IVRChaperone_FnTable.ForceBoundsVisible_callback ForceBoundsVisible;
+    public ForceBoundsVisible_callback ForceBoundsVisible;
 
     public interface GetCalibrationState_callback extends Callback {
 
@@ -105,7 +105,7 @@ public class IVRChaperone_FnTable extends Structure {
      * @param AreBoundsVisible C type : AreBoundsVisible_callback*<br>
      * @param ForceBoundsVisible C type : ForceBoundsVisible_callback*
      */
-    public IVRChaperone_FnTable(IVRChaperone_FnTable.GetCalibrationState_callback GetCalibrationState, IVRChaperone_FnTable.GetPlayAreaSize_callback GetPlayAreaSize, IVRChaperone_FnTable.GetPlayAreaRect_callback GetPlayAreaRect, IVRChaperone_FnTable.ReloadInfo_callback ReloadInfo, IVRChaperone_FnTable.SetSceneColor_callback SetSceneColor, IVRChaperone_FnTable.GetBoundsColor_callback GetBoundsColor, IVRChaperone_FnTable.AreBoundsVisible_callback AreBoundsVisible, IVRChaperone_FnTable.ForceBoundsVisible_callback ForceBoundsVisible) {
+    public IVRChaperone_FnTable(GetCalibrationState_callback GetCalibrationState, GetPlayAreaSize_callback GetPlayAreaSize, GetPlayAreaRect_callback GetPlayAreaRect, ReloadInfo_callback ReloadInfo, SetSceneColor_callback SetSceneColor, GetBoundsColor_callback GetBoundsColor, AreBoundsVisible_callback AreBoundsVisible, ForceBoundsVisible_callback ForceBoundsVisible) {
         super();
         this.GetCalibrationState = GetCalibrationState;
         this.GetPlayAreaSize = GetPlayAreaSize;

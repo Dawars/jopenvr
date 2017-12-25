@@ -22,7 +22,7 @@ public class HiddenAreaMesh_t extends Structure {
      * const struct vr::HmdVector2_t *<br>
      * C type : HmdVector2_t*
      */
-    public vr.HmdVector2_t.ByReference pVertexData;
+    public HmdVector2_t.ByReference pVertexData;
     public int unTriangleCount;
 
     public HiddenAreaMesh_t() {
@@ -39,7 +39,7 @@ public class HiddenAreaMesh_t extends Structure {
      * C type : HmdVector2_t*
      * @param unTriangleCount
      */
-    public HiddenAreaMesh_t(vr.HmdVector2_t.ByReference pVertexData, int unTriangleCount) {
+    public HiddenAreaMesh_t(HmdVector2_t.ByReference pVertexData, int unTriangleCount) {
         super();
         this.pVertexData = pVertexData;
         this.unTriangleCount = unTriangleCount;

@@ -17,57 +17,51 @@ public class IVRSettings_FnTable extends Structure {
     /**
      * C type : GetSettingsErrorNameFromEnum_callback*
      */
-    public IVRSettings_FnTable.GetSettingsErrorNameFromEnum_callback GetSettingsErrorNameFromEnum;
+    public GetSettingsErrorNameFromEnum_callback GetSettingsErrorNameFromEnum;
     /**
      * C type : Sync_callback*
      */
-    public IVRSettings_FnTable.Sync_callback Sync;
-    /**
-     * C type : SetBool_callback*
-     */
-    public IVRSettings_FnTable.SetBool_callback SetBool;
-    /**
-     * C type : SetInt32_callback*
-     */
-    public IVRSettings_FnTable.SetInt32_callback SetInt32;
-    /**
-     * C type : SetFloat_callback*
-     */
-    public IVRSettings_FnTable.SetFloat_callback SetFloat;
-
-    /**
-     * C type : SetString_callback*
-     */
-    public IVRSettings_FnTable.SetString_callback SetString;
-
+    public Sync_callback Sync;
     /**
      * C type : GetBool_callback*
      */
-    public IVRSettings_FnTable.GetBool_callback GetBool;
-
+    public GetBool_callback GetBool;
+    /**
+     * C type : SetBool_callback*
+     */
+    public SetBool_callback SetBool;
     /**
      * C type : GetInt32_callback*
      */
-    public IVRSettings_FnTable.GetInt32_callback GetInt32;
-
+    public GetInt32_callback GetInt32;
+    /**
+     * C type : SetInt32_callback*
+     */
+    public SetInt32_callback SetInt32;
     /**
      * C type : GetFloat_callback*
      */
-    public IVRSettings_FnTable.GetFloat_callback GetFloat;
+    public GetFloat_callback GetFloat;
+    /**
+     * C type : SetFloat_callback*
+     */
+    public SetFloat_callback SetFloat;
     /**
      * C type : GetString_callback*
      */
-    public IVRSettings_FnTable.GetString_callback GetString;
-
+    public GetString_callback GetString;
+    /**
+     * C type : SetString_callback*
+     */
+    public SetString_callback SetString;
     /**
      * C type : RemoveSection_callback*
      */
-    public IVRSettings_FnTable.RemoveSection_callback RemoveSection;
-
+    public RemoveSection_callback RemoveSection;
     /**
      * C type : RemoveKeyInSection_callback*
      */
-    public IVRSettings_FnTable.RemoveKeyInSection_callback RemoveKeyInSection;
+    public RemoveKeyInSection_callback RemoveKeyInSection;
 
     public interface GetSettingsErrorNameFromEnum_callback extends Callback {
 
@@ -81,7 +75,7 @@ public class IVRSettings_FnTable extends Structure {
 
     public interface GetBool_callback extends Callback {
 
-        byte apply(Pointer pchSection, Pointer pchSettingsKey, IntByReference peError);
+        byte apply(Pointer pchSection, Pointer pchSettingsKey, byte bDefaultValue, IntByReference peError);
     };
 
     public interface SetBool_callback extends Callback {
@@ -91,7 +85,7 @@ public class IVRSettings_FnTable extends Structure {
 
     public interface GetInt32_callback extends Callback {
 
-        int apply(Pointer pchSection, Pointer pchSettingsKey, IntByReference peError);
+        int apply(Pointer pchSection, Pointer pchSettingsKey, int nDefaultValue, IntByReference peError);
     };
 
     public interface SetInt32_callback extends Callback {
@@ -101,7 +95,7 @@ public class IVRSettings_FnTable extends Structure {
 
     public interface GetFloat_callback extends Callback {
 
-        float apply(Pointer pchSection, Pointer pchSettingsKey, IntByReference peError);
+        float apply(Pointer pchSection, Pointer pchSettingsKey, float flDefaultValue, IntByReference peError);
     };
 
     public interface SetFloat_callback extends Callback {
@@ -111,7 +105,7 @@ public class IVRSettings_FnTable extends Structure {
 
     public interface GetString_callback extends Callback {
 
-        void apply(Pointer pchSection, Pointer pchSettingsKey, Pointer pchValue, int unValueLen, IntByReference peError);
+        void apply(Pointer pchSection, Pointer pchSettingsKey, Pointer pchValue, int unValueLen, Pointer pchDefaultValue, IntByReference peError);
     };
 
     public interface SetString_callback extends Callback {

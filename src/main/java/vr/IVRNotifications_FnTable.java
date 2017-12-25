@@ -17,11 +17,11 @@ public class IVRNotifications_FnTable extends Structure {
     /**
      * C type : CreateNotification_callback*
      */
-    public IVRNotifications_FnTable.CreateNotification_callback CreateNotification;
+    public CreateNotification_callback CreateNotification;
     /**
      * C type : RemoveNotification_callback*
      */
-    public IVRNotifications_FnTable.RemoveNotification_callback RemoveNotification;
+    public RemoveNotification_callback RemoveNotification;
 
     public interface CreateNotification_callback extends Callback {
 
@@ -45,7 +45,7 @@ public class IVRNotifications_FnTable extends Structure {
      * @param CreateNotification C type : CreateNotification_callback*<br>
      * @param RemoveNotification C type : RemoveNotification_callback*
      */
-    public IVRNotifications_FnTable(IVRNotifications_FnTable.CreateNotification_callback CreateNotification, IVRNotifications_FnTable.RemoveNotification_callback RemoveNotification) {
+    public IVRNotifications_FnTable(CreateNotification_callback CreateNotification, RemoveNotification_callback RemoveNotification) {
         super();
         this.CreateNotification = CreateNotification;
         this.RemoveNotification = RemoveNotification;

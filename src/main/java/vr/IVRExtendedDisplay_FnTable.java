@@ -17,15 +17,15 @@ public class IVRExtendedDisplay_FnTable extends Structure {
     /**
      * C type : GetWindowBounds_callback*
      */
-    public IVRExtendedDisplay_FnTable.GetWindowBounds_callback GetWindowBounds;
+    public GetWindowBounds_callback GetWindowBounds;
     /**
      * C type : GetEyeOutputViewport_callback*
      */
-    public IVRExtendedDisplay_FnTable.GetEyeOutputViewport_callback GetEyeOutputViewport;
+    public GetEyeOutputViewport_callback GetEyeOutputViewport;
     /**
      * C type : GetDXGIOutputInfo_callback*
      */
-    public IVRExtendedDisplay_FnTable.GetDXGIOutputInfo_callback GetDXGIOutputInfo;
+    public GetDXGIOutputInfo_callback GetDXGIOutputInfo;
 
     public interface GetWindowBounds_callback extends Callback {
 
@@ -55,7 +55,7 @@ public class IVRExtendedDisplay_FnTable extends Structure {
      * @param GetEyeOutputViewport C type : GetEyeOutputViewport_callback*<br>
      * @param GetDXGIOutputInfo C type : GetDXGIOutputInfo_callback*
      */
-    public IVRExtendedDisplay_FnTable(IVRExtendedDisplay_FnTable.GetWindowBounds_callback GetWindowBounds, IVRExtendedDisplay_FnTable.GetEyeOutputViewport_callback GetEyeOutputViewport, IVRExtendedDisplay_FnTable.GetDXGIOutputInfo_callback GetDXGIOutputInfo) {
+    public IVRExtendedDisplay_FnTable(GetWindowBounds_callback GetWindowBounds, GetEyeOutputViewport_callback GetEyeOutputViewport, GetDXGIOutputInfo_callback GetDXGIOutputInfo) {
         super();
         this.GetWindowBounds = GetWindowBounds;
         this.GetEyeOutputViewport = GetEyeOutputViewport;

@@ -5,7 +5,6 @@ import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,10 +57,6 @@ public class IVRCompositor_FnTable extends Structure {
      * C type : GetFrameTiming_callback*
      */
     public IVRCompositor_FnTable.GetFrameTiming_callback GetFrameTiming;
-    /**
-     * C type : GetFrameTimings_callback*
-     */
-    public IVRCompositor_FnTable.GetFrameTimings_callback GetFrameTimings;
     /**
      * C type : GetFrameTimeRemaining_callback*
      */
@@ -442,8 +437,8 @@ public class IVRCompositor_FnTable extends Structure {
     protected List<?> getFieldOrder() {
         return Arrays.asList("SetTrackingSpace", "GetTrackingSpace", "WaitGetPoses",
                 "GetLastPoses", "GetLastPoseForTrackedDeviceIndex", "Submit",
-                "ClearLastSubmittedFrame", "PostPresentHandoff", "GetFrameTiming", "GetFrameTimings",
-                "GetFrameTimeRemaining", "GetCumulativeStats", "FadeToColor", "GetCurrentFadeColor", "FadeGrid", "GetCurrentGridAlpha", "SetSkyboxOverride",
+                "ClearLastSubmittedFrame", "PostPresentHandoff", "GetFrameTiming",
+                "GetFrameTimeRemaining", "GetCumulativeStats", "FadeToColor", "FadeGrid", "SetSkyboxOverride",
                 "ClearSkyboxOverride", "CompositorBringToFront", "CompositorGoToBack",
                 "CompositorQuit", "IsFullscreen", "GetCurrentSceneFocusProcess",
                 "GetLastFrameRenderer", "CanRenderScene", "ShowMirrorWindow",

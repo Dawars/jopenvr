@@ -21,12 +21,12 @@ public class IVRResources_FnTable extends Structure {
     uint32_t (OPENVR_FNTABLE_CALLTYPE *LoadSharedResource)(char * pchResourceName, char * pchBuffer, uint32_t unBufferLen);
 
      */
-    public IVRResources_FnTable.LoadSharedResource_callback LoadSharedResource;
+    public LoadSharedResource_callback LoadSharedResource;
     /*
     uint32_t (OPENVR_FNTABLE_CALLTYPE *GetResourceFullPath)(char * pchResourceName, char * pchResourceTypeDirectory, char * pchPathBuffer, uint32_t unBufferLen);
 
      */
-    public IVRResources_FnTable.GetResourceFullPath_callback GetResourceFullPath;
+    public GetResourceFullPath_callback GetResourceFullPath;
 
     public IVRResources_FnTable() {
         super();

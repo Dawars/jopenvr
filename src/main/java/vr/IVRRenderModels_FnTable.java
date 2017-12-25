@@ -24,81 +24,81 @@ public class IVRRenderModels_FnTable extends Structure {
     /**
      * C type : LoadRenderModel_Async_callback*
      */
-    public IVRRenderModels_FnTable.LoadRenderModel_Async_callback LoadRenderModel_Async;
+    public LoadRenderModel_Async_callback LoadRenderModel_Async;
     /**
      * C type : FreeRenderModel_callback*
      */
-    public IVRRenderModels_FnTable.FreeRenderModel_callback FreeRenderModel;
+    public FreeRenderModel_callback FreeRenderModel;
     /**
      * C type : LoadTexture_Async_callback*
      */
-    public IVRRenderModels_FnTable.LoadTexture_Async_callback LoadTexture_Async;
+    public LoadTexture_Async_callback LoadTexture_Async;
     /**
      * C type : FreeTexture_callback*
      */
-    public IVRRenderModels_FnTable.FreeTexture_callback FreeTexture;
+    public FreeTexture_callback FreeTexture;
     /**
      * C type : LoadTextureD3D11_Async_callback*
      */
-    public IVRRenderModels_FnTable.LoadTextureD3D11_Async_callback LoadTextureD3D11_Async;
+    public LoadTextureD3D11_Async_callback LoadTextureD3D11_Async;
 
     /*
         EVRRenderModelError (OPENVR_FNTABLE_CALLTYPE *LoadIntoTextureD3D11_Async)(TextureID_t textureId, void * pDstTexture);
 
      */
-    public IVRRenderModels_FnTable.LoadIntoTextureD3D11_Async_callback LoadIntoTextureD3D11_Async;
+    public LoadIntoTextureD3D11_Async_callback LoadIntoTextureD3D11_Async;
 
     /**
      * C type : FreeTextureD3D11_callback*
      */
-    public IVRRenderModels_FnTable.FreeTextureD3D11_callback FreeTextureD3D11;
+    public FreeTextureD3D11_callback FreeTextureD3D11;
     /**
      * C type : GetRenderModelName_callback*
      */
-    public IVRRenderModels_FnTable.GetRenderModelName_callback GetRenderModelName;
+    public GetRenderModelName_callback GetRenderModelName;
     /**
      * C type : GetRenderModelCount_callback*
      */
-    public IVRRenderModels_FnTable.GetRenderModelCount_callback GetRenderModelCount;
+    public GetRenderModelCount_callback GetRenderModelCount;
     /**
      * C type : GetComponentCount_callback*
      */
-    public IVRRenderModels_FnTable.GetComponentCount_callback GetComponentCount;
+    public GetComponentCount_callback GetComponentCount;
     /**
      * C type : GetComponentName_callback*
      */
-    public IVRRenderModels_FnTable.GetComponentName_callback GetComponentName;
+    public GetComponentName_callback GetComponentName;
     /**
      * C type : GetComponentButtonMask_callback*
      */
-    public IVRRenderModels_FnTable.GetComponentButtonMask_callback GetComponentButtonMask;
+    public GetComponentButtonMask_callback GetComponentButtonMask;
     /**
      * C type : GetComponentRenderModelName_callback*
      */
-    public IVRRenderModels_FnTable.GetComponentRenderModelName_callback GetComponentRenderModelName;
+    public GetComponentRenderModelName_callback GetComponentRenderModelName;
     /**
      * C type : GetComponentState_callback*
      */
-    public IVRRenderModels_FnTable.GetComponentState_callback GetComponentState;
+    public GetComponentState_callback GetComponentState;
     /**
      * C type : RenderModelHasComponent_callback*
      */
-    public IVRRenderModels_FnTable.RenderModelHasComponent_callback RenderModelHasComponent;
+    public RenderModelHasComponent_callback RenderModelHasComponent;
     /*
         uint32_t (OPENVR_FNTABLE_CALLTYPE *GetRenderModelThumbnailURL)(char * pchRenderModelName, char * pchThumbnailURL, uint32_t unThumbnailURLLen, EVRRenderModelError * peError);
 
      */
-    public IVRRenderModels_FnTable.GetRenderModelThumbnailURL_callback GetRenderModelThumbnailURL;
+    public GetRenderModelThumbnailURL_callback GetRenderModelThumbnailURL;
     /*
     	uint32_t (OPENVR_FNTABLE_CALLTYPE *GetRenderModelOriginalPath)(char * pchRenderModelName, char * pchOriginalPath, uint32_t unOriginalPathLen, EVRRenderModelError * peError);
 
      */
-    public IVRRenderModels_FnTable.GetRenderModelOriginalPath_callback GetRenderModelOriginalPath;
+    public GetRenderModelOriginalPath_callback GetRenderModelOriginalPath;
     /*
     	char * (OPENVR_FNTABLE_CALLTYPE *GetRenderModelErrorNameFromEnum)(EVRRenderModelError error);
 
      */
-    public IVRRenderModels_FnTable.GetRenderModelErrorNameFromEnum_callback GetRenderModelErrorNameFromEnum;
+    public GetRenderModelErrorNameFromEnum_callback GetRenderModelErrorNameFromEnum;
 
     public interface LoadRenderModel_Async_callback extends Callback {
 

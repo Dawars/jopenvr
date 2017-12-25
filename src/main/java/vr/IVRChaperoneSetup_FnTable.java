@@ -18,75 +18,75 @@ public class IVRChaperoneSetup_FnTable extends Structure {
     /**
      * C type : CommitWorkingCopy_callback*
      */
-    public IVRChaperoneSetup_FnTable.CommitWorkingCopy_callback CommitWorkingCopy;
+    public CommitWorkingCopy_callback CommitWorkingCopy;
     /**
      * C type : RevertWorkingCopy_callback*
      */
-    public IVRChaperoneSetup_FnTable.RevertWorkingCopy_callback RevertWorkingCopy;
+    public RevertWorkingCopy_callback RevertWorkingCopy;
     /**
      * C type : GetWorkingPlayAreaSize_callback*
      */
-    public IVRChaperoneSetup_FnTable.GetWorkingPlayAreaSize_callback GetWorkingPlayAreaSize;
+    public GetWorkingPlayAreaSize_callback GetWorkingPlayAreaSize;
     /**
      * C type : GetWorkingPlayAreaRect_callback*
      */
-    public IVRChaperoneSetup_FnTable.GetWorkingPlayAreaRect_callback GetWorkingPlayAreaRect;
+    public GetWorkingPlayAreaRect_callback GetWorkingPlayAreaRect;
     /**
      * C type : GetWorkingCollisionBoundsInfo_callback*
      */
-    public IVRChaperoneSetup_FnTable.GetWorkingCollisionBoundsInfo_callback GetWorkingCollisionBoundsInfo;
+    public GetWorkingCollisionBoundsInfo_callback GetWorkingCollisionBoundsInfo;
     /**
      * C type : GetLiveCollisionBoundsInfo_callback*
      */
-    public IVRChaperoneSetup_FnTable.GetLiveCollisionBoundsInfo_callback GetLiveCollisionBoundsInfo;
+    public GetLiveCollisionBoundsInfo_callback GetLiveCollisionBoundsInfo;
     /**
      * C type : GetWorkingSeatedZeroPoseToRawTrackingPose_callback*
      */
-    public IVRChaperoneSetup_FnTable.GetWorkingSeatedZeroPoseToRawTrackingPose_callback GetWorkingSeatedZeroPoseToRawTrackingPose;
+    public GetWorkingSeatedZeroPoseToRawTrackingPose_callback GetWorkingSeatedZeroPoseToRawTrackingPose;
     /**
      * C type : GetWorkingStandingZeroPoseToRawTrackingPose_callback*
      */
-    public IVRChaperoneSetup_FnTable.GetWorkingStandingZeroPoseToRawTrackingPose_callback GetWorkingStandingZeroPoseToRawTrackingPose;
+    public GetWorkingStandingZeroPoseToRawTrackingPose_callback GetWorkingStandingZeroPoseToRawTrackingPose;
     /**
      * C type : SetWorkingPlayAreaSize_callback*
      */
-    public IVRChaperoneSetup_FnTable.SetWorkingPlayAreaSize_callback SetWorkingPlayAreaSize;
+    public SetWorkingPlayAreaSize_callback SetWorkingPlayAreaSize;
     /**
      * C type : SetWorkingCollisionBoundsInfo_callback*
      */
-    public IVRChaperoneSetup_FnTable.SetWorkingCollisionBoundsInfo_callback SetWorkingCollisionBoundsInfo;
+    public SetWorkingCollisionBoundsInfo_callback SetWorkingCollisionBoundsInfo;
     /**
      * C type : SetWorkingSeatedZeroPoseToRawTrackingPose_callback*
      */
-    public IVRChaperoneSetup_FnTable.SetWorkingSeatedZeroPoseToRawTrackingPose_callback SetWorkingSeatedZeroPoseToRawTrackingPose;
+    public SetWorkingSeatedZeroPoseToRawTrackingPose_callback SetWorkingSeatedZeroPoseToRawTrackingPose;
     /**
      * C type : SetWorkingStandingZeroPoseToRawTrackingPose_callback*
      */
-    public IVRChaperoneSetup_FnTable.SetWorkingStandingZeroPoseToRawTrackingPose_callback SetWorkingStandingZeroPoseToRawTrackingPose;
+    public SetWorkingStandingZeroPoseToRawTrackingPose_callback SetWorkingStandingZeroPoseToRawTrackingPose;
     /**
      * C type : ReloadFromDisk_callback*
      */
-    public IVRChaperoneSetup_FnTable.ReloadFromDisk_callback ReloadFromDisk;
+    public ReloadFromDisk_callback ReloadFromDisk;
     /**
      * C type : GetLiveSeatedZeroPoseToRawTrackingPose_callback*
      */
-    public IVRChaperoneSetup_FnTable.GetLiveSeatedZeroPoseToRawTrackingPose_callback GetLiveSeatedZeroPoseToRawTrackingPose;
+    public GetLiveSeatedZeroPoseToRawTrackingPose_callback GetLiveSeatedZeroPoseToRawTrackingPose;
     /**
      * C type : SetWorkingCollisionBoundsTagsInfo_callback*
      */
-    public IVRChaperoneSetup_FnTable.SetWorkingCollisionBoundsTagsInfo_callback SetWorkingCollisionBoundsTagsInfo;
+    public SetWorkingCollisionBoundsTagsInfo_callback SetWorkingCollisionBoundsTagsInfo;
     /**
      * C type : GetLiveCollisionBoundsTagsInfo_callback*
      */
-    public IVRChaperoneSetup_FnTable.GetLiveCollisionBoundsTagsInfo_callback GetLiveCollisionBoundsTagsInfo;
+    public GetLiveCollisionBoundsTagsInfo_callback GetLiveCollisionBoundsTagsInfo;
     /**
      * C type : SetWorkingPhysicalBoundsInfo_callback*
      */
-    public IVRChaperoneSetup_FnTable.SetWorkingPhysicalBoundsInfo_callback SetWorkingPhysicalBoundsInfo;
+    public SetWorkingPhysicalBoundsInfo_callback SetWorkingPhysicalBoundsInfo;
     /**
      * C type : GetLivePhysicalBoundsInfo_callback*
      */
-    public IVRChaperoneSetup_FnTable.GetLivePhysicalBoundsInfo_callback GetLivePhysicalBoundsInfo;
+    public GetLivePhysicalBoundsInfo_callback GetLivePhysicalBoundsInfo;
 
     public interface CommitWorkingCopy_callback extends Callback {
 

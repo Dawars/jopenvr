@@ -23,123 +23,123 @@ public class IVRApplications_FnTable extends Structure {
     /**
      * C type : AddApplicationManifest_callback*
      */
-    public IVRApplications_FnTable.AddApplicationManifest_callback AddApplicationManifest;
+    public AddApplicationManifest_callback AddApplicationManifest;
     /**
      * C type : RemoveApplicationManifest_callback*
      */
-    public IVRApplications_FnTable.RemoveApplicationManifest_callback RemoveApplicationManifest;
+    public RemoveApplicationManifest_callback RemoveApplicationManifest;
     /**
      * C type : IsApplicationInstalled_callback*
      */
-    public IVRApplications_FnTable.IsApplicationInstalled_callback IsApplicationInstalled;
+    public IsApplicationInstalled_callback IsApplicationInstalled;
     /**
      * C type : GetApplicationCount_callback*
      */
-    public IVRApplications_FnTable.GetApplicationCount_callback GetApplicationCount;
+    public GetApplicationCount_callback GetApplicationCount;
     /**
      * C type : GetApplicationKeyByIndex_callback*
      */
-    public IVRApplications_FnTable.GetApplicationKeyByIndex_callback GetApplicationKeyByIndex;
+    public GetApplicationKeyByIndex_callback GetApplicationKeyByIndex;
     /**
      * C type : GetApplicationKeyByProcessId_callback*
      */
-    public IVRApplications_FnTable.GetApplicationKeyByProcessId_callback GetApplicationKeyByProcessId;
+    public GetApplicationKeyByProcessId_callback GetApplicationKeyByProcessId;
     /**
      * C type : LaunchApplication_callback*
      */
-    public IVRApplications_FnTable.LaunchApplication_callback LaunchApplication;
+    public LaunchApplication_callback LaunchApplication;
     /*
     EVRApplicationError (OPENVR_FNTABLE_CALLTYPE *LaunchTemplateApplication)(char * pchTemplateAppKey, char * pchNewAppKey, struct AppOverrideKeys_t * pKeys, uint32_t unKeys);
      */
-    public IVRApplications_FnTable.LaunchTemplateApplication_callback LaunchTemplateApplication;
+    public LaunchTemplateApplication_callback LaunchTemplateApplication;
     /*
     EVRApplicationError (OPENVR_FNTABLE_CALLTYPE *LaunchApplicationFromMimeType)(char * pchMimeType, char * pchArgs);
      */
-    public IVRApplications_FnTable.LaunchApplicationFromMimeType_callback LaunchApplicationFromMimeType;
+    public LaunchApplicationFromMimeType_callback LaunchApplicationFromMimeType;
     /**
      * C type : LaunchDashboardOverlay_callback*
      */
-    public IVRApplications_FnTable.LaunchDashboardOverlay_callback LaunchDashboardOverlay;
+    public LaunchDashboardOverlay_callback LaunchDashboardOverlay;
     /**
      * C type : CancelApplicationLaunch_callback*
      */
-    public IVRApplications_FnTable.CancelApplicationLaunch_callback CancelApplicationLaunch;
+    public CancelApplicationLaunch_callback CancelApplicationLaunch;
     /**
      * C type : IdentifyApplication_callback*
      */
-    public IVRApplications_FnTable.IdentifyApplication_callback IdentifyApplication;
+    public IdentifyApplication_callback IdentifyApplication;
     /**
      * C type : GetApplicationProcessId_callback*
      */
-    public IVRApplications_FnTable.GetApplicationProcessId_callback GetApplicationProcessId;
+    public GetApplicationProcessId_callback GetApplicationProcessId;
     /**
      * C type : GetApplicationsErrorNameFromEnum_callback*
      */
-    public IVRApplications_FnTable.GetApplicationsErrorNameFromEnum_callback GetApplicationsErrorNameFromEnum;
+    public GetApplicationsErrorNameFromEnum_callback GetApplicationsErrorNameFromEnum;
     /**
      * C type : GetApplicationPropertyString_callback*
      */
-    public IVRApplications_FnTable.GetApplicationPropertyString_callback GetApplicationPropertyString;
+    public GetApplicationPropertyString_callback GetApplicationPropertyString;
     /**
      * C type : GetApplicationPropertyBool_callback*
      */
-    public IVRApplications_FnTable.GetApplicationPropertyBool_callback GetApplicationPropertyBool;
+    public GetApplicationPropertyBool_callback GetApplicationPropertyBool;
     /**
      * C type : GetApplicationPropertyUint64_callback*
      */
-    public IVRApplications_FnTable.GetApplicationPropertyUint64_callback GetApplicationPropertyUint64;
+    public GetApplicationPropertyUint64_callback GetApplicationPropertyUint64;
     /**
      * C type : SetApplicationAutoLaunch_callback*
      */
-    public IVRApplications_FnTable.SetApplicationAutoLaunch_callback SetApplicationAutoLaunch;
+    public SetApplicationAutoLaunch_callback SetApplicationAutoLaunch;
     /**
      * C type : GetApplicationAutoLaunch_callback*
      */
-    public IVRApplications_FnTable.GetApplicationAutoLaunch_callback GetApplicationAutoLaunch;
+    public GetApplicationAutoLaunch_callback GetApplicationAutoLaunch;
     /*
     EVRApplicationError (OPENVR_FNTABLE_CALLTYPE *SetDefaultApplicationForMimeType)(char * pchAppKey, char * pchMimeType);
      */
-    public IVRApplications_FnTable.SetDefaultApplicationForMimeType_callback SetDefaultApplicationForMimeType;
+    public SetDefaultApplicationForMimeType_callback SetDefaultApplicationForMimeType;
     /*
     bool (OPENVR_FNTABLE_CALLTYPE *GetDefaultApplicationForMimeType)(char * pchMimeType, char * pchAppKeyBuffer, uint32_t unAppKeyBufferLen);
      */
-    public IVRApplications_FnTable.GetDefaultApplicationForMimeType_callback GetDefaultApplicationForMimeType;
+    public GetDefaultApplicationForMimeType_callback GetDefaultApplicationForMimeType;
     /*
     bool (OPENVR_FNTABLE_CALLTYPE *GetApplicationSupportedMimeTypes)(char * pchAppKey, char * pchMimeTypesBuffer, uint32_t unMimeTypesBuffer);
      */
-    public IVRApplications_FnTable.GetApplicationSupportedMimeTypes_callback GetApplicationSupportedMimeTypes;
+    public GetApplicationSupportedMimeTypes_callback GetApplicationSupportedMimeTypes;
     /*
     uint32_t (OPENVR_FNTABLE_CALLTYPE *GetApplicationsThatSupportMimeType)(char * pchMimeType, char * pchAppKeysThatSupportBuffer, uint32_t unAppKeysThatSupportBuffer);
      */
-    public IVRApplications_FnTable.GetApplicationsThatSupportMimeType_callback GetApplicationsThatSupportMimeType;
+    public GetApplicationsThatSupportMimeType_callback GetApplicationsThatSupportMimeType;
     /*
     uint32_t (OPENVR_FNTABLE_CALLTYPE *GetApplicationLaunchArguments)(uint32_t unHandle, char * pchArgs, uint32_t unArgs);
      */
-    public IVRApplications_FnTable.GetApplicationLaunchArguments_callback GetApplicationLaunchArguments;
+    public GetApplicationLaunchArguments_callback GetApplicationLaunchArguments;
     /**
      * C type : GetStartingApplication_callback*
      */
-    public IVRApplications_FnTable.GetStartingApplication_callback GetStartingApplication;
+    public GetStartingApplication_callback GetStartingApplication;
     /**
      * C type : GetTransitionState_callback*
      */
-    public IVRApplications_FnTable.GetTransitionState_callback GetTransitionState;
+    public GetTransitionState_callback GetTransitionState;
     /**
      * C type : PerformApplicationPrelaunchCheck_callback*
      */
-    public IVRApplications_FnTable.PerformApplicationPrelaunchCheck_callback PerformApplicationPrelaunchCheck;
+    public PerformApplicationPrelaunchCheck_callback PerformApplicationPrelaunchCheck;
     /**
      * C type : GetApplicationsTransitionStateNameFromEnum_callback*
      */
-    public IVRApplications_FnTable.GetApplicationsTransitionStateNameFromEnum_callback GetApplicationsTransitionStateNameFromEnum;
+    public GetApplicationsTransitionStateNameFromEnum_callback GetApplicationsTransitionStateNameFromEnum;
     /**
      * C type : IsQuitUserPromptRequested_callback*
      */
-    public IVRApplications_FnTable.IsQuitUserPromptRequested_callback IsQuitUserPromptRequested;
+    public IsQuitUserPromptRequested_callback IsQuitUserPromptRequested;
     /*
     EVRApplicationError (OPENVR_FNTABLE_CALLTYPE *LaunchInternalProcess)(char * pchBinaryPath, char * pchArguments, char * pchWorkingDirectory);
      */
-    public IVRApplications_FnTable.LaunchInternalProcess_callback LaunchInternalProcess;
+    public LaunchInternalProcess_callback LaunchInternalProcess;
 
     public IVRApplications_FnTable.GetCurrentSceneProcessId_callback GetCurrentSceneProcessId;
 
