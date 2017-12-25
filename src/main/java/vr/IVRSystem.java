@@ -356,7 +356,7 @@ public class IVRSystem extends Structure {
 
     public interface GetMatrix34TrackedDeviceProperty_callback extends Callback {
 
-        HmdMatrix34_t.ByValue apply(int unDeviceIndex, int prop, IntByReference pError);
+        HmdMatrix34_t.ByValue apply(int unDeviceIndex, int prop, IntBuffer pError); // TODO check error type IntByReference?
     };
 
     public interface GetStringTrackedDeviceProperty_callback extends Callback {
@@ -380,7 +380,7 @@ public class IVRSystem extends Structure {
 
     public interface GetPropErrorNameFromEnum_callback extends Callback {
 
-        Pointer apply(int error);
+        String apply(int error);
     };
 
     public interface PollNextEvent_callback extends Callback {
