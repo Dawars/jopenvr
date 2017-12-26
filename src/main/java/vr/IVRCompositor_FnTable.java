@@ -154,6 +154,7 @@ public class IVRCompositor_FnTable extends Structure {
     EVRCompositorError (OPENVR_FNTABLE_CALLTYPE *GetMirrorTextureD3D11)(EVREye eEye, void * pD3D11DeviceOrResource, void ** ppD3D11ShaderResourceView);
      */
     public IVRCompositor_FnTable.GetMirrorTextureD3D11_callback GetMirrorTextureD3D11;
+    public IVRCompositor_FnTable.ReleaseMirrorTextureD3D11_callback ReleaseMirrorTextureD3D11;
     /*
     EVRCompositorError (OPENVR_FNTABLE_CALLTYPE *GetMirrorTextureGL)(EVREye eEye, glUInt_t * pglTextureId, glSharedTextureHandle_t * pglSharedTextureHandle);
      */
@@ -350,7 +351,6 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface ReleaseMirrorTextureD3D11_callback extends Callback {
         //EVRCompositorError (OPENVR_FNTABLE_CALLTYPE *GetMirrorTextureGL)(EVREye eEye, glUInt_t * pglTextureId, glSharedTextureHandle_t * pglSharedTextureHandle);
-        // FIXME not tested
         void apply(int eEye, int pglTextureId, Pointer pglSharedTextureHandle);
     }
 
@@ -387,7 +387,6 @@ public class IVRCompositor_FnTable extends Structure {
     /** [Vulkan only]
      * return 0. Otherwise it returns the length of the number of bytes necessary to hold this string including the trailing
      * null.  The string will be a space separated list of required device extensions to enable in VkCreateDevice
-     * FIXME not tested, not supported
      * Original header: virtual uint32_t GetVulkanDeviceExtensionsRequired( VkPhysicalDevice_T *pPhysicalDevice, VR_OUT_STRING() char *pchValue, uint32_t unBufferSize ) = 0;*/
     public interface GetVulkanDeviceExtensionsRequired_callback extends Callback {
 
@@ -439,13 +438,15 @@ public class IVRCompositor_FnTable extends Structure {
         return Arrays.asList("SetTrackingSpace", "GetTrackingSpace", "WaitGetPoses",
                 "GetLastPoses", "GetLastPoseForTrackedDeviceIndex", "Submit",
                 "ClearLastSubmittedFrame", "PostPresentHandoff", "GetFrameTiming",
-                "GetFrameTimeRemaining", "GetCumulativeStats", "FadeToColor", "FadeGrid", "SetSkyboxOverride",
+                "GetFrameTimeRemaining", "GetCumulativeStats", "FadeToColor", "GetCurrentFadeColor", "FadeGrid",
+                "GetCurrentGridAlpha", "SetSkyboxOverride",
                 "ClearSkyboxOverride", "CompositorBringToFront", "CompositorGoToBack",
                 "CompositorQuit", "IsFullscreen", "GetCurrentSceneFocusProcess",
                 "GetLastFrameRenderer", "CanRenderScene", "ShowMirrorWindow",
                 "HideMirrorWindow", "IsMirrorWindowVisible", "CompositorDumpImages",
                 "ShouldAppRenderWithLowResources", "ForceInterleavedReprojectionOn",
-                "ForceReconnectProcess", "SuspendRendering", "GetMirrorTextureD3D11", "GetMirrorTextureGL",
+                "ForceReconnectProcess", "SuspendRendering", "GetMirrorTextureD3D11", "ReleaseMirrorTextureD3D11",
+                "GetMirrorTextureGL",
                 "ReleaseSharedGLTexture", "LockGLSharedTextureForAccess", "UnlockGLSharedTextureForAccess",
                 "GetVulkanInstanceExtensionsRequired", "GetVulkanDeviceExtensionsRequired",
                 "SetExplicitTimingMode", "SubmitExplicitTimingData");

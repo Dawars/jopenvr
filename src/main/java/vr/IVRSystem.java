@@ -336,12 +336,12 @@ public class IVRSystem extends Structure {
 
     public interface IsTrackedDeviceConnected_callback extends Callback {
 
-        byte apply(int unDeviceIndex);
+        boolean apply(int unDeviceIndex);
     };
 
     public interface GetBoolTrackedDeviceProperty_callback extends Callback {
 
-        byte apply(int unDeviceIndex, int prop, IntBuffer pError);
+        boolean apply(int unDeviceIndex, int prop, IntBuffer pError);
     };
 
     public interface GetFloatTrackedDeviceProperty_callback extends Callback {
@@ -408,13 +408,9 @@ public class IVRSystem extends Structure {
         vr.HiddenAreaMesh_t.ByValue apply(int eEye, VR.EHiddenAreaMeshType type);
     };
 
-    public abstract class GetControllerState_callback implements Callback {
+    public interface GetControllerState_callback extends Callback {
 
-        public byte apply(int unControllerDeviceIndex, VRControllerState_t pControllerState){
-
-            return apply(unControllerDeviceIndex, pControllerState, pControllerState.size());
-        }
-        abstract byte apply(int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize);
+        byte apply(int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize);
     };
 
     public interface GetControllerStateWithPose_callback extends Callback {

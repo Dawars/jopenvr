@@ -9,9 +9,8 @@ import java.nio.IntBuffer;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
-import static vr.VR.ETrackingUniverseOrigin.TrackingUniverseRawAndUncalibrated;
-import static vr.VR.ETrackingUniverseOrigin.TrackingUniverseSeated;
-import static vr.VR.ETrackingUniverseOrigin.TrackingUniverseStanding;
+import static vr.VR.ETrackedDeviceClass.*;
+import static vr.VR.ETrackingUniverseOrigin.*;
 import static vr.VR.EVREye.Eye_Left;
 import static vr.VR.EVREye.Eye_Right;
 import static vr.VR.k_unMaxTrackedDeviceCount;
@@ -32,6 +31,25 @@ public class TrackingTest {
         compositor = new IVRCompositor_FnTable(VR.VR_GetGenericInterface(VR.IVRCompositor_Version, errorBuffer));
 
         assert (errorBuffer.get(0) == VR.EVRInitError.VRInitError_None);
+    }
+
+    @Test
+    public void getTrackedDevices() {
+        //Iterate through the possible trackedDeviceIndexes
+        for (int trackedDevice = k_unTrackedDeviceIndex_Hmd + 1;
+             trackedDevice < k_unMaxTrackedDeviceCount;
+             trackedDevice++) {
+            //If the device is not connected, pass.
+            if (!hmd.IsTrackedDeviceConnected.apply(trackedDevice))
+                continue;
+            //If the device is not recognized as a controller, pass
+            if (hmd.GetTrackedDeviceClass.apply(trackedDevice) == TrackedDeviceClass_Controller)
+                System.out.println("Controller: " + trackedDevice);
+            if (hmd.GetTrackedDeviceClass.apply(trackedDevice) == TrackedDeviceClass_GenericTracker)
+                System.out.println("GenericTracker: " + trackedDevice);
+            if (hmd.GetTrackedDeviceClass.apply(trackedDevice) == TrackedDeviceClass_TrackingReference)
+                System.out.println("Tracker: " + trackedDevice);
+        }
     }
 
     @Test
