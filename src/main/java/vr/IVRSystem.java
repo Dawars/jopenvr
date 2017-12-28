@@ -276,17 +276,17 @@ public class IVRSystem extends Structure {
 
     public interface IsDisplayOnDesktop_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     };
 
     public interface SetDisplayVisibility_callback extends Callback {
 
-        byte apply(byte bIsVisibleOnDesktop);
+        byte apply(boolean bIsVisibleOnDesktop);
     };
 
     public interface GetDeviceToAbsoluteTrackingPose_callback extends Callback {
 
-        void apply(int eOrigin, float fPredictedSecondsToPhotonsFromNow, TrackedDevicePose_t pTrackedDevicePoseArray, int unTrackedDevicePoseArrayCount);
+        void apply(int eOrigin, float fPredictedSecondsToPhotonsFromNow, TrackedDevicePose_t[] pTrackedDevicePoseArray, int unTrackedDevicePoseArrayCount);
     };
 
     public interface ResetSeatedZeroPose_callback extends Callback {
@@ -445,7 +445,7 @@ public class IVRSystem extends Structure {
 
     public interface IsInputFocusCapturedByAnotherProcess_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     };
 
     public interface DriverDebugRequest_callback extends Callback {

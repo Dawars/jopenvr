@@ -30,7 +30,7 @@ public class DevicePropertiesTest {
 
     @Test
     public void getGeneralProperties() {
-        for (int trackedDevice = k_unTrackedDeviceIndex_Hmd + 1;
+        for (int trackedDevice = k_unTrackedDeviceIndex_Hmd;
              trackedDevice < k_unMaxTrackedDeviceCount;
              trackedDevice++) {
             //If the device is not connected, pass.

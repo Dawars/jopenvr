@@ -38,7 +38,7 @@ public class TrackedDevicePose_t extends Structure {
      * This indicates that there is a device connected for this spot in the pose array.
      * It could go from true to false if the user unplugs the device.
      */
-    public byte bDeviceIsConnected;
+    public boolean bDeviceIsConnected;
 
     public TrackedDevicePose_t() {
         super();
@@ -56,7 +56,7 @@ public class TrackedDevicePose_t extends Structure {
      * @param eTrackingResult @see ETrackingResult<br>
      * C type : ETrackingResult
      */
-    public TrackedDevicePose_t(HmdMatrix34_t mDeviceToAbsoluteTracking, HmdVector3_t vVelocity, HmdVector3_t vAngularVelocity, int eTrackingResult, boolean bPoseIsValid, byte bDeviceIsConnected) {
+    public TrackedDevicePose_t(HmdMatrix34_t mDeviceToAbsoluteTracking, HmdVector3_t vVelocity, HmdVector3_t vAngularVelocity, int eTrackingResult, boolean bPoseIsValid, boolean bDeviceIsConnected) {
         super();
         this.mDeviceToAbsoluteTracking = mDeviceToAbsoluteTracking;
         this.vVelocity = vVelocity;
