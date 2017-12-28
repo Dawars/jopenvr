@@ -390,12 +390,12 @@ public class IVRSystem extends Structure {
 
     public interface PollNextEvent_callback extends Callback {
 
-        byte apply(VREvent_t pEvent, int uncbVREvent);
+        boolean apply(VREvent_t pEvent, int uncbVREvent);
     };
 
     public interface PollNextEventWithPose_callback extends Callback {
 
-        byte apply(int eOrigin, VREvent_t pEvent, int uncbVREvent, TrackedDevicePose_t pTrackedDevicePose);
+        boolean apply(int eOrigin, VREvent_t pEvent, int uncbVREvent, TrackedDevicePose_t pTrackedDevicePose);
     };
 
     public interface GetEventTypeNameFromEnum_callback extends Callback {

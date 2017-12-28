@@ -265,7 +265,25 @@ public class VR implements Library {
         public static final int TrackingResult_Calibrating_OutOfRange = 101;
         public static final int TrackingResult_Running_OK = 200;
         public static final int TrackingResult_Running_OutOfRange = 201;
-    };
+
+        public static String GetTrackingResultString(int status){
+            switch (status) {
+                case ETrackingResult.TrackingResult_Uninitialized:
+                    return "Uninitialized";
+                case ETrackingResult.TrackingResult_Calibrating_InProgress:
+                    return "Calibrating in progress";
+                case ETrackingResult.TrackingResult_Calibrating_OutOfRange:
+                    return "Calibrating out of range";
+                case ETrackingResult.TrackingResult_Running_OK:
+                    return "Running OK";
+                case ETrackingResult.TrackingResult_Running_OutOfRange:
+                    return "Running out of range";
+                default:
+                    return "Unknown";
+            }
+        }
+    }
+
 
     /**
      * Describes what kind of object is being tracked at a given ID.
