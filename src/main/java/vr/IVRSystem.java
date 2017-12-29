@@ -410,12 +410,12 @@ public class IVRSystem extends Structure {
 
     public interface GetControllerState_callback extends Callback {
 
-        byte apply(int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize);
+        boolean apply(int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize);
     };
 
     public interface GetControllerStateWithPose_callback extends Callback {
 
-        byte apply(int eOrigin, int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize, TrackedDevicePose_t pTrackedDevicePose);
+        boolean apply(int eOrigin, int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize, TrackedDevicePose_t pTrackedDevicePose);
     };
 
     public interface TriggerHapticPulse_callback extends Callback {
