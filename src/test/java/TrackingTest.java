@@ -10,6 +10,9 @@ import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static vr.VR.ETrackedDeviceClass.*;
+import static vr.VR.ETrackedDeviceProperty.Prop_ModelNumber_String;
+import static vr.VR.ETrackedDeviceProperty.Prop_RenderModelName_String;
+import static vr.VR.ETrackedDeviceProperty.Prop_SerialNumber_String;
 import static vr.VR.ETrackingUniverseOrigin.*;
 import static vr.VR.EVREye.Eye_Left;
 import static vr.VR.EVREye.Eye_Right;
@@ -74,10 +77,15 @@ public class TrackingTest {
 
         int len = compositor.WaitGetPoses.apply(trackedPoses, k_unMaxTrackedDeviceCount, null, 0);
 
-        System.out.println(trackedPoses.length);
-        for (TrackedDevicePose_t hmdPose : trackedPoses) {
-            if (hmdPose.bPoseIsValid)
+        for (int i = 0; i < trackedPoses.length; i++) {
+
+            TrackedDevicePose_t hmdPose = trackedPoses[i];
+
+
+            if (hmdPose.bPoseIsValid) {
+                System.out.println("------------------" + hmd.GetTrackedDevicePropertyString(i, Prop_ModelNumber_String, errorBuffer) + "----------------------");
                 System.out.println(Arrays.toString(hmdPose.mDeviceToAbsoluteTracking.m));
+            }
 
         }
     }

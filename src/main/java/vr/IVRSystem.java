@@ -430,7 +430,7 @@ public class IVRSystem extends Structure {
 
     public interface GetControllerAxisTypeNameFromEnum_callback extends Callback {
 
-        Pointer apply(int eAxisType);
+        String apply(int eAxisType);
     };
 
     public interface CaptureInputFocus_callback extends Callback {

@@ -761,10 +761,24 @@ public class VR implements Library {
         public static final int k_EButton_SteamVR_Touchpad = k_EButton_Axis0;
         public static final int k_EButton_SteamVR_Trigger = k_EButton_Axis1;
 
+        public static final int k_EButton_Oculus_Joystick = k_EButton_Axis0;
+        public static final int k_EButton_Oculus_Trigger = k_EButton_Axis1;
+        public static final int k_EButton_Oculus_Grip = k_EButton_Axis2;
+
         public static final int k_EButton_Dashboard_Back = k_EButton_Grip;
 
         public static final int k_EButton_Max = 64;
     };
+
+    /**
+     * Helper function to turn a button ID into a bit mask that can be used with controller state button pressed and touched bit fields
+     * @param id of type EVRButtonId
+     * @return bit mask
+     */
+    public static long ButtonMaskFromId(long id) {
+        return 1L << id;
+    }
+
 
     /**
      * used for simulated mouse events in overlay space

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class VREvent_Controller_t extends Structure {
 
-    public int button;  // EVRButtonId enum
+    public byte button;  // EVRButtonId enum
 
     public VREvent_Controller_t() {
         super();
@@ -25,7 +25,7 @@ public class VREvent_Controller_t extends Structure {
         return Arrays.asList("button");
     }
 
-    public VREvent_Controller_t(int button) {
+    public VREvent_Controller_t(byte button) {
         super();
         this.button = button;
     }

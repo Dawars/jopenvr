@@ -187,7 +187,14 @@ public class IVRCompositor_FnTable extends Structure {
 
         int apply();
     };
-
+    /** Scene applications should call this function to get poses to render with (and optionally poses predicted an additional frame out to use for gameplay).
+     * This function will block until "running start" milliseconds before the start of the frame, and should be called at the last moment before needing to
+     * start rendering.
+     *
+     * Return codes:
+     *	- IsNotSceneApplication (make sure to call VR_Init with VRApplicaiton_Scene)
+     *	- DoNotHaveFocus (some other app has taken focus - this will throttle the call to 10hz to reduce the impact on that app)
+     */
     public interface WaitGetPoses_callback extends Callback {
 
         int apply(TrackedDevicePose_t[] pRenderPoseArray, int unRenderPoseArrayCount, TrackedDevicePose_t pGamePoseArray, int unGamePoseArrayCount);
