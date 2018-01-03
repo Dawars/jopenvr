@@ -11,8 +11,6 @@ import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
 import static vr.VR.ETrackedDeviceClass.*;
 import static vr.VR.ETrackedDeviceProperty.Prop_ModelNumber_String;
-import static vr.VR.ETrackedDeviceProperty.Prop_RenderModelName_String;
-import static vr.VR.ETrackedDeviceProperty.Prop_SerialNumber_String;
 import static vr.VR.ETrackingUniverseOrigin.*;
 import static vr.VR.EVREye.Eye_Left;
 import static vr.VR.EVREye.Eye_Right;
@@ -75,7 +73,7 @@ public class TrackingTest {
     public void waitGetPoses() {
         TrackedDevicePose_t[] trackedPoses = new TrackedDevicePose_t[k_unMaxTrackedDeviceCount];
 
-        int len = compositor.WaitGetPoses.apply(trackedPoses, k_unMaxTrackedDeviceCount, null, 0);
+//        int len = compositor.WaitGetPoses.apply(trackedPoses, k_unMaxTrackedDeviceCount, null, 0);
 
         for (int i = 0; i < trackedPoses.length; i++) {
 

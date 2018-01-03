@@ -5,6 +5,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -99,15 +100,23 @@ public class IVRRenderModels_FnTable extends Structure {
 
      */
     public GetRenderModelErrorNameFromEnum_callback GetRenderModelErrorNameFromEnum;
-
+    /** Loads and returns a render model for use in the application. pchRenderModelName should be a render model name
+     * from the Prop_RenderModelName_String property or an absolute path name to a render model on disk.
+     *
+     * The resulting render model is valid until VR_Shutdown() is called or until FreeRenderModel() is called. When the
+     * application is finished with the render model it should call FreeRenderModel() to free the memory associated
+     * with the model.
+     *
+     * The method returns VRRenderModelError_Loading while the render model is still being loaded.
+     * The method returns VRRenderModelError_None once loaded successfully, otherwise will return an error. */
     public interface LoadRenderModel_Async_callback extends Callback {
 
-        int apply(Pointer pchRenderModelName, PointerByReference ppRenderModel);
+        int apply(String pchRenderModelName, PointerByReference ppRenderModel);
     };
 
     public interface FreeRenderModel_callback extends Callback {
 
-        void apply(RenderModel_t pRenderModel);
+        void apply(RenderModel_t.ByReference pRenderModel);
     };
 
     public interface LoadTexture_Async_callback extends Callback {

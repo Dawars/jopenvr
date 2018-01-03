@@ -197,7 +197,7 @@ public class IVRCompositor_FnTable extends Structure {
      */
     public interface WaitGetPoses_callback extends Callback {
 
-        int apply(TrackedDevicePose_t[] pRenderPoseArray, int unRenderPoseArrayCount, TrackedDevicePose_t pGamePoseArray, int unGamePoseArrayCount);
+        int apply(TrackedDevicePose_t.ByReference pRenderPoseArray, int unRenderPoseArrayCount, TrackedDevicePose_t pGamePoseArray, int unGamePoseArrayCount);
     };
 
     public interface GetLastPoses_callback extends Callback {
