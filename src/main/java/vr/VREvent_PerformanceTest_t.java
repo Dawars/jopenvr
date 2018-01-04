@@ -2,6 +2,7 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class VREvent_PerformanceTest_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("m_nFidelityLevel");
     }
 
@@ -34,8 +35,8 @@ public class VREvent_PerformanceTest_t extends Structure {
     }
 
     public static class ByReference extends VREvent_PerformanceTest_t implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends VREvent_PerformanceTest_t implements Structure.ByValue {
-    };
+    }
 }

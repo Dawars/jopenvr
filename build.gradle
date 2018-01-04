@@ -1,5 +1,5 @@
 group 'me.dawars'
-version '1.11'
+version '1.02'
 
 apply plugin: 'java'
 
@@ -12,38 +12,13 @@ repositories {
 test.enabled = false
 
 dependencies {
-    // https://mvnrepository.com/artifact/net.java.dev.jna/jna
-    compile group: 'net.java.dev.jna', name: 'jna', version: '4.2.2'
 
+    compile group: 'net.java.dev.jna', name: 'jna', version: '4.5.1'
 
     def jogl = "2.3.2"
 
-    testCompile("org.jogamp.gluegen:gluegen-rt:$jogl")
-    testCompile("org.jogamp.jogl:jogl-all:$jogl")
-
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-android-aarch64")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-android-armv6")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-linux-amd64")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-linux-armv6")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-linux-armv6hf")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-linux-i586")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-macosx-universal")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-solaris-amd64")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-solaris-i586")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-windows-amd64")
-    testRuntime("org.jogamp.gluegen:gluegen-rt:$jogl:natives-windows-i586")
-
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-android-aarch64")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-android-armv6")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-linux-amd64")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-linux-armv6")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-linux-armv6hf")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-linux-i586")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-macosx-universal")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-solaris-amd64")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-solaris-i586")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-windows-amd64")
-    testRuntime("org.jogamp.jogl:jogl-all:$jogl:natives-windows-i586")
+    testCompile("org.jogamp.gluegen:gluegen-rt-main:$jogl")
+    testCompile("org.jogamp.jogl:jogl-all-main:$jogl")
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

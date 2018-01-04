@@ -2,6 +2,7 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,18 +19,18 @@ public class TrackedDevicePose_t extends Structure {
     public HmdMatrix34_t mDeviceToAbsoluteTracking;
     /**
      * C type : HmdVector3_t
-     *
+     * <p>
      * velocity in tracker space in m/s.
      */
     public HmdVector3_t vVelocity;
     /**
      * C type : HmdVector3_t
-     *
+     * <p>
      * angular velocity in radians/s (?).
      */
     public HmdVector3_t vAngularVelocity;
     /**
-     * @see ETrackingResult<br>
+     * @see vr.VR.ETrackingResult
      * C type : ETrackingResult
      */
     public int eTrackingResult;
@@ -45,16 +46,16 @@ public class TrackedDevicePose_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("mDeviceToAbsoluteTracking", "vVelocity", "vAngularVelocity", "eTrackingResult", "bPoseIsValid", "bDeviceIsConnected");
     }
 
     /**
      * @param mDeviceToAbsoluteTracking C type : HmdMatrix34_t<br>
-     * @param vVelocity C type : HmdVector3_t<br>
-     * @param vAngularVelocity C type : HmdVector3_t<br>
-     * @param eTrackingResult @see ETrackingResult<br>
-     * C type : ETrackingResult
+     * @param vVelocity                 C type : HmdVector3_t<br>
+     * @param vAngularVelocity          C type : HmdVector3_t<br>
+     * @param eTrackingResult           @see ETrackingResult<br>
+     *                                  C type : ETrackingResult
      */
     public TrackedDevicePose_t(HmdMatrix34_t mDeviceToAbsoluteTracking, HmdVector3_t vVelocity, HmdVector3_t vAngularVelocity, int eTrackingResult, boolean bPoseIsValid, boolean bDeviceIsConnected) {
         super();
@@ -72,8 +73,8 @@ public class TrackedDevicePose_t extends Structure {
     }
 
     public static class ByReference extends TrackedDevicePose_t implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends TrackedDevicePose_t implements Structure.ByValue {
-    };
+    }
 }

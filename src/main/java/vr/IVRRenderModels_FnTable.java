@@ -112,104 +112,104 @@ public class IVRRenderModels_FnTable extends Structure {
     public interface LoadRenderModel_Async_callback extends Callback {
 
         int apply(String pchRenderModelName, PointerByReference ppRenderModel);
-    };
+    }
 
     public interface FreeRenderModel_callback extends Callback {
 
         void apply(RenderModel_t.ByReference pRenderModel);
-    };
+    }
 
     public interface LoadTexture_Async_callback extends Callback {
 
         int apply(int textureId, PointerByReference ppTexture);
-    };
+    }
 
     public interface FreeTexture_callback extends Callback {
 
         void apply(RenderModel_TextureMap_t pTexture);
-    };
+    }
 
     public interface LoadTextureD3D11_Async_callback extends Callback {
 
         int apply(int textureId, Pointer pD3D11Device, PointerByReference ppD3D11Texture2D);
-    };
+    }
 
     public interface LoadIntoTextureD3D11_Async_callback extends Callback {
 
         int apply(int textureId, Pointer pDstTexture);
-    };
+    }
 
     public interface FreeTextureD3D11_callback extends Callback {
 
         void apply(Pointer pD3D11Texture2D);
-    };
+    }
 
     public interface GetRenderModelName_callback extends Callback {
 
         int apply(int unRenderModelIndex, Pointer pchRenderModelName, int unRenderModelNameLen);
-    };
+    }
 
     public interface GetRenderModelCount_callback extends Callback {
 
         int apply();
-    };
+    }
 
     public interface GetComponentCount_callback extends Callback {
 
         int apply(String pchRenderModelName);
-    };
+    }
 
     public interface GetComponentName_callback extends Callback {
 
         int apply(Pointer pchRenderModelName, int unComponentIndex, Pointer pchComponentName, int unComponentNameLen);
-    };
+    }
 
     public interface GetComponentButtonMask_callback extends Callback {
 
         long apply(Pointer pchRenderModelName, Pointer pchComponentName);
-    };
+    }
 
     public interface GetComponentRenderModelName_callback extends Callback {
 
         int apply(Pointer pchRenderModelName, Pointer pchComponentName, Pointer pchComponentRenderModelName, int unComponentRenderModelNameLen);
-    };
+    }
 
     public interface GetComponentState_callback extends Callback {
 
         byte apply(Pointer pchRenderModelName, Pointer pchComponentName, VRControllerState_t pControllerState, RenderModel_ControllerMode_State_t pState, RenderModel_ComponentState_t pComponentState);
-    };
+    }
 
     public interface RenderModelHasComponent_callback extends Callback {
 
         byte apply(Pointer pchRenderModelName, Pointer pchComponentName);
-    };
+    }
 
     public interface GetRenderModelThumbnailURL_callback extends Callback {
 
         int apply(Pointer pchRenderModelName, Pointer pchThumbnailURL, int unThumbnailURLLen, IntByReference peError);
-    };
+    }
 
     public interface GetRenderModelOriginalPath_callback extends Callback {
 
         int apply(Pointer pchRenderModelName, Pointer pchOriginalPath, int unOriginalPathLen, IntByReference peError);
-    };
+    }
 
     public interface GetRenderModelErrorNameFromEnum_callback extends Callback {
 
         Pointer apply(int error);
-    };
+    }
 
     public IVRRenderModels_FnTable() {
         super();
     }
 
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("LoadRenderModel_Async", "FreeRenderModel",
-                "LoadTexture_Async", "FreeTexture", "LoadTextureD3D11_Async","LoadIntoTextureD3D11_Async",
+                "LoadTexture_Async", "FreeTexture", "LoadTextureD3D11_Async", "LoadIntoTextureD3D11_Async",
                 "FreeTextureD3D11", "GetRenderModelName", "GetRenderModelCount",
                 "GetComponentCount", "GetComponentName", "GetComponentButtonMask",
                 "GetComponentRenderModelName", "GetComponentState", "RenderModelHasComponent",
-                "GetRenderModelThumbnailURL","GetRenderModelOriginalPath","GetRenderModelErrorNameFromEnum");
+                "GetRenderModelThumbnailURL", "GetRenderModelOriginalPath", "GetRenderModelErrorNameFromEnum");
     }
 
     public IVRRenderModels_FnTable(Pointer peer) {
@@ -219,9 +219,9 @@ public class IVRRenderModels_FnTable extends Structure {
 
     public static class ByReference extends IVRRenderModels_FnTable implements Structure.ByReference {
 
-    };
+    }
 
     public static class ByValue extends IVRRenderModels_FnTable implements Structure.ByValue {
 
-    };
+    }
 }

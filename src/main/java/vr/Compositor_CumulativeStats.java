@@ -7,11 +7,11 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author fschaefers
  */
 public class Compositor_CumulativeStats extends Structure {
@@ -42,7 +42,7 @@ public class Compositor_CumulativeStats extends Structure {
     }
 
     @Override
-    protected List getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("m_nPid", "m_nNumFramePresents", "m_nNumDroppedFrames", "m_nNumReprojectedFrames",
                 "m_nNumFramePresentsOnStartup", "m_nNumDroppedFramesOnStartup", "m_nNumReprojectedFramesOnStartup",
                 "m_nNumLoading", "m_nNumFramePresentsLoading", "m_nNumDroppedFramesLoading", "m_nNumReprojectedFramesLoading",
@@ -50,8 +50,8 @@ public class Compositor_CumulativeStats extends Structure {
     }
 
     public static class ByReference extends Compositor_CumulativeStats implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends Compositor_CumulativeStats implements Structure.ByValue {
-    };
+    }
 }

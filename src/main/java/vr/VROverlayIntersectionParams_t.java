@@ -2,6 +2,7 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class VROverlayIntersectionParams_t extends Structure {
      */
     public HmdVector3_t vDirection;
     /**
-     * @see ETrackingUniverseOrigin<br>
+     * @see vr.VR.ETrackingUniverseOrigin
      * C type : ETrackingUniverseOrigin
      */
     public int eOrigin;
@@ -31,15 +32,15 @@ public class VROverlayIntersectionParams_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("vSource", "vDirection", "eOrigin");
     }
 
     /**
-     * @param vSource C type : HmdVector3_t<br>
+     * @param vSource    C type : HmdVector3_t<br>
      * @param vDirection C type : HmdVector3_t<br>
-     * @param eOrigin @see ETrackingUniverseOrigin<br>
-     * C type : ETrackingUniverseOrigin
+     * @param eOrigin    @see ETrackingUniverseOrigin<br>
+     *                   C type : ETrackingUniverseOrigin
      */
     public VROverlayIntersectionParams_t(HmdVector3_t vSource, HmdVector3_t vDirection, int eOrigin) {
         super();
@@ -54,8 +55,8 @@ public class VROverlayIntersectionParams_t extends Structure {
     }
 
     public static class ByReference extends VROverlayIntersectionParams_t implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends VROverlayIntersectionParams_t implements Structure.ByValue {
-    };
+    }
 }

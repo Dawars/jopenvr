@@ -2,6 +2,7 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,14 +32,14 @@ public class VROverlayIntersectionResults_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("vPoint", "vNormal", "vUVs", "fDistance");
     }
 
     /**
-     * @param vPoint C type : HmdVector3_t<br>
+     * @param vPoint  C type : HmdVector3_t<br>
      * @param vNormal C type : HmdVector3_t<br>
-     * @param vUVs C type : HmdVector2_t
+     * @param vUVs    C type : HmdVector2_t
      */
     public VROverlayIntersectionResults_t(HmdVector3_t vPoint, HmdVector3_t vNormal, HmdVector2_t vUVs, float fDistance) {
         super();
@@ -54,8 +55,8 @@ public class VROverlayIntersectionResults_t extends Structure {
     }
 
     public static class ByReference extends VROverlayIntersectionResults_t implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends VROverlayIntersectionResults_t implements Structure.ByValue {
-    };
+    }
 }

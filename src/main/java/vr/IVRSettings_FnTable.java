@@ -4,6 +4,7 @@ import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -66,68 +67,68 @@ public class IVRSettings_FnTable extends Structure {
     public interface GetSettingsErrorNameFromEnum_callback extends Callback {
 
         Pointer apply(int eError);
-    };
+    }
 
     public interface Sync_callback extends Callback {
 
         byte apply(byte bForce, IntByReference peError);
-    };
+    }
 
     public interface GetBool_callback extends Callback {
 
         byte apply(Pointer pchSection, Pointer pchSettingsKey, byte bDefaultValue, IntByReference peError);
-    };
+    }
 
     public interface SetBool_callback extends Callback {
 
         void apply(Pointer pchSection, Pointer pchSettingsKey, byte bValue, IntByReference peError);
-    };
+    }
 
     public interface GetInt32_callback extends Callback {
 
         int apply(Pointer pchSection, Pointer pchSettingsKey, int nDefaultValue, IntByReference peError);
-    };
+    }
 
     public interface SetInt32_callback extends Callback {
 
         void apply(Pointer pchSection, Pointer pchSettingsKey, int nValue, IntByReference peError);
-    };
+    }
 
     public interface GetFloat_callback extends Callback {
 
         float apply(Pointer pchSection, Pointer pchSettingsKey, float flDefaultValue, IntByReference peError);
-    };
+    }
 
     public interface SetFloat_callback extends Callback {
 
         void apply(Pointer pchSection, Pointer pchSettingsKey, float flValue, IntByReference peError);
-    };
+    }
 
     public interface GetString_callback extends Callback {
 
         void apply(Pointer pchSection, Pointer pchSettingsKey, Pointer pchValue, int unValueLen, Pointer pchDefaultValue, IntByReference peError);
-    };
+    }
 
     public interface SetString_callback extends Callback {
 
         void apply(Pointer pchSection, Pointer pchSettingsKey, Pointer pchValue, IntByReference peError);
-    };
+    }
 
     public interface RemoveSection_callback extends Callback {
 
         void apply(Pointer pchSection, IntByReference peError);
-    };
+    }
 
     public interface RemoveKeyInSection_callback extends Callback {
 
         void apply(Pointer pchSection, Pointer pchSettingsKey, IntByReference peError);
-    };
+    }
 
     public IVRSettings_FnTable() {
         super();
     }
 
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("GetSettingsErrorNameFromEnum", "Sync", "GetBool", "SetBool", "GetInt32", "SetInt32", "GetFloat", "SetFloat", "GetString", "SetString", "RemoveSection", "RemoveKeyInSection");
     }
 
@@ -138,9 +139,9 @@ public class IVRSettings_FnTable extends Structure {
 
     public static class ByReference extends IVRSettings_FnTable implements Structure.ByReference {
 
-    };
+    }
 
     public static class ByValue extends IVRSettings_FnTable implements Structure.ByValue {
 
-    };
+    }
 }

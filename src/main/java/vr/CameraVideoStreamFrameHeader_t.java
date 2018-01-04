@@ -7,11 +7,11 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author fschaefers
  */
 public class CameraVideoStreamFrameHeader_t extends Structure {
@@ -28,7 +28,8 @@ public class CameraVideoStreamFrameHeader_t extends Structure {
     }
 
     public CameraVideoStreamFrameHeader_t(int eFrameType, int nWidth, int nHeight,
-            int nBytesPerPixel, int nFrameSequence, TrackedDevicePose_t standingTrackedDevicePose) {
+                                          int nBytesPerPixel, int nFrameSequence,
+                                          TrackedDevicePose_t standingTrackedDevicePose) {
 
         super();
 
@@ -46,14 +47,14 @@ public class CameraVideoStreamFrameHeader_t extends Structure {
     }
 
     @Override
-    protected List getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("eFrameType", "nWidth", "nHeight", "nBytesPerPixel", "nFrameSequence", "standingTrackedDevicePose");
     }
 
     public static class ByReference extends CameraVideoStreamFrameHeader_t implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends CameraVideoStreamFrameHeader_t implements Structure.ByValue {
-    };
+    }
 
 }
