@@ -7,11 +7,11 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author fschaefers
  */
 public class VREvent_ScreenshotProgress_t extends Structure {
@@ -33,14 +33,14 @@ public class VREvent_ScreenshotProgress_t extends Structure {
     }
 
     @Override
-    protected List getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("progress");
     }
 
     public static class ByReference extends VREvent_ScreenshotProgress_t implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends VREvent_ScreenshotProgress_t implements Structure.ByValue {
-    };
+    }
 
 }

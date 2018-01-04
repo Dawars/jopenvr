@@ -2,6 +2,7 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * <a href="http://nativelibs4java.googlecode.com/">NativeLibs4Java</a> ,
  * <a href="http://rococoa.dev.java.net/">Rococoa</a>, or
  * <a href="http://jna.dev.java.net/">JNA</a>
- *
+ * <p>
  * Provides a single frame's timing information to the app.
  */
 public class Compositor_FrameTiming extends Structure {
@@ -61,13 +62,11 @@ public class Compositor_FrameTiming extends Structure {
     /**
      * time between work submitted immediately after present (ideally vsync)
      * until the end of compositor submitted work
-     *
      */
     public float m_flTotalRenderGpuMs;
     /**
      * time spend performing distortion correction, rendering chaperone,
      * overlays, etc.
-     *
      */
     public float m_flCompositorRenderGpuMs;
     /**
@@ -102,7 +101,7 @@ public class Compositor_FrameTiming extends Structure {
     public float m_flCompositorRenderStartMs;
     /**
      * C type : TrackedDevicePose_t
-     *
+     * <p>
      * pose used by app to render this frame.
      */
     public TrackedDevicePose_t m_HmdPose;
@@ -113,8 +112,8 @@ public class Compositor_FrameTiming extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
-        return Arrays.asList("m_nSize", "m_nFrameIndex", "m_nNumFramePresents", "m_nNumMisPresented", "m_nNumDroppedFrames", "m_nReprojectionFlags", "m_flSystemTimeInSeconds", "m_flPreSubmitGpuMs", "m_flPostSubmitGpuMs", "m_flTotalRenderGpuMs", "m_flCompositorRenderGpuMs", "m_flCompositorRenderCpuMs", "m_flCompositorIdleCpuMs", "m_flClientFrameIntervalMs", "m_flPresentCallCpuMs", "m_flWaitForPresentCpuMs", "m_flSubmitFrameMs", "m_flWaitGetPosesCalledMs", "m_flNewPosesReadyMs", "m_flNewFrameReadyMs", "m_flCompositorUpdateStartMs", "m_flCompositorUpdateEndMs", "m_flCompositorRenderStartMs", "m_HmdPose");
+    protected List<String> getFieldOrder() {
+        return Arrays.asList("m_nSize", "m_nFrameIndex", "m_nNumFramePresents", "m_nNumDroppedFrames", "m_nReprojectionFlags", "m_flSystemTimeInSeconds", "m_flPreSubmitGpuMs", "m_flPostSubmitGpuMs", "m_flTotalRenderGpuMs", "m_flCompositorRenderGpuMs", "m_flCompositorRenderCpuMs", "m_flCompositorIdleCpuMs", "m_flClientFrameIntervalMs", "m_flPresentCallCpuMs", "m_flWaitForPresentCpuMs", "m_flSubmitFrameMs", "m_flWaitGetPosesCalledMs", "m_flNewPosesReadyMs", "m_flNewFrameReadyMs", "m_flCompositorUpdateStartMs", "m_flCompositorUpdateEndMs", "m_flCompositorRenderStartMs", "m_HmdPose");
     }
 
     public Compositor_FrameTiming(Pointer peer) {
@@ -123,8 +122,8 @@ public class Compositor_FrameTiming extends Structure {
     }
 
     public static class ByReference extends Compositor_FrameTiming implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends Compositor_FrameTiming implements Structure.ByValue {
-    };
+    }
 }

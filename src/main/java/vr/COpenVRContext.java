@@ -91,7 +91,7 @@ public class COpenVRContext extends Structure {
         super();
     }
 
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("m_pVRSystem", "m_pVRChaperone", "m_pVRChaperoneSetup",
                 "m_pVRCompositor", "m_pVROverlay", "m_pVRResources", "m_pVRRenderModels",
                 "m_pVRExtendedDisplay", "m_pVRSettings", "m_pVRApplications", "m_pVRTrackedCamera",
@@ -99,32 +99,30 @@ public class COpenVRContext extends Structure {
     }
 
     /**
-     * @param m_pVRSystem class vr::IVRSystem *<br>
-     * C type : intptr_t<br>
-     * @param m_pVRChaperone class vr::IVRChaperone *<br>
-     * C type : intptr_t<br>
-     * @param m_pVRChaperoneSetup class vr::IVRChaperoneSetup *<br>
-     * C type : intptr_t<br>
-     * @param m_pVRCompositor class vr::IVRCompositor *<br>
-     * C type : intptr_t<br>
-     * @param m_pVROverlay class vr::IVROverlay *<br>
-     * C type : intptr_t<br>
-     * @param m_pVRResources class vr::IVRResources *<br>
-     * C type : intptr_t<br>
-     * @param m_pVRRenderModels class vr::IVRRenderModels *<br>
-     * C type : intptr_t<br>
+     * @param m_pVRSystem          class vr::IVRSystem *<br>
+     *                             C type : intptr_t<br>
+     * @param m_pVRChaperone       class vr::IVRChaperone *<br>
+     *                             C type : intptr_t<br>
+     * @param m_pVRChaperoneSetup  class vr::IVRChaperoneSetup *<br>
+     *                             C type : intptr_t<br>
+     * @param m_pVRCompositor      class vr::IVRCompositor *<br>
+     *                             C type : intptr_t<br>
+     * @param m_pVROverlay         class vr::IVROverlay *<br>
+     *                             C type : intptr_t<br>
+     * @param m_pVRResources       class vr::IVRResources *<br>
+     *                             C type : intptr_t<br>
+     * @param m_pVRRenderModels    class vr::IVRRenderModels *<br>
+     *                             C type : intptr_t<br>
      * @param m_pVRExtendedDisplay class vr::IVRExtendedDisplay *<br>
-     * C type : intptr_t<br>
-     * @param m_pVRSettings class vr::IVRSettings *<br>
-     * C type : intptr_t<br>
-     * @param m_pVRApplications class vr::IVRApplications *<br>
-     * C type : intptr_t
-     * @param m_pVRTrackedCamera class vr::IVRTrackedCamera *<br>
-     * C type : intptr_t
-     * @param m_pVRScreenshots class vr::IVRScreenshots *<br>
-     * C type : intptr_t
-     * @param m_pVRDriverManager class vr::IVRDriverManager *<br>
-     * C type : intptr_t
+     *                             C type : intptr_t<br>
+     * @param m_pVRSettings        class vr::IVRSettings *<br>
+     *                             C type : intptr_t<br>
+     * @param m_pVRApplications    class vr::IVRApplications *<br>
+     *                             C type : intptr_t
+     * @param m_pVRTrackedCamera   class vr::IVRTrackedCamera *<br>
+     *                             C type : intptr_t
+     * @param m_pVRScreenshots     class vr::IVRScreenshots *<br>
+     *                             C type : intptr_t
      */
     public COpenVRContext(IntByReference m_pVRSystem, IntByReference m_pVRChaperone,
             IntByReference m_pVRChaperoneSetup, IntByReference m_pVRCompositor,
@@ -154,9 +152,9 @@ public class COpenVRContext extends Structure {
 
     public static class ByReference extends COpenVRContext implements Structure.ByReference {
 
-    };
+    }
 
     public static class ByValue extends COpenVRContext implements Structure.ByValue {
 
-    };
+    }
 }

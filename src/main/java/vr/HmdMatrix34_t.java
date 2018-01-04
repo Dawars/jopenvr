@@ -38,7 +38,7 @@ public class HmdMatrix34_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("m");
     }
 
@@ -62,10 +62,6 @@ public class HmdMatrix34_t extends Structure {
     public static class ByReference extends HmdMatrix34_t implements Structure.ByReference {
     }
 
-    ;
-
     public static class ByValue extends HmdMatrix34_t implements Structure.ByValue {
     }
-
-    ;
 }

@@ -2,6 +2,7 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class VREvent_t extends Structure {
     public float eventAgeSeconds;
     /**
      * C type : VREvent_Data_t
-     * 
+     * <p>
      * event data must be the end of the struct as its size is variable.
      */
     public VREvent_Data_t data;
@@ -31,15 +32,15 @@ public class VREvent_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("eventType", "trackedDeviceIndex", "eventAgeSeconds", "data");
     }
 
     /**
-     * @param eventType EVREventType enum<br>
+     * @param eventType          EVREventType enum<br>
      * @param trackedDeviceIndex C type : TrackedDeviceIndex_t<br>
      * @param eventAgeSeconds
-     * @param data C type : VREvent_Data_t
+     * @param data               C type : VREvent_Data_t
      */
     public VREvent_t(int eventType, int trackedDeviceIndex, float eventAgeSeconds, VREvent_Data_t data) {
         super();
@@ -55,8 +56,8 @@ public class VREvent_t extends Structure {
     }
 
     public static class ByReference extends VREvent_t implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends VREvent_t implements Structure.ByValue {
-    };
+    }
 }

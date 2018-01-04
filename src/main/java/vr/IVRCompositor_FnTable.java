@@ -181,12 +181,12 @@ public class IVRCompositor_FnTable extends Structure {
     public interface SetTrackingSpace_callback extends Callback {
 
         void apply(int eOrigin);
-    };
+    }
 
     public interface GetTrackingSpace_callback extends Callback {
 
         int apply();
-    };
+    }
     /** Scene applications should call this function to get poses to render with (and optionally poses predicted an additional frame out to use for gameplay).
      * This function will block until "running start" milliseconds before the start of the frame, and should be called at the last moment before needing to
      * start rendering.
@@ -198,38 +198,38 @@ public class IVRCompositor_FnTable extends Structure {
     public interface WaitGetPoses_callback extends Callback {
 
         int apply(TrackedDevicePose_t.ByReference pRenderPoseArray, int unRenderPoseArrayCount, TrackedDevicePose_t pGamePoseArray, int unGamePoseArrayCount);
-    };
+    }
 
     public interface GetLastPoses_callback extends Callback {
 
         int apply(TrackedDevicePose_t pRenderPoseArray, int unRenderPoseArrayCount, TrackedDevicePose_t pGamePoseArray, int unGamePoseArrayCount);
-    };
+    }
 
     public interface GetLastPoseForTrackedDeviceIndex_callback extends Callback {
 
         int apply(int unDeviceIndex, TrackedDevicePose_t pOutputPose, TrackedDevicePose_t pOutputGamePose);
-    };
+    }
 
     public interface Submit_callback extends Callback {
 
-//        int apply(int eEye, Texture_t pTexture, null, VR.EVRSubmitFlags.Submit_Default);
+        //        int apply(int eEye, Texture_t pTexture, null, VR.EVRSubmitFlags.Submit_Default);
         int apply(int eEye, Texture_t pTexture, VRTextureBounds_t pBounds, int nSubmitFlags);
-    };
+    }
 
     public interface ClearLastSubmittedFrame_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface PostPresentHandoff_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface GetFrameTiming_callback extends Callback {
 
         byte apply(Compositor_FrameTiming pTiming, int unFramesAgo);
-    };
+    }
 
     public interface GetFrameTimings_callback extends Callback {
 
@@ -239,7 +239,7 @@ public class IVRCompositor_FnTable extends Structure {
     public interface GetFrameTimeRemaining_callback extends Callback {
 
         float apply();
-    };
+    }
 
     public interface GetCumulativeStats_callback extends Callback {
 
@@ -249,7 +249,7 @@ public class IVRCompositor_FnTable extends Structure {
     public interface FadeToColor_callback extends Callback {
 
         void apply(float fSeconds, float fRed, float fGreen, float fBlue, float fAlpha, byte bBackground);
-    };
+    }
 
     public interface GetCurrentFadeColor_callback extends Callback {
 
@@ -259,7 +259,7 @@ public class IVRCompositor_FnTable extends Structure {
     public interface FadeGrid_callback extends Callback {
 
         void apply(float fSeconds, byte bFadeIn);
-    };
+    }
 
     public interface GetCurrentGridAlpha_callback extends Callback {
 
@@ -269,77 +269,77 @@ public class IVRCompositor_FnTable extends Structure {
     public interface SetSkyboxOverride_callback extends Callback {
 
         int apply(Texture_t pTextures, int unTextureCount);
-    };
+    }
 
     public interface ClearSkyboxOverride_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface CompositorBringToFront_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface CompositorGoToBack_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface CompositorQuit_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface IsFullscreen_callback extends Callback {
 
         byte apply();
-    };
+    }
 
     public interface GetCurrentSceneFocusProcess_callback extends Callback {
 
         int apply();
-    };
+    }
 
     public interface GetLastFrameRenderer_callback extends Callback {
 
         int apply();
-    };
+    }
 
     public interface CanRenderScene_callback extends Callback {
 
         byte apply();
-    };
+    }
 
     public interface ShowMirrorWindow_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface HideMirrorWindow_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface IsMirrorWindowVisible_callback extends Callback {
 
         byte apply();
-    };
+    }
 
     public interface CompositorDumpImages_callback extends Callback {
 
         void apply();
-    };
+    }
 
     public interface ShouldAppRenderWithLowResources_callback extends Callback {
 
         byte apply();
-    };
+    }
 
     public interface ForceInterleavedReprojectionOn_callback extends Callback {
 
         void apply(byte bOverride);
-    };
+    }
 
     public interface ForceReconnectProcess_callback extends Callback {
 
@@ -441,7 +441,7 @@ public class IVRCompositor_FnTable extends Structure {
         read();
     }
 
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("SetTrackingSpace", "GetTrackingSpace", "WaitGetPoses",
                 "GetLastPoses", "GetLastPoseForTrackedDeviceIndex", "Submit",
                 "ClearLastSubmittedFrame", "PostPresentHandoff", "GetFrameTiming",
@@ -466,9 +466,9 @@ public class IVRCompositor_FnTable extends Structure {
 
     public static class ByReference extends IVRCompositor_FnTable implements Structure.ByReference {
 
-    };
+    }
 
     public static class ByValue extends IVRCompositor_FnTable implements Structure.ByValue {
 
-    };
+    }
 }

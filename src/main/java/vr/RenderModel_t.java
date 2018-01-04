@@ -3,6 +3,7 @@ package vr;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.ShortByReference;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class RenderModel_t extends Structure {
     /**
      * const struct vr::RenderModel_Vertex_t *<br>
      * C type : RenderModel_Vertex_t*
-     *
+     * <p>
      * Vertex data for the mesh.
      */
     public vr.RenderModel_Vertex_t.ByReference rVertexData;
@@ -25,7 +26,7 @@ public class RenderModel_t extends Structure {
     /**
      * const uint16_t *<br>
      * C type : uint16_t*
-     *
+     * <p>
      * Indices into the vertex data for each triangle.
      */
     public ShortByReference rIndexData;
@@ -33,7 +34,7 @@ public class RenderModel_t extends Structure {
     public int unTriangleCount;
     /**
      * C type : TextureID_t
-     *
+     * <p>
      * Session unique texture identifier. Rendermodels which share the same texture will have the same id. <0 == texture not present.
      */
     public int diffuseTextureId;
@@ -43,16 +44,16 @@ public class RenderModel_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("rVertexData", "unVertexCount", "rIndexData", "unTriangleCount", "diffuseTextureId");
     }
 
     /**
-     * @param rVertexData const struct vr::RenderModel_Vertex_t *<br>
-     * C type : RenderModel_Vertex_t*<br>
+     * @param rVertexData      const struct vr::RenderModel_Vertex_t *<br>
+     *                         C type : RenderModel_Vertex_t*<br>
      * @param unVertexCount
-     * @param rIndexData const uint16_t *<br>
-     * C type : uint16_t*<br>
+     * @param rIndexData       const uint16_t *<br>
+     *                         C type : uint16_t*<br>
      * @param unTriangleCount
      * @param diffuseTextureId C type : TextureID_t
      */
@@ -71,8 +72,8 @@ public class RenderModel_t extends Structure {
     }
 
     public static class ByReference extends RenderModel_t implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends RenderModel_t implements Structure.ByValue {
-    };
+    }
 }
