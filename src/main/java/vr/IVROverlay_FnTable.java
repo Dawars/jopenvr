@@ -390,7 +390,7 @@ public class IVROverlay_FnTable extends Structure {
 
     public interface SetOverlayFlag_callback extends Callback {
 
-        int apply(long ulOverlayHandle, int eOverlayFlag, byte bEnabled);
+        int apply(long ulOverlayHandle, int eOverlayFlag, boolean bEnabled);
     }
 
     public interface GetOverlayFlag_callback extends Callback {
@@ -525,7 +525,7 @@ public class IVROverlay_FnTable extends Structure {
 
     public interface IsOverlayVisible_callback extends Callback {
 
-        byte apply(long ulOverlayHandle);
+        boolean apply(long ulOverlayHandle);
     }
 
     public interface GetTransformForOverlayCoordinates_callback extends Callback {
@@ -543,7 +543,7 @@ public class IVROverlay_FnTable extends Structure {
      */
     public interface PollNextOverlayEvent_callback extends Callback {
 
-        byte apply(long ulOverlayHandle, VREvent_t pEvent, int uncbVREvent);
+        boolean apply(long ulOverlayHandle, VREvent_t pEvent, int uncbVREvent);
     }
 
     /**
@@ -587,7 +587,7 @@ public class IVROverlay_FnTable extends Structure {
 
     public interface ComputeOverlayIntersection_callback extends Callback {
 
-        byte apply(long ulOverlayHandle, VROverlayIntersectionParams_t pParams, VROverlayIntersectionResults_t pResults);
+        boolean apply(long ulOverlayHandle, VROverlayIntersectionParams_t pParams, VROverlayIntersectionResults_t pResults);
     }
 
     /**
@@ -599,7 +599,7 @@ public class IVROverlay_FnTable extends Structure {
      */
     public interface HandleControllerOverlayInteractionAsMouse_callback extends Callback {
 
-        byte apply(long ulOverlayHandle, int unControllerDeviceIndex);
+        boolean apply(long ulOverlayHandle, int unControllerDeviceIndex);
     }
 
     /**
@@ -608,7 +608,7 @@ public class IVROverlay_FnTable extends Structure {
      */
     public interface IsHoverTargetOverlay_callback extends Callback {
 
-        byte apply(long ulOverlayHandle);
+        boolean apply(long ulOverlayHandle);
     }
 
     /**
@@ -727,12 +727,12 @@ public class IVROverlay_FnTable extends Structure {
 
     public interface IsDashboardVisible_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     }
 
     public interface IsActiveDashboardOverlay_callback extends Callback {
 
-        byte apply(long ulOverlayHandle);
+        boolean apply(long ulOverlayHandle);
     }
 
     public interface SetDashboardOverlaySceneProcess_callback extends Callback {
@@ -757,12 +757,12 @@ public class IVROverlay_FnTable extends Structure {
 
     public interface ShowKeyboard_callback extends Callback {
 
-        int apply(int eInputMode, int eLineInputMode, Pointer pchDescription, int unCharMax, Pointer pchExistingText, byte bUseMinimalMode, long uUserValue);
+        int apply(int eInputMode, int eLineInputMode, Pointer pchDescription, int unCharMax, Pointer pchExistingText, boolean bUseMinimalMode, long uUserValue);
     }
 
     public interface ShowKeyboardForOverlay_callback extends Callback {
 
-        int apply(long ulOverlayHandle, int eInputMode, int eLineInputMode, Pointer pchDescription, int unCharMax, Pointer pchExistingText, byte bUseMinimalMode, long uUserValue);
+        int apply(long ulOverlayHandle, int eInputMode, int eLineInputMode, Pointer pchDescription, int unCharMax, Pointer pchExistingText, boolean bUseMinimalMode, long uUserValue);
     }
 
     public interface GetKeyboardText_callback extends Callback {

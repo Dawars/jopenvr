@@ -71,17 +71,17 @@ public class IVRSettings_FnTable extends Structure {
 
     public interface Sync_callback extends Callback {
 
-        byte apply(byte bForce, IntByReference peError);
+        boolean apply(boolean bForce, IntByReference peError);
     }
 
     public interface GetBool_callback extends Callback {
 
-        byte apply(Pointer pchSection, Pointer pchSettingsKey, byte bDefaultValue, IntByReference peError);
+        boolean apply(Pointer pchSection, Pointer pchSettingsKey, boolean bDefaultValue, IntByReference peError);
     }
 
     public interface SetBool_callback extends Callback {
 
-        void apply(Pointer pchSection, Pointer pchSettingsKey, byte bValue, IntByReference peError);
+        void apply(Pointer pchSection, Pointer pchSettingsKey, boolean bValue, IntByReference peError);
     }
 
     public interface GetInt32_callback extends Callback {

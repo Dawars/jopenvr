@@ -34,12 +34,12 @@ public class TrackedDevicePose_t extends Structure {
      * C type : ETrackingResult
      */
     public int eTrackingResult;
-    public boolean bPoseIsValid;
+    public byte bPoseIsValid; // MUST be byte because #pragma pack( push, 8 ) alignment causes misalignment in struct arrays
     /**
      * This indicates that there is a device connected for this spot in the pose array.
      * It could go from true to false if the user unplugs the device.
      */
-    public boolean bDeviceIsConnected;
+    public byte bDeviceIsConnected; // MUST be byte because #pragma pack( push, 8 ) alignment causes misalignment in struct arrays
 
     public TrackedDevicePose_t() {
         super();
@@ -57,7 +57,7 @@ public class TrackedDevicePose_t extends Structure {
      * @param eTrackingResult           @see ETrackingResult<br>
      *                                  C type : ETrackingResult
      */
-    public TrackedDevicePose_t(HmdMatrix34_t mDeviceToAbsoluteTracking, HmdVector3_t vVelocity, HmdVector3_t vAngularVelocity, int eTrackingResult, boolean bPoseIsValid, boolean bDeviceIsConnected) {
+    public TrackedDevicePose_t(HmdMatrix34_t mDeviceToAbsoluteTracking, HmdVector3_t vVelocity, HmdVector3_t vAngularVelocity, int eTrackingResult, byte bPoseIsValid, byte bDeviceIsConnected) {
         super();
         this.mDeviceToAbsoluteTracking = mDeviceToAbsoluteTracking;
         this.vVelocity = vVelocity;

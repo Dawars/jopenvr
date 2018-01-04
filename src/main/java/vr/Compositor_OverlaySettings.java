@@ -16,7 +16,7 @@ import java.util.List;
 public class Compositor_OverlaySettings extends Structure {
 
     public int size;    // sizeof(Compositor_OverlaySettings)
-    public byte curved, antialias;
+    public byte curved, antialias; // MUST be byte because #pragma pack( push, 8 ) alignment causes misalignment in struct arrays
     public float scale, distance, alpha;
     public float uOffset, vOffset, uScale, vScale;
     public float gridDivs, gridWidth, gridScale;

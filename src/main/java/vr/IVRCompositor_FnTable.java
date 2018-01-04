@@ -228,7 +228,7 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface GetFrameTiming_callback extends Callback {
 
-        byte apply(Compositor_FrameTiming pTiming, int unFramesAgo);
+        boolean apply(Compositor_FrameTiming pTiming, int unFramesAgo);
     }
 
     public interface GetFrameTimings_callback extends Callback {
@@ -243,12 +243,12 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface GetCumulativeStats_callback extends Callback {
 
-        void apply(Compositor_CumulativeStats pStats, int nStatsSizeInBytes);
+        void apply(Compositor_CumulativeStats pStats, int nStatsSizeInbooleans);
     }
 
     public interface FadeToColor_callback extends Callback {
 
-        void apply(float fSeconds, float fRed, float fGreen, float fBlue, float fAlpha, byte bBackground);
+        void apply(float fSeconds, float fRed, float fGreen, float fBlue, float fAlpha, boolean bBackground);
     }
 
     public interface GetCurrentFadeColor_callback extends Callback {
@@ -258,7 +258,7 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface FadeGrid_callback extends Callback {
 
-        void apply(float fSeconds, byte bFadeIn);
+        void apply(float fSeconds, boolean bFadeIn);
     }
 
     public interface GetCurrentGridAlpha_callback extends Callback {
@@ -293,7 +293,7 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface IsFullscreen_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     }
 
     public interface GetCurrentSceneFocusProcess_callback extends Callback {
@@ -308,7 +308,7 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface CanRenderScene_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     }
 
     public interface ShowMirrorWindow_callback extends Callback {
@@ -323,7 +323,7 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface IsMirrorWindowVisible_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     }
 
     public interface CompositorDumpImages_callback extends Callback {
@@ -333,12 +333,12 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface ShouldAppRenderWithLowResources_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     }
 
     public interface ForceInterleavedReprojectionOn_callback extends Callback {
 
-        void apply(byte bOverride);
+        void apply(boolean bOverride);
     }
 
     public interface ForceReconnectProcess_callback extends Callback {
@@ -348,7 +348,7 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface SuspendRendering_callback extends Callback {
 
-        void apply(byte bSuspend);
+        void apply(boolean bSuspend);
     }
 
     public interface GetMirrorTextureD3D11_callback extends Callback {
@@ -368,7 +368,7 @@ public class IVRCompositor_FnTable extends Structure {
 
     public interface ReleaseSharedGLTexture_callback extends Callback {
 
-        byte apply(int glTextureId, Pointer glSharedTextureHandle);
+        boolean apply(int glTextureId, Pointer glSharedTextureHandle);
     }
 
     public interface LockGLSharedTextureForAccess_callback extends Callback {

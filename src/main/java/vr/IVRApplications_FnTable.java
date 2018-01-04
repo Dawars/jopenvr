@@ -146,7 +146,7 @@ public class IVRApplications_FnTable extends Structure {
 
     public interface AddApplicationManifest_callback extends Callback {
 
-        int apply(Pointer pchApplicationManifestFullPath, byte bTemporary);
+        int apply(Pointer pchApplicationManifestFullPath, boolean bTemporary);
     }
 
     public interface RemoveApplicationManifest_callback extends Callback {
@@ -156,7 +156,7 @@ public class IVRApplications_FnTable extends Structure {
 
     public interface IsApplicationInstalled_callback extends Callback {
 
-        byte apply(Pointer pchAppKey);
+        boolean apply(Pointer pchAppKey);
     }
 
     public interface GetApplicationCount_callback extends Callback {
@@ -196,7 +196,7 @@ public class IVRApplications_FnTable extends Structure {
 
     public interface CancelApplicationLaunch_callback extends Callback {
 
-        byte apply(Pointer pchAppKey);
+        boolean apply(Pointer pchAppKey);
     }
 
     public interface IdentifyApplication_callback extends Callback {
@@ -221,7 +221,7 @@ public class IVRApplications_FnTable extends Structure {
 
     public interface GetApplicationPropertyBool_callback extends Callback {
 
-        byte apply(Pointer pchAppKey, int eProperty, IntByReference peError);
+        boolean apply(Pointer pchAppKey, int eProperty, IntByReference peError);
     }
 
     public interface GetApplicationPropertyUint64_callback extends Callback {
@@ -231,12 +231,12 @@ public class IVRApplications_FnTable extends Structure {
 
     public interface SetApplicationAutoLaunch_callback extends Callback {
 
-        int apply(Pointer pchAppKey, byte bAutoLaunch);
+        int apply(Pointer pchAppKey, boolean bAutoLaunch);
     }
 
     public interface GetApplicationAutoLaunch_callback extends Callback {
 
-        byte apply(Pointer pchAppKey);
+        boolean apply(Pointer pchAppKey);
     }
 
     public interface SetDefaultApplicationForMimeType_callback extends Callback {
@@ -246,12 +246,12 @@ public class IVRApplications_FnTable extends Structure {
 
     public interface GetDefaultApplicationForMimeType_callback extends Callback {
 
-        byte apply(Pointer pchMimeType, Pointer pchAppKeyBuffer, int unAppKeyBufferLen);
+        boolean apply(Pointer pchMimeType, Pointer pchAppKeyBuffer, int unAppKeyBufferLen);
     }
 
     public interface GetApplicationSupportedMimeTypes_callback extends Callback {
 
-        byte apply(Pointer pchAppKey, Pointer pchMimeTypesBuffer, int unMimeTypesBuffer);
+        boolean apply(Pointer pchAppKey, Pointer pchMimeTypesBuffer, int unMimeTypesBuffer);
     }
 
     public interface GetApplicationsThatSupportMimeType_callback extends Callback {
@@ -286,7 +286,7 @@ public class IVRApplications_FnTable extends Structure {
 
     public interface IsQuitUserPromptRequested_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     }
 
     public interface LaunchInternalProcess_callback extends Callback {

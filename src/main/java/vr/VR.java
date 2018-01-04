@@ -1595,7 +1595,7 @@ public class VR implements Library {
      * @param pchInterfaceVersion
      * @return
      */
-    public static native byte VR_IsInterfaceVersionValid(String pchInterfaceVersion);
+    public static native boolean VR_IsInterfaceVersionValid(String pchInterfaceVersion);
 
     /**
      * Original signature :
@@ -1628,7 +1628,7 @@ public class VR implements Library {
 
         if (error.get(0) == EVRInitError.VRInitError_None) {
 
-            if (VR_IsInterfaceVersionValid(IVRSystem_Version) != 0) {
+            if (VR_IsInterfaceVersionValid(IVRSystem_Version)) {
 
                 vrSystem = new IVRSystem(VR_GetGenericInterface(IVRSystem_Version, error));
 

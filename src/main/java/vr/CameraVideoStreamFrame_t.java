@@ -31,7 +31,7 @@ public class CameraVideoStreamFrame_t extends Structure {
     public double m_flFrameElapsedTime;
     public double m_flFrameCaptureTime;
     public long m_nFrameCaptureTicks;
-    public byte m_bPoseIsValid;
+    public byte m_bPoseIsValid; // MUST be byte because #pragma pack( push, 8 ) alignment causes misalignment in struct arrays
     /**
      * C type : HmdMatrix34_t
      */

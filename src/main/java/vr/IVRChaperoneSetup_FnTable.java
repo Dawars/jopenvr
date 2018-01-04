@@ -91,7 +91,7 @@ public class IVRChaperoneSetup_FnTable extends Structure {
 
     public interface CommitWorkingCopy_callback extends Callback {
 
-        byte apply(int configFile);
+        boolean apply(int configFile);
     }
 
     public interface RevertWorkingCopy_callback extends Callback {
@@ -101,32 +101,32 @@ public class IVRChaperoneSetup_FnTable extends Structure {
 
     public interface GetWorkingPlayAreaSize_callback extends Callback {
 
-        byte apply(FloatByReference pSizeX, FloatByReference pSizeZ);
+        boolean apply(FloatByReference pSizeX, FloatByReference pSizeZ);
     }
 
     public interface GetWorkingPlayAreaRect_callback extends Callback {
 
-        byte apply(HmdQuad_t rect);
+        boolean apply(HmdQuad_t rect);
     }
 
     public interface GetWorkingCollisionBoundsInfo_callback extends Callback {
 
-        byte apply(HmdQuad_t pQuadsBuffer, IntByReference punQuadsCount);
+        boolean apply(HmdQuad_t pQuadsBuffer, IntByReference punQuadsCount);
     }
 
     public interface GetLiveCollisionBoundsInfo_callback extends Callback {
 
-        byte apply(HmdQuad_t pQuadsBuffer, IntByReference punQuadsCount);
+        boolean apply(HmdQuad_t pQuadsBuffer, IntByReference punQuadsCount);
     }
 
     public interface GetWorkingSeatedZeroPoseToRawTrackingPose_callback extends Callback {
 
-        byte apply(HmdMatrix34_t pmatSeatedZeroPoseToRawTrackingPose);
+        boolean apply(HmdMatrix34_t pmatSeatedZeroPoseToRawTrackingPose);
     }
 
     public interface GetWorkingStandingZeroPoseToRawTrackingPose_callback extends Callback {
 
-        byte apply(HmdMatrix34_t pmatStandingZeroPoseToRawTrackingPose);
+        boolean apply(HmdMatrix34_t pmatStandingZeroPoseToRawTrackingPose);
     }
 
     public interface SetWorkingPlayAreaSize_callback extends Callback {
@@ -156,7 +156,7 @@ public class IVRChaperoneSetup_FnTable extends Structure {
 
     public interface GetLiveSeatedZeroPoseToRawTrackingPose_callback extends Callback {
 
-        byte apply(HmdMatrix34_t pmatSeatedZeroPoseToRawTrackingPose);
+        boolean apply(HmdMatrix34_t pmatSeatedZeroPoseToRawTrackingPose);
     }
 
     public interface SetWorkingCollisionBoundsTagsInfo_callback extends Callback {
@@ -166,17 +166,17 @@ public class IVRChaperoneSetup_FnTable extends Structure {
 
     public interface GetLiveCollisionBoundsTagsInfo_callback extends Callback {
 
-        byte apply(Pointer pTagsBuffer, IntByReference punTagCount);
+        boolean apply(Pointer pTagsBuffer, IntByReference punTagCount);
     }
 
     public interface SetWorkingPhysicalBoundsInfo_callback extends Callback {
 
-        byte apply(HmdQuad_t pQuadsBuffer, int unQuadsCount);
+        boolean apply(HmdQuad_t pQuadsBuffer, int unQuadsCount);
     }
 
     public interface GetLivePhysicalBoundsInfo_callback extends Callback {
 
-        byte apply(HmdQuad_t pQuadsBuffer, IntByReference punQuadsCount);
+        boolean apply(HmdQuad_t pQuadsBuffer, IntByReference punQuadsCount);
     }
 
     public IVRChaperoneSetup_FnTable() {

@@ -55,12 +55,12 @@ public class IVRChaperone_FnTable extends Structure {
 
     public interface GetPlayAreaSize_callback extends Callback {
 
-        byte apply(FloatBuffer pSizeX, FloatBuffer pSizeZ);
+        boolean apply(FloatBuffer pSizeX, FloatBuffer pSizeZ);
     }
 
     public interface GetPlayAreaRect_callback extends Callback {
 
-        byte apply(HmdQuad_t rect);
+        boolean apply(HmdQuad_t rect);
     }
 
     public interface ReloadInfo_callback extends Callback {
@@ -80,12 +80,12 @@ public class IVRChaperone_FnTable extends Structure {
 
     public interface AreBoundsVisible_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     }
 
     public interface ForceBoundsVisible_callback extends Callback {
 
-        void apply(byte bForce);
+        void apply(boolean bForce);
     }
 
     public IVRChaperone_FnTable() {

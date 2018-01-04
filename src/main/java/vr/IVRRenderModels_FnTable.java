@@ -176,12 +176,12 @@ public class IVRRenderModels_FnTable extends Structure {
 
     public interface GetComponentState_callback extends Callback {
 
-        byte apply(Pointer pchRenderModelName, Pointer pchComponentName, VRControllerState_t pControllerState, RenderModel_ControllerMode_State_t pState, RenderModel_ComponentState_t pComponentState);
+        boolean apply(Pointer pchRenderModelName, Pointer pchComponentName, VRControllerState_t pControllerState, RenderModel_ControllerMode_State_t pState, RenderModel_ComponentState_t pComponentState);
     }
 
     public interface RenderModelHasComponent_callback extends Callback {
 
-        byte apply(Pointer pchRenderModelName, Pointer pchComponentName);
+        boolean apply(Pointer pchRenderModelName, Pointer pchComponentName);
     }
 
     public interface GetRenderModelThumbnailURL_callback extends Callback {

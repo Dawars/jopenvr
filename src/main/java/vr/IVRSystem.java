@@ -2,10 +2,12 @@ package vr;
 
 import com.sun.jna.Callback;
 import com.sun.jna.Memory;
+import com.sun.jna.Memory;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.FloatByReference;
 import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.LongByReference;
 import com.sun.jna.ptr.LongByReference;
 
 import java.nio.FloatBuffer;
@@ -237,7 +239,7 @@ public class IVRSystem extends Structure {
 
     public interface GetTimeSinceLastVsync_callback extends Callback {
 
-        byte apply(FloatBuffer pfSecondsSinceLastVsync, LongBuffer pulFrameCounter);
+        boolean apply(FloatBuffer pfSecondsSinceLastVsync, LongBuffer pulFrameCounter);
     }
 
     public interface GetD3D9AdapterIndex_callback extends Callback {
@@ -281,7 +283,7 @@ public class IVRSystem extends Structure {
 
     public interface SetDisplayVisibility_callback extends Callback {
 
-        byte apply(boolean bIsVisibleOnDesktop);
+        boolean apply(boolean bIsVisibleOnDesktop);
     };
 
     public interface GetDeviceToAbsoluteTrackingPose_callback extends Callback {
@@ -435,7 +437,7 @@ public class IVRSystem extends Structure {
 
     public interface CaptureInputFocus_callback extends Callback {
 
-        byte apply();
+        boolean apply();
     }
 
     public interface ReleaseInputFocus_callback extends Callback {
@@ -470,7 +472,7 @@ public class IVRSystem extends Structure {
 
     public interface PerformanceTestEnableCapture_callback extends Callback {
 
-        void apply(byte bEnable);
+        void apply(boolean bEnable);
     }
 
     public interface PerformanceTestReportFidelityLevelChange_callback extends Callback {
