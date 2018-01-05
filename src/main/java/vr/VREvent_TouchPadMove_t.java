@@ -15,14 +15,14 @@ public class VREvent_TouchPadMove_t extends Structure {
 
     // true if the users finger is detected on the touch pad
     public byte bFingerDown;
-
+    
     // How long the finger has been down in seconds
     public float flSecondsFingerDown;
-
+    
     // These values indicate the starting finger position (so you can do some basic swipe stuff)
     public float fValueXFirst;
     public float fValueYFirst;
-
+    
     // This is the raw sampled coordinate without deadzoning
     public float fValueXRaw;
     public float fValueYRaw;
@@ -31,7 +31,7 @@ public class VREvent_TouchPadMove_t extends Structure {
         super();
     }
 
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("bFingerDown", "flSecondsFingerDown", "fValueXFirst", "fValueYFirst", "fValueXRaw", "fValueYRaw");
     }
 
@@ -51,8 +51,8 @@ public class VREvent_TouchPadMove_t extends Structure {
     }
 
     public static class ByReference extends VREvent_TouchPadMove_t implements Structure.ByReference {
-    }
+    };
 
     public static class ByValue extends VREvent_TouchPadMove_t implements Structure.ByValue {
-    }
+    };
 }

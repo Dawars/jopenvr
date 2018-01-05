@@ -2,7 +2,6 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import java.util.List;
 public class CameraVideoStreamFrame_t extends Structure {
 
     /**
+     * @see ECameraVideoStreamFormat<br>
      * C type : ECameraVideoStreamFormat
      */
     public int m_nStreamFormat;
@@ -51,7 +51,7 @@ public class CameraVideoStreamFrame_t extends Structure {
         super();
     }
 
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("m_nStreamFormat", "m_nWidth", "m_nHeight", "m_nImageDataSize", "m_nFrameSequence", "m_nISPFrameTimeStamp", "m_nISPReferenceTimeStamp", "m_nSyncCounter", "m_nCamSyncEvents", "m_nExposureTime", "m_nBufferIndex", "m_nBufferCount", "m_flFrameElapsedTime", "m_flFrameCaptureTime", "m_nFrameCaptureTicks", "m_bPoseIsValid", "m_matDeviceToAbsoluteTracking", "m_Pad", "m_pImageData");
     }
 
@@ -62,9 +62,9 @@ public class CameraVideoStreamFrame_t extends Structure {
 
     public static class ByReference extends CameraVideoStreamFrame_t implements Structure.ByReference {
 
-    }
+    };
 
     public static class ByValue extends CameraVideoStreamFrame_t implements Structure.ByValue {
 
-    }
+    };
 }

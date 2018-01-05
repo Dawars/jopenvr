@@ -2,7 +2,6 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class NotificationBitmap_t extends Structure {
     }
 
     @Override
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("m_pImageData", "m_nWidth", "m_nHeight", "m_nBytesPerPixel");
     }
 
@@ -36,8 +35,8 @@ public class NotificationBitmap_t extends Structure {
      * @param m_nWidth
      * @param m_nHeight
      * @param m_nBytesPerPixel
-     * @param m_pImageData     void *<br>
-     *                         C type : void*
+     * @param m_pImageData void *<br>
+     * C type : void*
      */
     public NotificationBitmap_t(Pointer m_pImageData, int m_nWidth, int m_nHeight, int m_nBytesPerPixel) {
         super();
@@ -53,8 +52,8 @@ public class NotificationBitmap_t extends Structure {
     }
 
     public static class ByReference extends NotificationBitmap_t implements Structure.ByReference {
-    }
+    };
 
     public static class ByValue extends NotificationBitmap_t implements Structure.ByValue {
-    }
+    };
 }

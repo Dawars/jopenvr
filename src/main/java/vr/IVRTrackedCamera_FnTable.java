@@ -3,9 +3,9 @@ package vr;
 import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
+import com.sun.jna.ptr.FloatByReference;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -81,17 +81,17 @@ public class IVRTrackedCamera_FnTable extends Structure {
     public interface GetCameraErrorNameFromEnum_callback extends Callback {
 
         Pointer apply(int eCameraError);
-    }
+    };
 
     public interface HasCamera_callback extends Callback {
 
         int apply(int nDeviceIndex, Pointer pHasCamera);
-    }
+    };
 
     public interface GetCameraFrameSize_callback extends Callback {
 
         int apply(int nDeviceIndex, int eFrameType, IntByReference pnWidth, IntByReference pnHeight, IntByReference pnFrameBufferSize);
-    }
+    };
 
     public interface GetCameraIntrinisics_callback extends Callback {
 
@@ -142,7 +142,7 @@ public class IVRTrackedCamera_FnTable extends Structure {
         super();
     }
 
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("GetCameraErrorNameFromEnum", "HasCamera", "GetCameraFrameSize",
                 "GetCameraIntrinisics", "GetCameraProjection", "AcquireVideoStreamingService", "ReleaseVideoStreamingService",
                 "GetVideoStreamFrameBuffer", "GetVideoStreamTextureSize", "GetVideoStreamTextureD3D11", "GetVideoStreamTextureGL",
@@ -156,9 +156,9 @@ public class IVRTrackedCamera_FnTable extends Structure {
 
     public static class ByReference extends IVRTrackedCamera_FnTable implements Structure.ByReference {
 
-    }
+    };
 
     public static class ByValue extends IVRTrackedCamera_FnTable implements Structure.ByValue {
 
-    }
+    };
 }

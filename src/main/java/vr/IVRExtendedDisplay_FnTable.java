@@ -4,7 +4,6 @@ import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,30 +30,30 @@ public class IVRExtendedDisplay_FnTable extends Structure {
     public interface GetWindowBounds_callback extends Callback {
 
         void apply(IntByReference pnX, IntByReference pnY, IntByReference pnWidth, IntByReference pnHeight);
-    }
+    };
 
     public interface GetEyeOutputViewport_callback extends Callback {
 
         void apply(int eEye, IntByReference pnX, IntByReference pnY, IntByReference pnWidth, IntByReference pnHeight);
-    }
+    };
 
     public interface GetDXGIOutputInfo_callback extends Callback {
 
         void apply(IntByReference pnAdapterIndex, IntByReference pnAdapterOutputIndex);
-    }
+    };
 
     public IVRExtendedDisplay_FnTable() {
         super();
     }
 
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("GetWindowBounds", "GetEyeOutputViewport", "GetDXGIOutputInfo");
     }
 
     /**
-     * @param GetWindowBounds      C type : GetWindowBounds_callback*<br>
+     * @param GetWindowBounds C type : GetWindowBounds_callback*<br>
      * @param GetEyeOutputViewport C type : GetEyeOutputViewport_callback*<br>
-     * @param GetDXGIOutputInfo    C type : GetDXGIOutputInfo_callback*
+     * @param GetDXGIOutputInfo C type : GetDXGIOutputInfo_callback*
      */
     public IVRExtendedDisplay_FnTable(GetWindowBounds_callback GetWindowBounds, GetEyeOutputViewport_callback GetEyeOutputViewport, GetDXGIOutputInfo_callback GetDXGIOutputInfo) {
         super();
@@ -70,9 +69,9 @@ public class IVRExtendedDisplay_FnTable extends Structure {
 
     public static class ByReference extends IVRExtendedDisplay_FnTable implements Structure.ByReference {
 
-    }
+    };
 
     public static class ByValue extends IVRExtendedDisplay_FnTable implements Structure.ByValue {
 
-    }
+    };
 }

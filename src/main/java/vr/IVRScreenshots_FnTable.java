@@ -9,11 +9,12 @@ import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
-
+import com.sun.jna.ptr.PointerByReference;
 import java.util.Arrays;
 import java.util.List;
 
 /**
+ *
  * @author fschaefers
  */
 public class IVRScreenshots_FnTable extends Structure {
@@ -55,43 +56,43 @@ public class IVRScreenshots_FnTable extends Structure {
     public interface RequestScreenshot_callback extends Callback {
 
         int apply(IntByReference pOutScreenshotHandle, int type, Pointer pchPreviewFilename, Pointer pchVRFilename);
-    }
+    };
 
     public interface HookScreenshot_callback extends Callback {
 
         int apply(IntByReference pSupportedTypes, int numTypes);
-    }
+    };
 
     public interface GetScreenshotPropertyType_callback extends Callback {
 
         int apply(int screenshotHandle, IntByReference pError);
-    }
+    };
 
     public interface GetScreenshotPropertyFilename_callback extends Callback {
 
         int apply(int screenshotHandle, int filenameType, Pointer pchFilename, int cchFilename, IntByReference pError);
-    }
+    };
 
     public interface UpdateScreenshotProgress_callback extends Callback {
 
         int apply(int screenshotHandle, float flProgress);
-    }
+    };
 
     public interface TakeStereoScreenshot_callback extends Callback {
 
         int apply(IntByReference pOutScreenshotHandle, Pointer pchPreviewFilename, Pointer pchVRFilename);
-    }
+    };
 
     public interface SubmitScreenshot_callback extends Callback {
 
         int apply(int screenshotHandle, int type, Pointer pchSourcePreviewFilename, Pointer pchSourceVRFilename);
-    }
+    };
 
     public IVRScreenshots_FnTable() {
         super();
     }
 
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("RequestScreenshot", "HookScreenshot", "GetScreenshotPropertyType",
                 "GetScreenshotPropertyFilename", "UpdateScreenshotProgress", "TakeStereoScreenshot",
                 "SubmitScreenshot");
@@ -104,9 +105,9 @@ public class IVRScreenshots_FnTable extends Structure {
 
     public static class ByReference extends IVRScreenshots_FnTable implements Structure.ByReference {
 
-    }
+    };
 
     public static class ByValue extends IVRScreenshots_FnTable implements Structure.ByValue {
 
-    }
+    };
 }

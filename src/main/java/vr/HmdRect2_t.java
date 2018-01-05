@@ -2,7 +2,6 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,12 +26,12 @@ public class HmdRect2_t extends Structure {
     }
 
     @Override
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("vTopLeft", "vBottomRight");
     }
 
     /**
-     * @param vTopLeft     C type : HmdVector2_t<br>
+     * @param vTopLeft C type : HmdVector2_t<br>
      * @param vBottomRight C type : HmdVector2_t
      */
     public HmdRect2_t(HmdVector2_t vTopLeft, HmdVector2_t vBottomRight) {
@@ -47,8 +46,8 @@ public class HmdRect2_t extends Structure {
     }
 
     public static class ByReference extends HmdRect2_t implements Structure.ByReference {
-    }
+    };
 
     public static class ByValue extends HmdRect2_t implements Structure.ByValue {
-    }
+    };
 }

@@ -234,7 +234,7 @@ public class VR implements Library {
         public static final int Eye_Right = 1;
         // only for jovr
         public static final int Max = 2;
-    }
+    };
 
     public static class ETextureType {
 
@@ -256,7 +256,7 @@ public class VR implements Library {
         public static final int ColorSpace_Gamma = 1;
         // Same as gamma but has been converted to a linear representation using DXGI's sRGB conversion algorithm.
         public static final int ColorSpace_Linear = 2;
-    }
+    };
 
     public static class ETrackingResult {
 
@@ -296,7 +296,7 @@ public class VR implements Library {
         public static final int TrackedDeviceClass_GenericTracker = 3; // Generic trackers, similar to controllers
         public static final int TrackedDeviceClass_TrackingReference = 4; // Camera and base stations that serve as tracking reference points
         public static final int TrackedDeviceClass_DisplayRedirect = 5; // Accessories that aren't necessarily tracked themselves, but may redirect video output from other tracked devices
-    }
+    };
 
     /**
      * Describes what specific role associated with a tracked device
@@ -306,7 +306,7 @@ public class VR implements Library {
         public static final int TrackedControllerRole_Invalid = 0; // Invalid value for controller type
         public static final int TrackedControllerRole_LeftHand = 1; // Tracked device associated with the left hand
         public static final int TrackedControllerRole_RightHand = 2; // Tracked device associated with the right hand
-    }
+    };
 
     /**
      * Identifies which style of tracking origin the application wants to use
@@ -317,7 +317,7 @@ public class VR implements Library {
         public static final int TrackingUniverseSeated = 0;// Poses are provided relative to the seated zero pose
         public static final int TrackingUniverseStanding = 1;// Poses are provided relative to the safe bounds configured by the user
         public static final int TrackingUniverseRawAndUncalibrated = 2;// Poses are provided in the coordinate system defined by the driver.  It has Y up and is unified for devices of the same driver. You usually don't want this one.
-    }
+    };
 
     /**
      * Each entry in this enum represents a property that can be retrieved about
@@ -466,7 +466,7 @@ public class VR implements Library {
         // Vendors are free to expose private debug data in this reserved region
         public static final int Prop_VendorSpecific_Reserved_Start = 10000;
         public static final int Prop_VendorSpecific_Reserved_End = 10999;
-    }
+    };
 
     /**
      * Used to return errors that occur when reading properties.
@@ -487,7 +487,7 @@ public class VR implements Library {
         public static final int TrackedProp_PermissionDenied = 10;
         public static final int TrackedProp_InvalidOperation = 11;
         public static final int TrackedProp_CannotWriteToWildcards = 12;
-    }
+    };
 
     /**
      * Allows the application to control how scene textures are used by the
@@ -524,7 +524,7 @@ public class VR implements Library {
          * Set to indicate that pTexture is a pointer to a VRTextureWithPose_t.
          */
         public static final int Submit_TextureWithPose  = 8;
-    }
+    };
 
     /**
      * Status of the overall system or tracked objects
@@ -540,7 +540,7 @@ public class VR implements Library {
         public static final int VRState_NotReady = 5;
         public static final int VRState_Standby = 6;
         public static final int VRState_Ready_Alert_Low = 7;
-    }
+    };
 
     /**
      * The types of events that could be posted (and what the parameters mean
@@ -718,7 +718,7 @@ public class VR implements Library {
         // Vendors are free to expose private events in this reserved region
         public static final int VREvent_VendorSpecific_Reserved_Start = 10000;
         public static final int VREvent_VendorSpecific_Reserved_End = 19999;
-    }
+    };
 
     /**
      * Level of Hmd activity.
@@ -734,7 +734,7 @@ public class VR implements Library {
         public static final int k_EDeviceActivityLevel_UserInteraction = 1;// Activity (movement or prox sensor) is happening now
         public static final int k_EDeviceActivityLevel_UserInteraction_Timeout = 2;// No activity for the last 0.5 seconds
         public static final int k_EDeviceActivityLevel_Standby = 3; // Idle for at least 5 seconds (configurable in Settings -> Power Management)
-    }
+    };
 
     /**
      * VR controller button and axis IDs
@@ -768,7 +768,7 @@ public class VR implements Library {
         public static final int k_EButton_Dashboard_Back = k_EButton_Grip;
 
         public static final int k_EButton_Max = 64;
-    }
+    };
 
     /**
      * Helper function to turn a button ID into a bit mask that can be used with controller state button pressed and touched bit fields
@@ -788,7 +788,7 @@ public class VR implements Library {
         public static final int VRMouseButton_Left = 1;
         public static final int VRMouseButton_Right = 2;
         public static final int VRMouseButton_Middle = 4;
-    }
+    };
 
     /**
      *
@@ -821,7 +821,7 @@ public class VR implements Library {
         public static final int k_eControllerAxis_TrackPad = 1;
         public static final int k_eControllerAxis_Joystick = 2;
         public static final int k_eControllerAxis_Trigger = 3;  // Analog trigger data is in the X axis
-    }
+    };
 
     /**
      * determines how to provide output to the application of various event
@@ -831,7 +831,7 @@ public class VR implements Library {
 
         public static final int ControllerEventOutput_OSEvents = 0;
         public static final int ControllerEventOutput_VREvents = 1;
-    }
+    };
 
     /**
      * Collision Bounds Style
@@ -844,7 +844,7 @@ public class VR implements Library {
         public static final int COLLISION_BOUNDS_STYLE_ADVANCED = 3;
         public static final int COLLISION_BOUNDS_STYLE_NONE = 4;
         public static final int COLLISION_BOUNDS_STYLE_COUNT = 5;
-    }
+    };
 
     /**
      * Errors that can occur around VR overlays
@@ -875,7 +875,7 @@ public class VR implements Library {
         public static final int VROverlayError_NoNeighbor = 27;
         public static final int _VROverlayError_TooManyMaskPrimitives = 29;
         public static final int VROverlayError_BadMaskPrimitive = 30;
-    }
+    };
 
     /**
      * enum values to pass in to VR_Init to identify whether the application
@@ -908,7 +908,7 @@ public class VR implements Library {
         public static final int VRApplication_Bootstrapper = 7;
 
         public static final int VRApplication_Max = 8;
-    }
+    };
 
     /**
      * error codes for firmware
@@ -918,7 +918,7 @@ public class VR implements Library {
         public static final int VRFirmwareError_None = 0;
         public static final int VRFirmwareError_Success = 1;
         public static final int VRFirmwareError_Fail = 2;
-    }
+    };
 
     /**
      * error codes for notifications
@@ -930,7 +930,7 @@ public class VR implements Library {
         public static final int VRNotificationError_NotificationQueueFull = 101;
         public static final int VRNotificationError_InvalidOverlayHandle = 102;
         public static final int VRNotificationError_SystemWithUserValueAlreadyExists = 103;
-    }
+    };
 
     // Please add adequate error description to https://developer.valvesoftware.com/w/index.php?title=Category:SteamVRHelp
     public static class EVRInitError {
@@ -1030,7 +1030,7 @@ public class VR implements Library {
         public static final int VRInitError_VendorSpecific_HmdFound_ConfigFailedSanityCheck = 1113;
 
         public static final int EVRInitError_VRInitError_Steam_SteamInstallationNotFound = 2000;
-    }
+    };
 
     public static class EVRScreenshotType {
 
@@ -1131,7 +1131,7 @@ public class VR implements Library {
         public static final int EVRApplicationError_VRApplicationError_PropertyNotSet = 201;
         public static final int EVRApplicationError_VRApplicationError_UnknownProperty = 202;
         public static final int VRApplicationError_InvalidParameter = 203;
-    }
+    };
 
     /**
      * these are the properties available on applications.
@@ -1160,7 +1160,7 @@ public class VR implements Library {
         public static final int VRApplicationProperty_WantsCompositorPauseInStandby_Bool = 64;
 
         public static final int VRApplicationProperty_LastLaunchTime_Uint64 = 70;
-    }
+    };
 
     /**
      * These are states the scene application startup process will go through.
@@ -1173,7 +1173,7 @@ public class VR implements Library {
         public static final int VRApplicationTransition_WaitingForExternalLaunch = 11;
 
         public static final int VRApplicationTransition_NewAppLaunched = 20;
-    }
+    };
 
     public static class ChaperoneCalibrationState {
 
@@ -1200,7 +1200,7 @@ public class VR implements Library {
         public static final int ChaperoneCalibrationState_Error_PlayAreaInvalid = 203;
         // Collision Bounds haven't been calibrated for the current tracking center
         public static final int ChaperoneCalibrationState_Error_CollisionBoundsInvalid = 204;
-    }
+    };
 
     public static class EChaperoneConfigFile {
 
@@ -1208,12 +1208,12 @@ public class VR implements Library {
         public static final int EChaperoneConfigFile_Live = 1;
         // The temporary chaperone config, used to live-preview collision bounds in room setup
         public static final int EChaperoneConfigFile_Temp = 2;
-    }
+    };
 
     public static class EChaperoneImportFlags {
 
         public static final int EChaperoneImport_BoundsOnly = 1;
-    }
+    };
 
     /**
      * Errors that can occur with the VR compositor
@@ -1253,7 +1253,7 @@ public class VR implements Library {
         // Tracked controllers will get mouse events automatically
         public static final int VROverlayInputMethod_Mouse = 1;
         public static final int VROverlayInputMethod_DualAnalog = 2;// Analog inputs from tracked controllers are turned into DualAnalog events
-    }
+    };
 
     /**
      * Allows the caller to figure out which overlay transform getter to call.
@@ -1264,7 +1264,7 @@ public class VR implements Library {
         public static final int VROverlayTransform_TrackedDeviceRelative = 1;
         public static final int VROverlayTransform_SystemOverlay = 2;
         public static final int VROverlayTransform_TrackedComponent = 3;
-    }
+    };
 
     /**
      * Overlay control settings
@@ -1342,7 +1342,7 @@ public class VR implements Library {
         public static final int CouldntFindSystemOverlay = 4;
         public static final int CouldntFindOrCreateClientOverlay= 5;
         public static final int ApplicationQuit = 6;
-    }
+    };
 
     // Input modes for the Big Picture gamepad text entry
     public static class EGamepadTextInputMode {
@@ -1350,14 +1350,14 @@ public class VR implements Library {
         public static final int k_EGamepadTextInputModeNormal = 0;
         public static final int k_EGamepadTextInputModePassword = 1;
         public static final int k_EGamepadTextInputModeSubmit = 2;
-    }
+    };
 
     // Controls number of allowed lines for the Big Picture gamepad text entry
     public static class EGamepadTextInputLineMode {
 
         public static final int k_EGamepadTextInputLineModeSingleLine = 0;
         public static final int k_EGamepadTextInputLineModeMultipleLines = 1;
-    }
+    };
 
     /**
      * Directions for changing focus between overlays with the gamepad
@@ -1370,7 +1370,7 @@ public class VR implements Library {
         public static final int OverlayDirection_Right = 3;
 
         public static final int OverlayDirection_Count = 4;
-    }
+    };
 
     /**
      * FIXME missing docs
@@ -1401,7 +1401,7 @@ public class VR implements Library {
         public static final int VRRenderModelError_NotEnoughNormals = 307;
         public static final int VRRenderModelError_NotEnoughTexCoords = 308;
         public static final int VRRenderModelError_InvalidTexture = 400;
-    }
+    };
 
     public static class EVRComponentProperty {
 
@@ -1410,7 +1410,7 @@ public class VR implements Library {
         public static final int VRComponentProperty_IsTouched = (4);
         public static final int VRComponentProperty_IsPressed = (8);
         public static final int VRComponentProperty_IsScrolled = (16);
-    }
+    };
 
     public static class EVRNotificationType {
 
@@ -1433,7 +1433,7 @@ public class VR implements Library {
          * queue to prevent spamming with system notification
          */
         public static final int Transient_SystemWithUserValue = 2;
-    }
+    };
 
     public static class EVRNotificationStyle {
 
@@ -1464,7 +1464,7 @@ public class VR implements Library {
          * running a game.
          */
         public static final int EVRNotificationStyle_Contact_Active = 202;
-    }
+    };
 
     public static class EVRSettingsError {
 
@@ -1475,7 +1475,7 @@ public class VR implements Library {
         public static final int VRSettingsError_JsonParseFailed = 4;
 
         public static final int VRSettingsError_UnsetSettingHasNoDefault = 5;
-    }
+    };
 
     public static class EVRScreenshotError {
 
@@ -1505,7 +1505,7 @@ public class VR implements Library {
 
     /**
      * Original signature : <code>bool VR_IsHmdPresent()</code>
-     * <p>
+     *
      * Returns true if there is an HMD attached. This check is as lightweight as
      * possible and can be called outside of VR_Init/VR_Shutdown. It should be
      * used when an application wants to know if initializing VR is a
@@ -1518,7 +1518,7 @@ public class VR implements Library {
     /**
      * Original signature :
      * <code>intptr_t VR_GetGenericInterface(const char*, EVRInitError*)</code>
-     * <p>
+     *
      * Returns the class of the specified version. This method must be called
      * after VR_Init. The pointer returned is valid until VR_Shutdown is called.
      *
@@ -1530,7 +1530,7 @@ public class VR implements Library {
 
     /**
      * Original signature : <code>bool VR_IsRuntimeInstalled()</code>
-     * <p>
+     *
      * Returns true if the OpenVR runtime is installed.
      *
      * @return
@@ -1539,7 +1539,7 @@ public class VR implements Library {
 
     /**
      * Original signature : <code>const char* VR_RuntimePath()</code>
-     * <p>
+     *
      * Returns where the OpenVR runtime is installed.
      *
      * @return
@@ -1549,7 +1549,7 @@ public class VR implements Library {
     /**
      * Original signature :
      * <code>char* VR_GetVRInitErrorAsSymbol(EVRInitError)</code>
-     * <p>
+     *
      * Returns the name of the enum value for an EVRInitError. This function may
      * be called outside of VR_Init()/VR_Shutdown().
      *
@@ -1561,7 +1561,7 @@ public class VR implements Library {
     /**
      * Original signature :
      * <code>char* VR_GetVRInitErrorAsEnglishDescription(EVRInitError)</code>
-     * <p>
+     *
      * Returns an english string for an EVRInitError. Applications should call
      * VR_GetVRInitErrorAsSymbol instead and use that as a key to look up their
      * own localized error message. This function may be called outside of
@@ -1575,7 +1575,7 @@ public class VR implements Library {
     /**
      * Original signature :
      * <code>VR_INTERFACE void *VR_CALLTYPE VR_GetGenericInterface( const char *pchInterfaceVersion, EVRInitError *peError )</code>
-     * <p>
+     *
      * Returns the interface of the specified version. This method must be
      * called after VR_Init. The pointer returned is valid until VR_Shutdown is
      * called.
@@ -1589,7 +1589,7 @@ public class VR implements Library {
     /**
      * Original signature :
      * <code>VR_INTERFACE bool VR_CALLTYPE VR_IsInterfaceVersionValid( const char *pchInterfaceVersion )</code>
-     * <p>
+     *
      * Returns whether the interface of the specified version exists.
      *
      * @param pchInterfaceVersion
@@ -1600,7 +1600,7 @@ public class VR implements Library {
     /**
      * Original signature :
      * <code>VR_INTERFACE uint32_t VR_CALLTYPE VR_GetInitToken()</code>
-     * <p>
+     *
      * Returns a token that represents whether the VR interface handles need to
      * be reloaded
      *

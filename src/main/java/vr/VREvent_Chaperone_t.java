@@ -2,7 +2,6 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class VREvent_Chaperone_t extends Structure {
     }
 
     @Override
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("m_nPreviousUniverse", "m_nCurrentUniverse");
     }
 
@@ -37,8 +36,8 @@ public class VREvent_Chaperone_t extends Structure {
     }
 
     public static class ByReference extends VREvent_Chaperone_t implements Structure.ByReference {
-    }
+    };
 
     public static class ByValue extends VREvent_Chaperone_t implements Structure.ByValue {
-    }
+    };
 }

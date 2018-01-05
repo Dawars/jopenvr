@@ -4,7 +4,6 @@ import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,18 +26,18 @@ public class IVRNotifications_FnTable extends Structure {
     public interface CreateNotification_callback extends Callback {
 
         int apply(long ulOverlayHandle, long ulUserValue, int type, Pointer pchText, int style, NotificationBitmap_t pImage, IntByReference pNotificationId);
-    }
+    };
 
     public interface RemoveNotification_callback extends Callback {
 
         int apply(int notificationId);
-    }
+    };
 
     public IVRNotifications_FnTable() {
         super();
     }
 
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("CreateNotification", "RemoveNotification");
     }
 
@@ -59,9 +58,9 @@ public class IVRNotifications_FnTable extends Structure {
 
     public static class ByReference extends IVRNotifications_FnTable implements Structure.ByReference {
 
-    }
+    };
 
     public static class ByValue extends IVRNotifications_FnTable implements Structure.ByValue {
 
-    }
+    };
 }

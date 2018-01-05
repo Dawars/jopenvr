@@ -2,7 +2,6 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class RenderModel_ControllerMode_State_t extends Structure {
     }
 
     @Override
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("bScrollWheelVisible");
     }
 
@@ -36,8 +35,8 @@ public class RenderModel_ControllerMode_State_t extends Structure {
     }
 
     public static class ByReference extends RenderModel_ControllerMode_State_t implements Structure.ByReference {
-    }
+    };
 
     public static class ByValue extends RenderModel_ControllerMode_State_t implements Structure.ByValue {
-    }
+    };
 }

@@ -4,7 +4,6 @@ import com.sun.jna.Callback;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -147,152 +146,152 @@ public class IVRApplications_FnTable extends Structure {
     public interface AddApplicationManifest_callback extends Callback {
 
         int apply(Pointer pchApplicationManifestFullPath, byte bTemporary);
-    }
+    };
 
     public interface RemoveApplicationManifest_callback extends Callback {
 
         int apply(Pointer pchApplicationManifestFullPath);
-    }
+    };
 
     public interface IsApplicationInstalled_callback extends Callback {
 
         byte apply(Pointer pchAppKey);
-    }
+    };
 
     public interface GetApplicationCount_callback extends Callback {
 
         int apply();
-    }
+    };
 
     public interface GetApplicationKeyByIndex_callback extends Callback {
 
         int apply(int unApplicationIndex, Pointer pchAppKeyBuffer, int unAppKeyBufferLen);
-    }
+    };
 
     public interface GetApplicationKeyByProcessId_callback extends Callback {
 
         int apply(int unProcessId, Pointer pchAppKeyBuffer, int unAppKeyBufferLen);
-    }
+    };
 
     public interface LaunchApplication_callback extends Callback {
 
         int apply(Pointer pchAppKey);
-    }
+    };
 
     public interface LaunchTemplateApplication_callback extends Callback {
 
         int apply(Pointer pchTemplateAppKey, Pointer pchNewAppKey, Pointer pKeys, int unKeys);
-    }
+    };
 
     public interface LaunchApplicationFromMimeType_callback extends Callback {
 
         int apply(Pointer pchMimeType, Pointer pchArgs);
-    }
+    };
 
     public interface LaunchDashboardOverlay_callback extends Callback {
 
         int apply(Pointer pchAppKey);
-    }
+    };
 
     public interface CancelApplicationLaunch_callback extends Callback {
 
         byte apply(Pointer pchAppKey);
-    }
+    };
 
     public interface IdentifyApplication_callback extends Callback {
 
         int apply(int unProcessId, Pointer pchAppKey);
-    }
+    };
 
     public interface GetApplicationProcessId_callback extends Callback {
 
         int apply(Pointer pchAppKey);
-    }
+    };
 
     public interface GetApplicationsErrorNameFromEnum_callback extends Callback {
 
         Pointer apply(int error);
-    }
+    };
 
     public interface GetApplicationPropertyString_callback extends Callback {
 
         int apply(Pointer pchAppKey, int eProperty, Pointer pchPropertyValueBuffer, int unPropertyValueBufferLen, IntByReference peError);
-    }
+    };
 
     public interface GetApplicationPropertyBool_callback extends Callback {
 
         byte apply(Pointer pchAppKey, int eProperty, IntByReference peError);
-    }
+    };
 
     public interface GetApplicationPropertyUint64_callback extends Callback {
 
         long apply(Pointer pchAppKey, int eProperty, IntByReference peError);
-    }
+    };
 
     public interface SetApplicationAutoLaunch_callback extends Callback {
 
         int apply(Pointer pchAppKey, byte bAutoLaunch);
-    }
+    };
 
     public interface GetApplicationAutoLaunch_callback extends Callback {
 
         byte apply(Pointer pchAppKey);
-    }
+    };
 
     public interface SetDefaultApplicationForMimeType_callback extends Callback {
 
         int apply(Pointer pchAppKey, Pointer pchMimeType);
-    }
+    };
 
     public interface GetDefaultApplicationForMimeType_callback extends Callback {
 
         byte apply(Pointer pchMimeType, Pointer pchAppKeyBuffer, int unAppKeyBufferLen);
-    }
+    };
 
     public interface GetApplicationSupportedMimeTypes_callback extends Callback {
 
         byte apply(Pointer pchAppKey, Pointer pchMimeTypesBuffer, int unMimeTypesBuffer);
-    }
+    };
 
     public interface GetApplicationsThatSupportMimeType_callback extends Callback {
 
         int apply(Pointer pchMimeType, Pointer pchAppKeysThatSupportBuffer, int unAppKeysThatSupportBuffer);
-    }
+    };
 
     public interface GetApplicationLaunchArguments_callback extends Callback {
 
         int apply(int unHandle, Pointer pchArgs, int unArgs);
-    }
+    };
 
     public interface GetStartingApplication_callback extends Callback {
 
         int apply(Pointer pchAppKeyBuffer, int unAppKeyBufferLen);
-    }
+    };
 
     public interface GetTransitionState_callback extends Callback {
 
         int apply();
-    }
+    };
 
     public interface PerformApplicationPrelaunchCheck_callback extends Callback {
 
         int apply(Pointer pchAppKey);
-    }
+    };
 
     public interface GetApplicationsTransitionStateNameFromEnum_callback extends Callback {
 
         Pointer apply(int state);
-    }
+    };
 
     public interface IsQuitUserPromptRequested_callback extends Callback {
 
         byte apply();
-    }
+    };
 
     public interface LaunchInternalProcess_callback extends Callback {
 
         int apply(Pointer pchBinaryPath, Pointer pchArguments, Pointer pchWorkingDirectory);
-    }
+    };
 
     public interface GetCurrentSceneProcessId_callback extends Callback {
 
@@ -304,7 +303,7 @@ public class IVRApplications_FnTable extends Structure {
     }
 
     @Override
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("AddApplicationManifest", "RemoveApplicationManifest",
                 "IsApplicationInstalled", "GetApplicationCount", "GetApplicationKeyByIndex",
                 "GetApplicationKeyByProcessId", "LaunchApplication", "LaunchTemplateApplication",
@@ -326,9 +325,9 @@ public class IVRApplications_FnTable extends Structure {
 
     public static class ByReference extends IVRApplications_FnTable implements Structure.ByReference {
 
-    }
+    };
 
     public static class ByValue extends IVRApplications_FnTable implements Structure.ByValue {
 
-    }
+    };
 }

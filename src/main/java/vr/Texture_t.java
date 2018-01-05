@@ -2,7 +2,6 @@ package vr;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,17 +15,17 @@ public class Texture_t extends Structure {
     /**
      * void *<br>
      * C type : void*
-     * <p>
+     *
      * See ETextureType definition above
      */
     public int handle;
     /**
-     * @see vr.VR.EGraphicsAPIConvention
-     * C type : EGraphicsAPIConvention
+     * @see ETextureType<br>
+     * C type : ETextureType
      */
     public int eType;
     /**
-     * @see vr.VR.EColorSpace
+     * @see EColorSpace<br>
      * C type : EColorSpace
      */
     public int eColorSpace;
@@ -36,17 +35,17 @@ public class Texture_t extends Structure {
     }
 
     @Override
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("handle", "eType", "eColorSpace");
     }
 
     /**
-     * @param handle      void *<br>
-     *                    C type : void*<br>
-     * @param eType       @see ETextureType<br>
-     *                    C type : ETextureType<br>
+     * @param handle void *<br>
+     * C type : void*<br>
+     * @param eType @see ETextureType<br>
+     * C type : ETextureType<br>
      * @param eColorSpace @see EColorSpace<br>
-     *                    C type : EColorSpace
+     * C type : EColorSpace
      */
     public Texture_t(int handle, int eType, int eColorSpace) {
         super();
@@ -65,8 +64,8 @@ public class Texture_t extends Structure {
     }
 
     public static class ByReference extends Texture_t implements Structure.ByReference {
-    }
+    };
 
     public static class ByValue extends Texture_t implements Structure.ByValue {
-    }
+    };
 }

@@ -816,7 +816,7 @@ public class IVROverlay_FnTable extends Structure {
         super();
     }
 
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("FindOverlay", "CreateOverlay", "DestroyOverlay",
                 "SetHighQualityOverlay", "GetHighQualityOverlay", "GetOverlayKey",
                 "GetOverlayName", "GetOverlayImageData", "GetOverlayErrorNameFromEnum", "SetOverlayRenderingPid",

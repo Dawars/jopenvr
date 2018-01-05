@@ -6,6 +6,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 import com.sun.jna.ptr.FloatByReference;
 import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.ptr.LongByReference;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -52,7 +53,8 @@ public class IVRSystem extends Structure {
     /**
      * C type : GetDXGIOutputInfo_callback*
      */
-    public vr.IVRExtendedDisplay_FnTable.GetDXGIOutputInfo_callback GetDXGIOutputInfo;
+    public IVRSystem.GetDXGIOutputInfo_callback GetDXGIOutputInfo;
+    public IVRSystem.GetOutputDevice_callback GetOutputDevice;
     /**
      * C type : IsDisplayOnDesktop_callback*
      */
@@ -211,137 +213,161 @@ public class IVRSystem extends Structure {
     public interface GetRecommendedRenderTargetSize_callback extends Callback {
 
         void apply(IntBuffer pnWidth, IntBuffer pnHeight);
-    }
+    };
 
     public interface GetProjectionMatrix_callback extends Callback {
 
-        vr.HmdMatrix44_t.ByValue apply(int eEye, float fNearZ, float fFarZ, int eProjType);
-    }
+        vr.HmdMatrix44_t.ByValue apply(int eEye, float fNearZ, float fFarZ);
+    };
 
     public interface GetProjectionRaw_callback extends Callback {
 
         void apply(int eEye, FloatByReference pfLeft, FloatByReference pfRight, FloatByReference pfTop, FloatByReference pfBottom);
-    }
+    };
 
     public interface ComputeDistortion_callback extends Callback {
 
-        vr.DistortionCoordinates_t.ByValue apply(int eEye, float fU, float fV);
-    }
+        boolean apply(int eEye, float fU, float fV, DistortionCoordinates_t pDistortionCoordinates);
+    };
 
     public interface GetEyeToHeadTransform_callback extends Callback {
 
         HmdMatrix34_t.ByValue apply(int eEye);
-    }
+    };
 
     public interface GetTimeSinceLastVsync_callback extends Callback {
 
-        boolean apply(FloatBuffer pfSecondsSinceLastVsync, LongBuffer pulFrameCounter);
-    }
+        byte apply(FloatBuffer pfSecondsSinceLastVsync, LongBuffer pulFrameCounter);
+    };
 
     public interface GetD3D9AdapterIndex_callback extends Callback {
 
         int apply();
-    }
+    };
 
     public interface GetDXGIOutputInfo_callback extends Callback {
 
         void apply(IntByReference pnAdapterIndex);
+    };
+
+    /**
+     * Returns platform- and texture-type specific adapter identification so that applications and the
+     * compositor are creating textures and swap chains on the same GPU. If an error occurs the device
+     * will be set to 0.
+     * pInstance is an optional parameter that is required only when textureType is TextureType_Vulkan.
+     * [D3D10/11/12 Only (D3D9 Not Supported)]
+     *  Returns the adapter LUID that identifies the GPU attached to the HMD. The user should
+     *  enumerate all adapters using IDXGIFactory::EnumAdapters and IDXGIAdapter::GetDesc to find
+     *  the adapter with the matching LUID, or use IDXGIFactory4::EnumAdapterByLuid.
+     *  The discovered IDXGIAdapter should be used to create the device and swap chain.
+     * [Vulkan Only]
+     * Returns the VkPhysicalDevice that should be used by the application.
+     *  pInstance must be the instance the application will use to query for the VkPhysicalDevice.  The application
+     *  must create the VkInstance with extensions returned by IVRCompositor::GetVulkanInstanceExtensionsRequired enabled.
+     * [macOS Only]
+     *  Returns an id<MTLDevice> that should be used by the application.
+     *
+     *  Forward declaration for VkInstance_T pInstance
+     */
+    public interface GetOutputDevice_callback extends Callback {
+
+        void apply(LongByReference pnDevice, int textureType, Pointer pInstance);
     }
 
     public interface IsDisplayOnDesktop_callback extends Callback {
 
         boolean apply();
-    }
+    };
 
     public interface SetDisplayVisibility_callback extends Callback {
 
-        boolean apply(boolean bIsVisibleOnDesktop);
-    }
+        byte apply(boolean bIsVisibleOnDesktop);
+    };
 
     public interface GetDeviceToAbsoluteTrackingPose_callback extends Callback {
 
-        void apply(int eOrigin, float fPredictedSecondsToPhotonsFromNow, TrackedDevicePose_t pTrackedDevicePoseArray, int unTrackedDevicePoseArrayCount);
-    }
+        void apply(int eOrigin, float fPredictedSecondsToPhotonsFromNow, TrackedDevicePose_t[] pTrackedDevicePoseArray, int unTrackedDevicePoseArrayCount);
+    };
 
     public interface ResetSeatedZeroPose_callback extends Callback {
 
         void apply();
-    }
+    };
 
     public interface GetSeatedZeroPoseToStandingAbsoluteTrackingPose_callback extends Callback {
 
         HmdMatrix34_t.ByValue apply();
-    }
+    };
 
     public interface GetRawZeroPoseToStandingAbsoluteTrackingPose_callback extends Callback {
 
         HmdMatrix34_t.ByValue apply();
-    }
+    };
 
     public interface GetSortedTrackedDeviceIndicesOfClass_callback extends Callback {
 
         int apply(int eTrackedDeviceClass, IntByReference punTrackedDeviceIndexArray, int unTrackedDeviceIndexArrayCount, int unRelativeToTrackedDeviceIndex);
-    }
+    };
 
     public interface GetTrackedDeviceActivityLevel_callback extends Callback {
 
         int apply(int unDeviceId);
-    }
+    };
 
     public interface ApplyTransform_callback extends Callback {
 
         void apply(TrackedDevicePose_t pOutputPose, TrackedDevicePose_t pTrackedDevicePose, HmdMatrix34_t pTransform);
-    }
+    };
 
     public interface GetTrackedDeviceIndexForControllerRole_callback extends Callback {
 
         int apply(int unDeviceType);
-    }
+    };
 
     public interface GetControllerRoleForTrackedDeviceIndex_callback extends Callback {
 
         int apply(int unDeviceIndex);
-    }
+    };
 
     public interface GetTrackedDeviceClass_callback extends Callback {
 
         int apply(int unDeviceIndex);
-    }
+    };
 
     public interface IsTrackedDeviceConnected_callback extends Callback {
 
         boolean apply(int unDeviceIndex);
-    }
+    };
 
     public interface GetBoolTrackedDeviceProperty_callback extends Callback {
 
         boolean apply(int unDeviceIndex, int prop, IntBuffer pError);
-    }
+    };
 
     public interface GetFloatTrackedDeviceProperty_callback extends Callback {
 
         float apply(int unDeviceIndex, int prop, IntBuffer pError);
-    }
+    };
 
     public interface GetInt32TrackedDeviceProperty_callback extends Callback {
 
         int apply(int unDeviceIndex, int prop, IntBuffer pError);
-    }
+    };
 
     public interface GetUint64TrackedDeviceProperty_callback extends Callback {
 
         long apply(int unDeviceIndex, int prop, IntBuffer pError);
-    }
+    };
 
     public interface GetMatrix34TrackedDeviceProperty_callback extends Callback {
 
-        HmdMatrix34_t.ByValue apply(int unDeviceIndex, int prop, IntByReference pError);
-    }
+        HmdMatrix34_t.ByValue apply(int unDeviceIndex, int prop, IntBuffer pError); // TODO check error type IntByReference?
+    };
 
     public interface GetStringTrackedDeviceProperty_callback extends Callback {
 
         int apply(int unDeviceIndex, int prop, Pointer pchValue, int unBufferSize, IntBuffer pError);
-    }
+    };
 
     /**
      * Helper to get a string from a tracked device property and turn it into a String
@@ -359,98 +385,98 @@ public class IVRSystem extends Structure {
 
     public interface GetPropErrorNameFromEnum_callback extends Callback {
 
-        Pointer apply(int error);
-    }
+        String apply(int error);
+    };
 
     public interface PollNextEvent_callback extends Callback {
 
         boolean apply(VREvent_t pEvent, int uncbVREvent);
-    }
+    };
 
     public interface PollNextEventWithPose_callback extends Callback {
 
         boolean apply(int eOrigin, VREvent_t pEvent, int uncbVREvent, TrackedDevicePose_t pTrackedDevicePose);
-    }
+    };
 
     public interface GetEventTypeNameFromEnum_callback extends Callback {
 
         Pointer apply(int eType);
-    }
+    };
 
     public interface GetHiddenAreaMesh_callback extends Callback {
 
-        vr.HiddenAreaMesh_t.ByValue apply(int eEye);
-    }
+        vr.HiddenAreaMesh_t.ByValue apply(int eEye, VR.EHiddenAreaMeshType type);
+    };
 
     public interface GetControllerState_callback extends Callback {
 
-        boolean apply(int unControllerDeviceIndex, VRControllerState_t pControllerState);
-    }
+        boolean apply(int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize);
+    };
 
     public interface GetControllerStateWithPose_callback extends Callback {
 
-        boolean apply(int eOrigin, int unControllerDeviceIndex, VRControllerState_t pControllerState, TrackedDevicePose_t pTrackedDevicePose);
-    }
+        boolean apply(int eOrigin, int unControllerDeviceIndex, VRControllerState_t pControllerState, int unControllerStateSize, TrackedDevicePose_t pTrackedDevicePose);
+    };
 
     public interface TriggerHapticPulse_callback extends Callback {
 
         void apply(int unControllerDeviceIndex, int unAxisId, short usDurationMicroSec);
-    }
+    };
 
     public interface GetButtonIdNameFromEnum_callback extends Callback {
 
         Pointer apply(int eButtonId);
-    }
+    };
 
     public interface GetControllerAxisTypeNameFromEnum_callback extends Callback {
 
-        Pointer apply(int eAxisType);
-    }
+        String apply(int eAxisType);
+    };
 
     public interface CaptureInputFocus_callback extends Callback {
 
-        boolean apply();
-    }
+        byte apply();
+    };
 
     public interface ReleaseInputFocus_callback extends Callback {
 
         void apply();
-    }
+    };
 
     public interface IsInputFocusCapturedByAnotherProcess_callback extends Callback {
 
         boolean apply();
-    }
+    };
 
     public interface DriverDebugRequest_callback extends Callback {
 
         int apply(int unDeviceIndex, Pointer pchRequest, Pointer pchResponseBuffer, int unResponseBufferSize);
-    }
+    };
 
     public interface PerformFirmwareUpdate_callback extends Callback {
 
         int apply(int unDeviceIndex);
-    }
+    };
 
     public interface AcknowledgeQuit_Exiting_callback extends Callback {
 
         void apply();
-    }
+    };
 
     public interface AcknowledgeQuit_UserPrompt_callback extends Callback {
 
         void apply();
-    }
+    };
 
     public interface PerformanceTestEnableCapture_callback extends Callback {
 
-        void apply(boolean bEnable);
-    }
+        void apply(byte bEnable);
+    };
 
     public interface PerformanceTestReportFidelityLevelChange_callback extends Callback {
 
         void apply(int nFidelityLevel);
-    }
+    };
 
     /**
      * Private since it shouldn't be used externally
@@ -459,10 +485,10 @@ public class IVRSystem extends Structure {
         super();
     }
 
-    protected List<String> getFieldOrder() {
+    protected List<?> getFieldOrder() {
         return Arrays.asList("GetRecommendedRenderTargetSize", "GetProjectionMatrix", "GetProjectionRaw",
                 "ComputeDistortion", "GetEyeToHeadTransform", "GetTimeSinceLastVsync", "GetD3D9AdapterIndex",
-                "GetDXGIOutputInfo", "IsDisplayOnDesktop", "SetDisplayVisibility", "GetDeviceToAbsoluteTrackingPose",
+                "GetDXGIOutputInfo", "GetOutputDevice", "IsDisplayOnDesktop", "SetDisplayVisibility", "GetDeviceToAbsoluteTrackingPose",
                 "ResetSeatedZeroPose", "GetSeatedZeroPoseToStandingAbsoluteTrackingPose",
                 "GetRawZeroPoseToStandingAbsoluteTrackingPose", "GetSortedTrackedDeviceIndicesOfClass",
                 "GetTrackedDeviceActivityLevel", "ApplyTransform", "GetTrackedDeviceIndexForControllerRole",
@@ -484,9 +510,9 @@ public class IVRSystem extends Structure {
 
     public static class ByReference extends IVRSystem implements Structure.ByReference {
 
-    }
+    };
 
     public static class ByValue extends IVRSystem implements Structure.ByValue {
 
-    }
+    };
 }
