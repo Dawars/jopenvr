@@ -24,7 +24,7 @@ public class D3D12TextureData_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("m_nPreviousUniverse", "m_nCurrentUniverse");
     }
 

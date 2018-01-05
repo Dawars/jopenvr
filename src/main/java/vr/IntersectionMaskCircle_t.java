@@ -17,7 +17,7 @@ public class IntersectionMaskCircle_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("m_flCenterX", "m_flCenterY", "m_flRadius");
     }
 
@@ -29,10 +29,6 @@ public class IntersectionMaskCircle_t extends Structure {
     public static class ByReference extends IntersectionMaskCircle_t implements Structure.ByReference {
     }
 
-    ;
-
     public static class ByValue extends IntersectionMaskCircle_t implements Structure.ByValue {
     }
-
-    ;
 }

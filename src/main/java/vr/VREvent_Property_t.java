@@ -17,7 +17,7 @@ public class VREvent_Property_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("container", "prop");
     }
 
@@ -28,8 +28,8 @@ public class VREvent_Property_t extends Structure {
     }
 
     public static class ByReference extends VREvent_Property_t implements Structure.ByReference {
-    };
+    }
 
     public static class ByValue extends VREvent_Property_t implements Structure.ByValue {
-    };
+    }
 }

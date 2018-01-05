@@ -17,7 +17,7 @@ public class VROverlayIntersectionMaskPrimitive_Data_t extends Union {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("m_Rectangle", "m_Circle");
     }
 

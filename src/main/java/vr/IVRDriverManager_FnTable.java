@@ -15,8 +15,11 @@ public class IVRDriverManager_FnTable extends Structure {
     public interface GetDriverCount_callback extends Callback {
         int apply();
     }
+
     public interface GetDriverName_callback extends Callback {
-        /** Returns the length of the number of bytes necessary to hold this string including the trailing null. */
+        /**
+         * Returns the length of the number of bytes necessary to hold this string including the trailing null.
+         */
         int apply(int nDriver, Pointer pchValue, int unBufferSize);
     }
 
@@ -25,13 +28,13 @@ public class IVRDriverManager_FnTable extends Structure {
         super();
     }
 
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("GetDriverCount", "GetDriverName");
     }
 
     /**
      * @param GetDriverCount C type : GetDriverCount_callback*<br>
-     * @param GetDriverName C type : GetDriverName_callback*<br>
+     * @param GetDriverName  C type : GetDriverName_callback*<br>
      */
     public IVRDriverManager_FnTable(GetDriverCount_callback GetDriverCount, GetDriverName_callback GetDriverName) {
         super();
@@ -46,9 +49,9 @@ public class IVRDriverManager_FnTable extends Structure {
 
     public static class ByReference extends IVRDriverManager_FnTable implements Structure.ByReference {
 
-    };
+    }
 
     public static class ByValue extends IVRDriverManager_FnTable implements Structure.ByValue {
 
-    };
+    }
 }

@@ -18,7 +18,7 @@ public class IntersectionMaskRectangle_t extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("m_flTopLeftX", "m_flTopLeftY",
                 "m_flWidth", "m_flHeight");
     }
@@ -32,10 +32,6 @@ public class IntersectionMaskRectangle_t extends Structure {
     public static class ByReference extends IntersectionMaskRectangle_t implements Structure.ByReference {
     }
 
-    ;
-
     public static class ByValue extends IntersectionMaskRectangle_t implements Structure.ByValue {
     }
-
-    ;
 }

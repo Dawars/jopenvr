@@ -80,7 +80,7 @@ public class TrackingTest {
             TrackedDevicePose_t hmdPose = trackedPoses[i];
 
 
-            if (hmdPose.bPoseIsValid) {
+            if (hmdPose.bPoseIsValid == 1) {
                 System.out.println("------------------" + hmd.GetTrackedDevicePropertyString(i, Prop_ModelNumber_String, errorBuffer) + "----------------------");
                 System.out.println(Arrays.toString(hmdPose.mDeviceToAbsoluteTracking.m));
             }

@@ -12,7 +12,7 @@ public class VRTextureWithPose_t extends Texture_t {
     public HmdMatrix34_t mDeviceToAbsoluteTracking; // Actual pose used to render scene textures.
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return Arrays.asList("handle", "eType", "eColorSpace", "mDeviceToAbsoluteTracking"/*This may be elsewhere*/);
     }
 
